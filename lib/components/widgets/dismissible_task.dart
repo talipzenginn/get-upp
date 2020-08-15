@@ -106,6 +106,7 @@ class DismissibleTask extends StatelessWidget {
             day: task.day,
             month: task.month,
             year: task.year,
+            title: task.name,
           ),
         ),
       );

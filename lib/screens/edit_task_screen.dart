@@ -12,11 +12,12 @@ class EditTaskScreen extends StatefulWidget {
   final int day;
   final int month;
   final int year;
+  final String title;
   bool lessActiveness = false;
   bool middleActiveness = false;
   bool moreActiveness = false;
   EditTaskScreen(
-      {this.index, this.importanceDegree, this.day, this.month, this.year}) {
+      {this.index, this.importanceDegree, this.day, this.month, this.year, this.title}) {
     if (importanceDegree == 1) {
       lessActiveness = true;
     } else if (importanceDegree == 2) {
@@ -34,6 +35,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   String taskName = '';
   int importanceValue;
   DateTime newDateTime;
+  TextEditingController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(text: widget.title);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +63,10 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               ),
               TextField(
                 maxLines: null,
+                controller: controller,
                 decoration: InputDecoration(
                   hintText:
-                      '${Provider.of<TasksListProvider>(context).displayingTasks[widget.index].name}',
+                      widget.title,
                 ),
                 autofocus: true,
                 textAlign: TextAlign.center,
