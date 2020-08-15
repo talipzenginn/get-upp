@@ -55,6 +55,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 ),
               ),
               TextField(
+                maxLines: null,
                 decoration: InputDecoration(
                   hintText:
                       '${Provider.of<TasksListProvider>(context).displayingTasks[widget.index].name}',

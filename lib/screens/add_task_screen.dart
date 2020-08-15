@@ -47,6 +47,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               TextField(
+                maxLines: null,
                 decoration: InputDecoration(
                   errorText:
                       errorTextVisible == true ? 'You should type title' : null,
