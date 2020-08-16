@@ -35,6 +35,7 @@ class TaskTile extends StatelessWidget {
             title: Text(
               taskTitle,
               style: TextStyle(
+                fontSize: 14.1,
                   decoration: isChecked == true ? TextDecoration.lineThrough : null),
             ),
             value: isChecked,
@@ -62,6 +63,7 @@ class TaskTile extends StatelessWidget {
                         icon: Icon(
                           FontAwesomeIcons.edit,
                           color: Colors.green,
+                          size: 22.0,
                         ),
                         onPressed: () {
                           Provider.of<ActiveColorProvider>(context, listen: false)
@@ -95,6 +97,7 @@ class TaskTile extends StatelessWidget {
                         icon: Icon(
                           FontAwesomeIcons.trashAlt,
                           color: Colors.red,
+                          size: 22.0,
                         ),
                         onPressed: () {
                           showDialog(
