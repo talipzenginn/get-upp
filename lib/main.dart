@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_upp/providers/active_color_provider.dart';
 import 'package:get_upp/providers/navigation_bar_on_tapped.dart';
 import 'package:get_upp/providers/search_bar_text_field_provider.dart';
@@ -13,6 +14,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MultiProvider(
           providers: [
             ChangeNotifierProvider<SearchBarTextFieldProvider>(
