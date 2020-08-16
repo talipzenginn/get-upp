@@ -25,6 +25,10 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<TasksListProvider>(
     create: (context) => TasksListProvider(),)],
           child: MaterialApp(
+            theme: ThemeData.light().copyWith(
+              accentColor: Colors.black,
+                  primaryColor: Colors.black
+            ),
             debugShowCheckedModeBanner: false,
             home: MyTasksScreen(),
           ),

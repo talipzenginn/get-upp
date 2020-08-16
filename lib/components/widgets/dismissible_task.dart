@@ -64,6 +64,8 @@ class DismissibleTask extends StatelessWidget {
           task: taskData.displayingTasks[index],
           direction: direction),
       child: TaskTile(
+        index: index,
+        task: task,
         taskTitle: task.name,
         isChecked: task.isDone,
         checkboxCallback: (bool checkboxState) {
