@@ -28,7 +28,7 @@ class AddTaskButton extends StatelessWidget {
               ),
             );
           },
-          minWidth: 150.0,
+          minWidth: 138.0,
           height: 42.0,
           child: Text(
             '+ Add Task',
