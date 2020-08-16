@@ -19,10 +19,10 @@ class MyTasksScreen extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(
-            top: 60.0,
-            right: 12.0,
-            left: 30.0,
-            bottom: 13.0,
+            top: 45.0,
+            right: 15.0,
+            left: 27.0,
+            bottom: 13.4,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,20 +38,23 @@ class MyTasksScreen extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      TaskCountText(),
-                      SizedBox(
-                        width: 12.0,
-                      ),
-                      PercentIndicatorOfMyTasks()
-                    ],
-                  ),
-                  AddTaskButton(),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(bottom:3.0,top: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        TaskCountText(),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        PercentIndicatorOfMyTasks()
+                      ],
+                    ),
+                    AddTaskButton(),
+                  ],
+                ),
               ),
                   SearchBar(),
             ],
@@ -59,6 +62,7 @@ class MyTasksScreen extends StatelessWidget {
         ),
         Expanded(
           child: Container(
+            padding: EdgeInsets.only(top:5.3),
             child: TaskDisplayList(),
             decoration: BoxDecoration(
               color: kTaskListColor,
