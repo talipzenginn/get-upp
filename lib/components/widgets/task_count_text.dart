@@ -9,7 +9,7 @@ class TaskCountText extends StatelessWidget {
   String taskCountText(BuildContext context) {
     String taskCount;
     if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
-      taskCount = 'All completed.\n - Well Done - ';
+      taskCount = 'Well\nDone!';
       return taskCount;
     } else {
       taskCount =
