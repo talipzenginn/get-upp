@@ -14,7 +14,7 @@ class TaskDisplayList extends StatelessWidget {
     if(Provider.of<SearchBarTextFieldProvider>(context).query!=null&&Provider.of<SearchBarTextFieldProvider>(context).query!=''){
       return Consumer<TasksListProvider>(
           builder: (context, taskData, child) {
-            final suggestionList=Provider.of<SearchBarTextFieldProvider>(context).query.isEmpty?[]:taskData.tasks.where((p) => p.name.toLowerCase().startsWith(Provider.of<SearchBarTextFieldProvider>(context).query.toLowerCase())).toList();
+            final suggestionList=Provider.of<SearchBarTextFieldProvider>(context).query.isEmpty?[]:taskData.tasks.where((p) => p.name.toLowerCase().contains(Provider.of<SearchBarTextFieldProvider>(context).query.toLowerCase())).toList();
             suggestionList.sort((a,b){
               Map mapA = jsonDecode(jsonEncode(a));
               Map mapB = jsonDecode(jsonEncode(b));
