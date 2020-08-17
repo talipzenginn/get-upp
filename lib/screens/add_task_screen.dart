@@ -46,20 +46,25 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              TextField(
-                maxLines: null,
-                decoration: InputDecoration(
-                  errorText:
-                      errorTextVisible == true ? 'You should type title' : null,
-                  hintText: 'Type your title',
+              Theme(
+                data: ThemeData.light().copyWith(
+                  accentColor: Colors.lightBlueAccent
                 ),
-                autofocus: newDateTime == null ? true : false,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  setState(() {
-                    taskName = value;
-                  });
-                },
+                child: TextField(
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    errorText:
+                        errorTextVisible == true ? 'You should type title' : null,
+                    hintText: 'Type your title',
+                  ),
+                  autofocus: newDateTime == null ? true : false,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    setState(() {
+                      taskName = value;
+                    });
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

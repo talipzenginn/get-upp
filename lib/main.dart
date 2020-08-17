@@ -4,7 +4,7 @@ import 'package:get_upp/providers/active_color_provider.dart';
 import 'package:get_upp/providers/navigation_bar_on_tapped.dart';
 import 'package:get_upp/providers/search_bar_text_field_provider.dart';
 import 'package:provider/provider.dart';
-import 'screens/my_tasks_screen.dart';
+import 'screens/main_scaffold.dart';
 import 'providers/tasks_list_provider.dart';
 
 void main() {
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                   primaryColor: Colors.black
             ),
             debugShowCheckedModeBanner: false,
-            home: MyTasksScreen(),
+            home: MainScaffold(),
           ),
     );
   }

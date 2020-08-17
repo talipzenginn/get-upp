@@ -61,20 +61,25 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              TextField(
-                maxLines: null,
-                controller: controller,
-                decoration: InputDecoration(
-                  hintText:
-                      widget.title,
+              Theme(
+                data: ThemeData.light().copyWith(
+                    accentColor: Colors.lightBlueAccent
                 ),
-                autofocus: true,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  setState(() {
-                    taskName = value;
-                  });
-                },
+                child: TextField(
+                  maxLines: null,
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText:
+                        widget.title,
+                  ),
+                  autofocus: true,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    setState(() {
+                      taskName = value;
+                    });
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
