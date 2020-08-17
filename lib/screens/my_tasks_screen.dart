@@ -62,7 +62,6 @@ class MyTasksScreen extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.only(top:5.3),
             child: TaskDisplayList(),
             decoration: BoxDecoration(
               color: kTaskListColor,
