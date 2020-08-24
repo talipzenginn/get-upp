@@ -17,7 +17,8 @@ class AddTaskButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.0),
         child: MaterialButton(
           onPressed: () {
-            Provider.of<ActiveColorProvider>(context,listen: false).inactivateColors();
+            Provider.of<ActiveColorProvider>(context, listen: false)
+                .inactivateColors();
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,

@@ -10,8 +10,8 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double percentage = ((Provider.of<TasksListProvider>(context).taskCount -
-        Provider.of<TasksListProvider>(context).leftTaskCount) /
-        Provider.of<TasksListProvider>(context).taskCount) *
+                Provider.of<TasksListProvider>(context).leftTaskCount) /
+            Provider.of<TasksListProvider>(context).taskCount) *
         100;
     double percent = percentage / 100;
     bool visible() {
@@ -24,7 +24,9 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
 
     return Visibility(
       visible: Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0 ? false : true
+          ? Provider.of<TasksListProvider>(context).taskCount == 0
+              ? false
+              : true
           : false,
       child: CircularPercentIndicator(
         radius: 57.0,

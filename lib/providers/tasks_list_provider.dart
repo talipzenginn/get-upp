@@ -12,7 +12,7 @@ class TasksListProvider extends ChangeNotifier {
   }
   SharedPreferences preferences;
   List<Task> _displayingTasks = [];
-  List<Task> _tasks=[];
+  List<Task> _tasks = [];
   List<Task> _leftTasks = [];
   List<Task> _completedTasks = [];
 
@@ -21,7 +21,8 @@ class TasksListProvider extends ChangeNotifier {
     String jsonText = preferences.getString('tasksList');
     if (jsonText != null) {
       final jsonResponse = json.decode(jsonText);
-      TasksListConvertJson taskJson = TasksListConvertJson.fromJson(jsonResponse);
+      TasksListConvertJson taskJson =
+          TasksListConvertJson.fromJson(jsonResponse);
       _tasks = taskJson.tasksList;
       _displayingTasks = _tasks;
       createTasksListOrder();
@@ -30,7 +31,7 @@ class TasksListProvider extends ChangeNotifier {
   }
 
   void addTask(Task newTask) {
-    _tasks.insert(0,newTask);
+    _tasks.insert(0, newTask);
     setList();
   }
 
@@ -48,22 +49,26 @@ class TasksListProvider extends ChangeNotifier {
     _tasks[index].name = taskTitle;
     setList();
   }
+
   void updateTaskPriority(int importanceValue, int index) {
     _tasks[index].importanceValue = importanceValue;
     setList();
   }
-  void updateTaskDueDate(int year,int month,int day, int index) {
+
+  void updateTaskDueDate(int year, int month, int day, int index) {
     _tasks[index].year = year;
     _tasks[index].month = month;
     _tasks[index].day = day;
     setList();
   }
+
   void deleteTaskDueDate(int index) {
     _tasks[index].year = 0;
     _tasks[index].month = 0;
     _tasks[index].day = 0;
     setList();
   }
+
   int get taskCount {
     return _displayingTasks.length;
   }
@@ -107,8 +112,8 @@ class TasksListProvider extends ChangeNotifier {
   UnmodifiableListView<Task> get displayingTasks {
     return UnmodifiableListView(_displayingTasks);
   }
+
   UnmodifiableListView<Task> get tasks {
     return UnmodifiableListView(_tasks);
   }
-
 }

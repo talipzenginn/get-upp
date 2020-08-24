@@ -11,24 +11,36 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Visibility(
-      visible:  Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0 ? false : true
+      visible: Provider.of<TasksListProvider>(context).taskCount != null
+          ? Provider.of<TasksListProvider>(context).taskCount == 0
+              ? false
+              : true
           : false,
       child: Padding(
         padding: const EdgeInsets.only(top: 4.0),
         child: Row(
           children: [
             Visibility(
-                visible: Provider.of<SearchBarTextFieldProvider>(context).showCursor,
+                visible:
+                    Provider.of<SearchBarTextFieldProvider>(context).showCursor,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: IconButton(icon: Icon(FontAwesomeIcons.arrowLeft,color: Colors.white,size: 30.0,), onPressed: (){
-                    Provider.of<SearchBarTextFieldProvider>(context,listen: false).removeQuery();
-                    Provider.of<SearchBarTextFieldProvider>(context,listen: false).controllerClear();
-                    FocusScope.of(context).unfocus();
-                  }),
+                  child: IconButton(
+                      icon: Icon(
+                        FontAwesomeIcons.arrowLeft,
+                        color: Colors.white,
+                        size: 30.0,
+                      ),
+                      onPressed: () {
+                        Provider.of<SearchBarTextFieldProvider>(context,
+                                listen: false)
+                            .removeQuery();
+                        Provider.of<SearchBarTextFieldProvider>(context,
+                                listen: false)
+                            .controllerClear();
+                        FocusScope.of(context).unfocus();
+                      }),
                 )),
             Expanded(
               child: Padding(
@@ -41,12 +53,16 @@ class SearchBar extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(30.0)),
                   child: TextField(
-                    controller: Provider.of<SearchBarTextFieldProvider>(context).controller,
-                    showCursor: Provider.of<SearchBarTextFieldProvider>(context).showCursor,
+                    controller: Provider.of<SearchBarTextFieldProvider>(context)
+                        .controller,
+                    showCursor: Provider.of<SearchBarTextFieldProvider>(context)
+                        .showCursor,
                     cursorColor: Colors.white,
                     cursorRadius: Radius.circular(30.0),
                     onChanged: (value) {
-                      Provider.of<SearchBarTextFieldProvider>(context,listen: false).setQuery(value);
+                      Provider.of<SearchBarTextFieldProvider>(context,
+                              listen: false)
+                          .setQuery(value);
                     },
                     onEditingComplete: () {
                       FocusScope.of(context).unfocus();
@@ -61,8 +77,7 @@ class SearchBar extends StatelessWidget {
                       enabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
-                      hintStyle: TextStyle(color:  Colors.white70
-                      ),
+                      hintStyle: TextStyle(color: Colors.white70),
                       hintText: 'Search task',
                       icon: Padding(
                         padding: const EdgeInsets.only(

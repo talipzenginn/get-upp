@@ -20,7 +20,13 @@ class TaskTile extends StatelessWidget {
   TaskTile({
     this.isChecked,
     this.taskTitle,
-    this.checkboxCallback, this.importanceValue, this.year, this.month, this.day, this.index, this.task,
+    this.checkboxCallback,
+    this.importanceValue,
+    this.year,
+    this.month,
+    this.day,
+    this.index,
+    this.task,
   });
 
   @override
@@ -31,13 +37,23 @@ class TaskTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CheckboxListTile(
-            secondary: Icon(FontAwesomeIcons.circle,color: importanceValue == 1?kLessButtonActiveColor:importanceValue==2?kMiddleButtonActiveColor:importanceValue==3?kMoreButtonActiveColor:Colors.white,),
+            secondary: Icon(
+              FontAwesomeIcons.circle,
+              color: importanceValue == 1
+                  ? kLessButtonActiveColor
+                  : importanceValue == 2
+                      ? kMiddleButtonActiveColor
+                      : importanceValue == 3
+                          ? kMoreButtonActiveColor
+                          : Colors.white,
+            ),
             title: Text(
               taskTitle,
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.1,
-                  decoration: isChecked == true ? TextDecoration.lineThrough : null),
+                  color: Colors.black,
+                  fontSize: 14.1,
+                  decoration:
+                      isChecked == true ? TextDecoration.lineThrough : null),
             ),
             value: isChecked,
             onChanged: checkboxCallback,
@@ -48,101 +64,113 @@ class TaskTile extends StatelessWidget {
         ],
       ),
       children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(width: 90.0,),
-                      Visibility(visible:year == 0?false:true,child: Text('Due date: $day.$month.$year',style: TextStyle(fontSize: 12.0,color: Colors.blueGrey),)),
-                    ],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: 90.0,
+                ),
+                Visibility(
+                    visible: year == 0 ? false : true,
+                    child: Text(
+                      'Due date: $day.$month.$year',
+                      style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
+                    )),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    FontAwesomeIcons.edit,
+                    color: Colors.green,
+                    size: 22.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      IconButton(
-                        icon: Icon(
-                          FontAwesomeIcons.edit,
-                          color: Colors.green,
-                          size: 22.0,
+                  onPressed: () {
+                    Provider.of<ActiveColorProvider>(context, listen: false)
+                        .inactivateColors();
+                    if (importanceValue == 1) {
+                      Provider.of<ActiveColorProvider>(context, listen: false)
+                          .changeLessButtonColor();
+                    } else if (importanceValue == 2) {
+                      Provider.of<ActiveColorProvider>(context, listen: false)
+                          .changeMiddleButtonColor();
+                    } else if (importanceValue == 3) {
+                      Provider.of<ActiveColorProvider>(context, listen: false)
+                          .changeMoreButtonColor();
+                    }
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) => SingleChildScrollView(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: EditTaskScreen(
+                          importanceDegree: importanceValue,
+                          index: index,
+                          day: day,
+                          month: month,
+                          year: year,
+                          title: taskTitle,
                         ),
-                        onPressed: () {
-                          Provider.of<ActiveColorProvider>(context, listen: false)
-                              .inactivateColors();
-                          if (importanceValue == 1) {
-                            Provider.of<ActiveColorProvider>(context,listen: false).changeLessButtonColor();
-                          } else if (importanceValue == 2) {
-                            Provider.of<ActiveColorProvider>(context,listen: false).changeMiddleButtonColor();
-                          } else if (importanceValue == 3) {
-                            Provider.of<ActiveColorProvider>(context,listen: false).changeMoreButtonColor();
-                          }
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (BuildContext context) => SingleChildScrollView(
-                              padding:
-                              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                              child: EditTaskScreen(
-                                importanceDegree: importanceValue,
-                                index: index,
-                                day: day,
-                                month: month,
-                                year: year,
-                                title: taskTitle,
-                              ),
-                            ),
-                          );
-                        },
                       ),
-                      IconButton(
-                        icon: Icon(
-                          FontAwesomeIcons.trashAlt,
-                          color: Colors.red,
-                          size: 22.0,
-                        ),
-                        onPressed: () {
-                          showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              elevation: 24.0,
-                              title: Text(
-                                'Sure?',
-                              ),
-                              content: Text(
-                                'Are you sure about deleting this task?',
-                              ),
-                              actions: <Widget>[
-                                FlatButton(
-                                  onPressed: () {
-                                    Provider.of<TasksListProvider>(context,listen: false).deleteTask(task);
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    'Yes',
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                                FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    'No',
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
-                                ),
-                              ],
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                            ),
-                          );
-                        },
-                      )
-                    ],
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(
+                    FontAwesomeIcons.trashAlt,
+                    color: Colors.red,
+                    size: 22.0,
                   ),
-                ],
-              ),
+                  onPressed: () {
+                    showDialog(
+                      barrierDismissible: true,
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        elevation: 24.0,
+                        title: Text(
+                          'Sure?',
+                        ),
+                        content: Text(
+                          'Are you sure about deleting this task?',
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            onPressed: () {
+                              Provider.of<TasksListProvider>(context,
+                                      listen: false)
+                                  .deleteTask(task);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Yes',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'No',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                        ],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0)),
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }

@@ -47,14 +47,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               Theme(
-                data: ThemeData.light().copyWith(
-                  accentColor: Colors.lightBlueAccent
-                ),
+                data: ThemeData.light()
+                    .copyWith(accentColor: Colors.lightBlueAccent),
                 child: TextField(
                   maxLines: null,
                   decoration: InputDecoration(
-                    errorText:
-                        errorTextVisible == true ? 'You should type title' : null,
+                    errorText: errorTextVisible == true
+                        ? 'You should type title'
+                        : null,
                     hintText: 'Type your title',
                   ),
                   autofocus: newDateTime == null ? true : false,
@@ -171,7 +171,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           locale: DateTimePickerLocale.en_us,
                           looping: false,
                         ).then((value) {
-                          if(value != null){
+                          if (value != null) {
                             setState(() {
                               newDateTime = value;
                             });

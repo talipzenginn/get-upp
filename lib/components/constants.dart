@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-const TextStyle optionStyle =
-TextStyle(fontSize: 30, color: kTitleColor);
+
+const TextStyle optionStyle = TextStyle(fontSize: 30, color: kTitleColor);
 const kAppBarColor = Colors.lightBlue;
 const kAppBarTextColor = Colors.white;
 const kTitleColor = Colors.white;

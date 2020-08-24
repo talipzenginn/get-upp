@@ -13,7 +13,7 @@ class TaskCountText extends StatelessWidget {
       return taskCount;
     } else {
       taskCount =
-      '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
+          '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
       return taskCount;
     }
   }
@@ -22,7 +22,9 @@ class TaskCountText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0 ? false : true
+          ? Provider.of<TasksListProvider>(context).taskCount == 0
+              ? false
+              : true
           : false,
       child: Text(
         taskCountText(context),

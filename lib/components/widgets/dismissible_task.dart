@@ -90,11 +90,14 @@ class DismissibleTask extends StatelessWidget {
       Provider.of<ActiveColorProvider>(context, listen: false)
           .inactivateColors();
       if (task.importanceValue == 1) {
-        Provider.of<ActiveColorProvider>(context,listen: false).changeLessButtonColor();
+        Provider.of<ActiveColorProvider>(context, listen: false)
+            .changeLessButtonColor();
       } else if (task.importanceValue == 2) {
-        Provider.of<ActiveColorProvider>(context,listen: false).changeMiddleButtonColor();
+        Provider.of<ActiveColorProvider>(context, listen: false)
+            .changeMiddleButtonColor();
       } else if (task.importanceValue == 3) {
-        Provider.of<ActiveColorProvider>(context,listen: false).changeMoreButtonColor();
+        Provider.of<ActiveColorProvider>(context, listen: false)
+            .changeMoreButtonColor();
       }
       showModalBottomSheet(
         context: context,

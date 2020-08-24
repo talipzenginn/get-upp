@@ -34,7 +34,7 @@ class MyTasksPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom:3.0,top: 5.0),
+                padding: const EdgeInsets.only(bottom: 3.0, top: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

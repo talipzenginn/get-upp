@@ -17,7 +17,12 @@ class EditTaskScreen extends StatefulWidget {
   bool middleActiveness = false;
   bool moreActiveness = false;
   EditTaskScreen(
-      {this.index, this.importanceDegree, this.day, this.month, this.year, this.title}) {
+      {this.index,
+      this.importanceDegree,
+      this.day,
+      this.month,
+      this.year,
+      this.title}) {
     if (importanceDegree == 1) {
       lessActiveness = true;
     } else if (importanceDegree == 2) {
@@ -62,15 +67,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 ),
               ),
               Theme(
-                data: ThemeData.light().copyWith(
-                    accentColor: Colors.lightBlueAccent
-                ),
+                data: ThemeData.light()
+                    .copyWith(accentColor: Colors.lightBlueAccent),
                 child: TextField(
                   maxLines: null,
                   controller: controller,
                   decoration: InputDecoration(
-                    hintText:
-                        widget.title,
+                    hintText: widget.title,
                   ),
                   autofocus: true,
                   textAlign: TextAlign.center,
@@ -97,8 +100,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   children: <Widget>[
                     ReusableButton(
                       onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context,
-                            listen: false)
+                        Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeLessButtonColor();
                         setState(() {
                           widget.lessActiveness = !widget.lessActiveness;
@@ -109,15 +111,14 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .lessButtonColor,
                       text: 'less',
-                      textSize:12.0,
+                      textSize: 12.0,
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
                     ReusableButton(
                       onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context,
-                            listen: false)
+                        Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeMiddleButtonColor();
                         setState(() {
                           widget.middleActiveness = !widget.middleActiveness;
@@ -135,8 +136,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     ReusableButton(
                       onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context,
-                            listen: false)
+                        Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeMoreButtonColor();
                         setState(() {
                           widget.moreActiveness = !widget.moreActiveness;
@@ -144,7 +144,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           widget.middleActiveness = false;
                         });
                       },
-                      bodyColor:  Provider.of<ActiveColorProvider>(context)
+                      bodyColor: Provider.of<ActiveColorProvider>(context)
                           .moreButtonColor,
                       text: 'more',
                       textSize: 12.0,
@@ -169,7 +169,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ReusableButton(
-                      onTapfunction:  () {
+                      onTapfunction: () {
 //                        showRoundedDatePicker(
 //                            context: context,
 //                            borderRadius: 16,
@@ -187,16 +187,19 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           context,
                           textColor: Colors.lightBlueAccent,
                           titleText: 'Select Due Date',
-                          initialDate: widget.year != 0?DateTime.utc(widget.year,widget.month,widget.day):newDateTime == null
-                               ? DateTime.now()
-                               : newDateTime,
+                          initialDate: widget.year != 0
+                              ? DateTime.utc(
+                                  widget.year, widget.month, widget.day)
+                              : newDateTime == null
+                                  ? DateTime.now()
+                                  : newDateTime,
                           firstDate: DateTime(DateTime.now().year),
                           lastDate: DateTime(DateTime.now().year + 8),
                           dateFormat: "dd-MMMM-yyyy",
                           locale: DateTimePickerLocale.en_us,
                           looping: false,
                         ).then((value) {
-                          if(value != null){
+                          if (value != null) {
                             setState(() {
                               newDateTime = value;
                             });
@@ -204,22 +207,39 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         });
                       },
                       bodyColor: Colors.white,
-                      text:    Provider.of<TasksListProvider>(context).displayingTasks[widget.index].year == 0 && newDateTime == null
+                      text: Provider.of<TasksListProvider>(context)
+                                      .displayingTasks[widget.index]
+                                      .year ==
+                                  0 &&
+                              newDateTime == null
                           ? 'Add Due Date'
                           : 'Edit Due Date',
                       textSize: 11.0,
                     ),
                     Visibility(
-                      visible: Provider.of<TasksListProvider>(context).displayingTasks[widget.index].year == 0 && newDateTime == null?false:true,
+                      visible: Provider.of<TasksListProvider>(context)
+                                      .displayingTasks[widget.index]
+                                      .year ==
+                                  0 &&
+                              newDateTime == null
+                          ? false
+                          : true,
                       child: SizedBox(
                         width: 10.0,
                       ),
                     ),
                     Visibility(
-                      visible: Provider.of<TasksListProvider>(context).displayingTasks[widget.index].year == 0 && newDateTime == null?false:true,
-                      child:    ReusableButton(
+                      visible: Provider.of<TasksListProvider>(context)
+                                      .displayingTasks[widget.index]
+                                      .year ==
+                                  0 &&
+                              newDateTime == null
+                          ? false
+                          : true,
+                      child: ReusableButton(
                         onTapfunction: () {
-                          Provider.of<TasksListProvider>(context, listen: false).deleteTaskDueDate(widget.index);
+                          Provider.of<TasksListProvider>(context, listen: false)
+                              .deleteTaskDueDate(widget.index);
                           setState(() {
                             newDateTime = null;
                           });
@@ -243,27 +263,20 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   } else {
                     importanceValue = null;
                   }
-                  if ((taskName != null &&
-                      taskName != '')&& newDateTime != null){
+                  if ((taskName != null && taskName != '') &&
+                      newDateTime != null) {
                     Provider.of<TasksListProvider>(context, listen: false)
                         .updateTaskTitle(taskName, widget.index);
                     Provider.of<TasksListProvider>(context, listen: false)
-                        .updateTaskDueDate(
-                        newDateTime.year,
-                        newDateTime.month,
-                        newDateTime.day,
-                        widget.index);
-                  } else if (taskName != null &&
-                      taskName != '') {
+                        .updateTaskDueDate(newDateTime.year, newDateTime.month,
+                            newDateTime.day, widget.index);
+                  } else if (taskName != null && taskName != '') {
                     Provider.of<TasksListProvider>(context, listen: false)
                         .updateTaskTitle(taskName, widget.index);
-                  }else if(newDateTime!=null){
+                  } else if (newDateTime != null) {
                     Provider.of<TasksListProvider>(context, listen: false)
-                        .updateTaskDueDate(
-                        newDateTime.year,
-                        newDateTime.month,
-                        newDateTime.day,
-                        widget.index);
+                        .updateTaskDueDate(newDateTime.year, newDateTime.month,
+                            newDateTime.day, widget.index);
                   }
                   Provider.of<TasksListProvider>(context, listen: false)
                       .updateTaskPriority(importanceValue, widget.index);

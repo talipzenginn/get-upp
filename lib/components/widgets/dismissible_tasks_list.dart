@@ -12,7 +12,10 @@ class DismissibleTasksList extends StatelessWidget {
         return ListView.builder(
           itemBuilder: (context, index) {
             final task = taskData.displayingTasks[index];
-            return DismissibleTask(task: task,index: index,);
+            return DismissibleTask(
+              task: task,
+              index: index,
+            );
           },
           itemCount: taskData.taskCount,
         );

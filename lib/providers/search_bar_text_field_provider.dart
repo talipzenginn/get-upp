@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 
-class SearchBarTextFieldProvider extends ChangeNotifier{
+class SearchBarTextFieldProvider extends ChangeNotifier {
   String query;
   final controller = TextEditingController();
-  bool showCursor=false;
+  bool showCursor = false;
 
-  void setQuery(String value){
+  void setQuery(String value) {
     query = value;
-    if(query == null||query==''){
+    if (query == null || query == '') {
       showCursor = false;
-    }else{
+    } else {
       showCursor = true;
     }
     notifyListeners();
   }
-  void removeQuery(){
+
+  void removeQuery() {
     query = null;
     showCursor = false;
-notifyListeners();
+    notifyListeners();
   }
-  void controllerClear(){
+
+  void controllerClear() {
     controller.clear();
     notifyListeners();
   }

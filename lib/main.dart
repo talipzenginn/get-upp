@@ -18,24 +18,26 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     return MultiProvider(
-          providers: [
-            ChangeNotifierProvider<SearchBarTextFieldProvider>(
-              create: (context)=>SearchBarTextFieldProvider(),
-            ),
-            ChangeNotifierProvider<NavigationBarOnTapped>(
-        create: (context) => NavigationBarOnTapped(),),
-            ChangeNotifierProvider<ActiveColorProvider>(
-              create: (context) => ActiveColorProvider(),),
-            ChangeNotifierProvider<TasksListProvider>(
-    create: (context) => TasksListProvider(),)],
-          child: MaterialApp(
-            theme: ThemeData.light().copyWith(
-              accentColor: Colors.black,
-                  primaryColor: Colors.black
-            ),
-            debugShowCheckedModeBanner: false,
-            home: MainScaffold(),
-          ),
+      providers: [
+        ChangeNotifierProvider<SearchBarTextFieldProvider>(
+          create: (context) => SearchBarTextFieldProvider(),
+        ),
+        ChangeNotifierProvider<NavigationBarOnTapped>(
+          create: (context) => NavigationBarOnTapped(),
+        ),
+        ChangeNotifierProvider<ActiveColorProvider>(
+          create: (context) => ActiveColorProvider(),
+        ),
+        ChangeNotifierProvider<TasksListProvider>(
+          create: (context) => TasksListProvider(),
+        )
+      ],
+      child: MaterialApp(
+        theme: ThemeData.light()
+            .copyWith(accentColor: Colors.black, primaryColor: Colors.black),
+        debugShowCheckedModeBanner: false,
+        home: MainScaffold(),
+      ),
     );
   }
 }
