@@ -4,13 +4,12 @@ import 'package:get_upp/providers/active_color_provider.dart';
 import 'package:get_upp/screens/edit_task_screen.dart';
 import 'package:provider/provider.dart';
 
-class OpenMethods{
-  void openEditTaskScreen(BuildContext context, Task task, int index){
+class ReusableMethods {
+  void openEditTaskScreen(BuildContext context, Task task, int index) {
     bool lessActiveness = false;
     bool middleActiveness = false;
     bool moreActiveness = false;
-    Provider.of<ActiveColorProvider>(context, listen: false)
-        .inactivateColors();
+    Provider.of<ActiveColorProvider>(context, listen: false).inactivateColors();
     if (task.importanceValue == 1) {
       Provider.of<ActiveColorProvider>(context, listen: false)
           .changeLessButtonColor();
@@ -33,7 +32,7 @@ class OpenMethods{
       isScrollControlled: true,
       builder: (BuildContext context) => SingleChildScrollView(
         padding:
-        EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: EditTaskScreen(
           lessActiveness: lessActiveness,
           middleActiveness: middleActiveness,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_upp/components/widgets/task_tile.dart';
-import 'package:get_upp/helpers/open_methods.dart';
+import 'package:get_upp/helpers/reusable_methods.dart';
 import 'package:get_upp/models/task.dart';
 import 'package:get_upp/providers/tasks_list_provider.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +86,7 @@ class DismissibleTask extends StatelessWidget {
       BuildContext context,
       int index}) async {
     if (direction == DismissDirection.startToEnd) {
-      OpenMethods().openEditTaskScreen(context, task, index);
+      ReusableMethods().openEditTaskScreen(context, task, index);
     } else if (direction == DismissDirection.endToStart) {
       return await showDialog<bool>(
             barrierDismissible: true,
