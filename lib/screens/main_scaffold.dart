@@ -9,7 +9,7 @@ import 'package:get_upp/providers/navigation_bar_on_tapped.dart';
 import 'package:provider/provider.dart';
 
 class MainScaffold extends StatelessWidget {
-  List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     MyTasksPage(),
     MyTagsPage(),
     MyFamiliesPage(),
