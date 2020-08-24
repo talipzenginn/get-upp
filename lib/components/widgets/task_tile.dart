@@ -31,12 +31,12 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CheckboxListTile(
-            secondary: Icon(
+          ListTile(
+            leading: Icon(
               FontAwesomeIcons.circle,
               color: importanceValue == 1
                   ? kLessButtonActiveColor
@@ -54,11 +54,12 @@ class TaskTile extends StatelessWidget {
                   decoration:
                       isChecked == true ? TextDecoration.lineThrough : null),
             ),
-            value: isChecked,
-            onChanged: checkboxCallback,
-            controlAffinity: ListTileControlAffinity.platform,
-            activeColor: kCheckboxColor,
-            checkColor: Colors.white,
+            trailing: Checkbox(
+              value: isChecked,
+              onChanged: checkboxCallback,
+              activeColor: kCheckboxColor,
+              checkColor: Colors.white,
+            ),
           ),
         ],
       ),
