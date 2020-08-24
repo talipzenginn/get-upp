@@ -7,35 +7,36 @@ import '../providers/tasks_list_provider.dart';
 
 class EditTaskScreen extends StatefulWidget {
   final int index;
-  final int importanceDegree;
   final int day;
   final int month;
   final int year;
   final String title;
-  bool lessActiveness = false;
-  bool middleActiveness = false;
-  bool moreActiveness = false;
+  final lessActiveness;
+  final middleActiveness;
+  final moreActiveness;
   EditTaskScreen(
       {this.index,
-      this.importanceDegree,
       this.day,
       this.month,
       this.year,
-      this.title}) {
-    if (importanceDegree == 1) {
-      lessActiveness = true;
-    } else if (importanceDegree == 2) {
-      middleActiveness = true;
-    } else if (importanceDegree == 3) {
-      moreActiveness = true;
-    }
-  }
+      this.title,
+      this.lessActiveness,
+      this.middleActiveness,
+      this.moreActiveness});
 
   @override
-  _EditTaskScreenState createState() => _EditTaskScreenState();
+  _EditTaskScreenState createState() => _EditTaskScreenState(
+      lessActiveness: lessActiveness,
+      middleActiveness: middleActiveness,
+      moreActiveness: moreActiveness);
 }
 
 class _EditTaskScreenState extends State<EditTaskScreen> {
+  bool lessActiveness;
+  bool middleActiveness;
+  bool moreActiveness;
+  _EditTaskScreenState(
+      {this.lessActiveness, this.middleActiveness, this.moreActiveness});
   String taskName = '';
   int importanceValue;
   DateTime newDateTime;
@@ -101,11 +102,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       onTapfunction: () {
                         Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeLessButtonColor();
-                        setState(() {
-                          widget.lessActiveness = !widget.lessActiveness;
-                          widget.middleActiveness = false;
-                          widget.moreActiveness = false;
-                        });
+                        lessActiveness = !lessActiveness;
+                        middleActiveness = false;
+                        moreActiveness = false;
                       },
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .lessButtonColor,
@@ -119,11 +118,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       onTapfunction: () {
                         Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeMiddleButtonColor();
-                        setState(() {
-                          widget.middleActiveness = !widget.middleActiveness;
-                          widget.lessActiveness = false;
-                          widget.moreActiveness = false;
-                        });
+                        middleActiveness = !middleActiveness;
+                        lessActiveness = false;
+                        moreActiveness = false;
                       },
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .middleButtonColor,
@@ -137,11 +134,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       onTapfunction: () {
                         Provider.of<ActiveColorProvider>(context, listen: false)
                             .changeMoreButtonColor();
-                        setState(() {
-                          widget.moreActiveness = !widget.moreActiveness;
-                          widget.lessActiveness = false;
-                          widget.middleActiveness = false;
-                        });
+                        moreActiveness = !moreActiveness;
+                        lessActiveness = false;
+                        middleActiveness = false;
                       },
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .moreButtonColor,
@@ -253,11 +248,11 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               ),
               FlatButton(
                 onPressed: () {
-                  if (widget.lessActiveness) {
+                  if (lessActiveness) {
                     importanceValue = 1;
-                  } else if (widget.middleActiveness) {
+                  } else if (middleActiveness) {
                     importanceValue = 2;
-                  } else if (widget.moreActiveness) {
+                  } else if (moreActiveness) {
                     importanceValue = 3;
                   } else {
                     importanceValue = null;
@@ -282,9 +277,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   Navigator.pop(context);
                   FocusScope.of(context).unfocus();
                   taskName = null;
-                  widget.lessActiveness = false;
-                  widget.middleActiveness = false;
-                  widget.moreActiveness = false;
+                  lessActiveness = false;
+                  middleActiveness = false;
+                  moreActiveness = false;
                   importanceValue = null;
                 },
                 child: Text(

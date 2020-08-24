@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_upp/components/widgets/task_tile.dart';
+import 'package:get_upp/helpers/open_methods.dart';
 import 'package:get_upp/models/task.dart';
-import 'package:get_upp/providers/active_color_provider.dart';
 import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:get_upp/screens/edit_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class DismissibleTask extends StatelessWidget {
@@ -87,34 +86,7 @@ class DismissibleTask extends StatelessWidget {
       BuildContext context,
       int index}) async {
     if (direction == DismissDirection.startToEnd) {
-      Provider.of<ActiveColorProvider>(context, listen: false)
-          .inactivateColors();
-      if (task.importanceValue == 1) {
-        Provider.of<ActiveColorProvider>(context, listen: false)
-            .changeLessButtonColor();
-      } else if (task.importanceValue == 2) {
-        Provider.of<ActiveColorProvider>(context, listen: false)
-            .changeMiddleButtonColor();
-      } else if (task.importanceValue == 3) {
-        Provider.of<ActiveColorProvider>(context, listen: false)
-            .changeMoreButtonColor();
-      }
-      showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) => SingleChildScrollView(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: EditTaskScreen(
-            importanceDegree: task.importanceValue,
-            index: index,
-            day: task.day,
-            month: task.month,
-            year: task.year,
-            title: task.name,
-          ),
-        ),
-      );
+      OpenMethods().openEditTaskScreen(context, task, index);
     } else if (direction == DismissDirection.endToStart) {
       return await showDialog<bool>(
             barrierDismissible: true,

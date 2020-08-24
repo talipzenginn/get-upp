@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_upp/helpers/open_methods.dart';
 import 'package:get_upp/models/task.dart';
-import 'package:get_upp/providers/active_color_provider.dart';
 import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:get_upp/screens/edit_task_screen.dart';
 import 'package:provider/provider.dart';
 import '../../components/constants.dart';
 
@@ -90,34 +89,7 @@ class TaskTile extends StatelessWidget {
                     size: 22.0,
                   ),
                   onPressed: () {
-                    Provider.of<ActiveColorProvider>(context, listen: false)
-                        .inactivateColors();
-                    if (importanceValue == 1) {
-                      Provider.of<ActiveColorProvider>(context, listen: false)
-                          .changeLessButtonColor();
-                    } else if (importanceValue == 2) {
-                      Provider.of<ActiveColorProvider>(context, listen: false)
-                          .changeMiddleButtonColor();
-                    } else if (importanceValue == 3) {
-                      Provider.of<ActiveColorProvider>(context, listen: false)
-                          .changeMoreButtonColor();
-                    }
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (BuildContext context) => SingleChildScrollView(
-                        padding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).viewInsets.bottom),
-                        child: EditTaskScreen(
-                          importanceDegree: importanceValue,
-                          index: index,
-                          day: day,
-                          month: month,
-                          year: year,
-                          title: taskTitle,
-                        ),
-                      ),
-                    );
+                  OpenMethods().openEditTaskScreen(context, task, index);
                   },
                 ),
                 IconButton(
