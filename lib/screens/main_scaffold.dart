@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
+import '../screens/settings_page.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../screens/my_families_page.dart';
 import '../screens/my_tags_page.dart';
@@ -13,31 +14,40 @@ class MainScaffold extends StatelessWidget {
     MyTasksPage(),
     MyTagsPage(),
     MyFamiliesPage(),
+    SettingsPage()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 13.0,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.solidListAlt),
+            icon: Icon(FontAwesomeIcons.list),
             title: Text(
               'Tasks',
-              style: TextStyle(fontSize: 15.0),
+              style: TextStyle(fontSize: 12.0),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.tags),
             title: Text(
               'Tags',
-              style: TextStyle(fontSize: 15.0),
+              style: TextStyle(fontSize: 12.0),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.users),
             title: Text(
               'Families',
-              style: TextStyle(fontSize: 15.0),
+              style: TextStyle(fontSize: 12.0),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.cogs),
+            title: Text(
+              'Settings',
+              style: TextStyle(fontSize: 12.0),
             ),
           ),
         ],

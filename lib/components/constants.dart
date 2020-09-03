@@ -6,7 +6,6 @@ const kAppBarTextColor = Colors.white;
 const kTitleColor = Colors.white;
 const kBackgroundColor = Colors.lightBlueAccent;
 const kTaskListColor = Colors.white;
-const kCheckboxColor = Colors.lightBlue;
 const kNavigationBarBackgroundColor = Colors.white;
 const kNavigationBarColor = Colors.lightBlue;
 
