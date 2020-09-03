@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:collection';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart'
+    show SharedPreferences;
 import '../helpers/tasks_list_convert_json.dart';
 import '../models/task.dart';
-import 'dart:collection';
 
 class TasksListProvider extends ChangeNotifier {
   TasksListProvider() {

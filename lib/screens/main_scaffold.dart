@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_upp/screens/my_families_page.dart';
-import 'package:get_upp/screens/my_tags_page.dart';
-import 'package:get_upp/screens/my_tasks_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
+import 'package:provider/provider.dart' show Provider;
+import '../screens/my_families_page.dart';
+import '../screens/my_tags_page.dart';
+import '../screens/my_tasks_page.dart';
 import '../components/constants.dart';
-import 'package:get_upp/providers/navigation_bar_on_tapped.dart';
-import 'package:provider/provider.dart';
+import '../providers/navigation_bar_on_tapped.dart';
 
 class MainScaffold extends StatelessWidget {
   final List<Widget> _widgetOptions = <Widget>[

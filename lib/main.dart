@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get_upp/providers/active_color_provider.dart';
-import 'package:get_upp/providers/navigation_bar_on_tapped.dart';
-import 'package:get_upp/providers/search_bar_text_field_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
+import 'package:provider/provider.dart'
+    show ChangeNotifierProvider, MultiProvider;
+import 'providers/active_color_provider.dart';
+import 'providers/navigation_bar_on_tapped.dart';
+import 'providers/search_bar_text_field_provider.dart';
 import 'screens/main_scaffold.dart';
 import 'providers/tasks_list_provider.dart';
 

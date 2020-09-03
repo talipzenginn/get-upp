@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_upp/components/constants.dart';
+import '../components/constants.dart';
 
 class MyTagsPage extends StatelessWidget {
   @override

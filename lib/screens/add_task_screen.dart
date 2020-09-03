@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
-import 'package:get_upp/components/widgets/reusable_button.dart';
-import 'package:get_upp/providers/active_color_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
+    show DatePicker, DateTimePickerLocale;
+import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/reusable_button.dart';
+import '../providers/active_color_provider.dart';
 import '../models/task.dart';
 import '../providers/tasks_list_provider.dart';
 

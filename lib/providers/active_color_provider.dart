@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get_upp/components/constants.dart';
+import '../components/constants.dart';
 
 class ActiveColorProvider extends ChangeNotifier {
   Color lessButtonColor = kInactiveColor;

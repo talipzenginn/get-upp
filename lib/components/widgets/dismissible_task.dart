@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_upp/components/widgets/task_tile.dart';
-import 'package:get_upp/helpers/reusable_methods.dart';
-import 'package:get_upp/models/task.dart';
-import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
+import 'package:provider/provider.dart' show Provider;
+import '../../components/widgets/task_tile.dart';
+import '../../helpers/reusable_methods.dart';
+import '../../models/task.dart';
+import '../../providers/tasks_list_provider.dart';
 
 class DismissibleTask extends StatelessWidget {
   final Task task;

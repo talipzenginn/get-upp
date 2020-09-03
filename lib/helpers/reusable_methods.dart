@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get_upp/models/task.dart';
-import 'package:get_upp/providers/active_color_provider.dart';
-import 'package:get_upp/screens/edit_task_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' show Provider;
+import '../models/task.dart';
+import '../providers/active_color_provider.dart';
+import '../screens/edit_task_screen.dart';
 
 class ReusableMethods {
   void openEditTaskScreen(BuildContext context, Task task, int index) {

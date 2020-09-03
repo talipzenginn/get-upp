@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_upp/components/widgets/dismissible_task.dart';
+import 'package:provider/provider.dart' show Consumer;
+import '../../components/widgets/dismissible_task.dart';
 import '../../providers/tasks_list_provider.dart';
-import 'package:provider/provider.dart';
 
 class DismissibleTasksList extends StatelessWidget {
   @override

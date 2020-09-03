@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get_upp/components/constants.dart';
-import 'package:get_upp/components/widgets/add_task_button.dart';
-import 'package:get_upp/components/widgets/percent_indicator_of_my_tasks.dart';
-import 'package:get_upp/components/widgets/search_bar.dart';
-import 'package:get_upp/components/widgets/task_count_text.dart';
-import 'package:get_upp/components/widgets/task_display_list.dart';
+import '../components/constants.dart';
+import '../components/widgets/add_task_button.dart';
+import '../components/widgets/percent_indicator_of_my_tasks.dart';
+import '../components/widgets/search_bar.dart';
+import '../components/widgets/task_count_text.dart';
+import '../components/widgets/task_display_list.dart';
 
 class MyTasksPage extends StatelessWidget {
   @override

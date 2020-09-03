@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_upp/providers/search_bar_text_field_provider.dart';
-import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
+import 'package:provider/provider.dart' show Provider;
+import '../../providers/search_bar_text_field_provider.dart';
+import '../../providers/tasks_list_provider.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({

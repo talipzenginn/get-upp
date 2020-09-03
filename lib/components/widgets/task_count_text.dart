@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' show Provider;
+import '../../providers/tasks_list_provider.dart';
 
 class TaskCountText extends StatelessWidget {
   const TaskCountText({
