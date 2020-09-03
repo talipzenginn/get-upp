@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart'
     show CircularStrokeCap, CircularPercentIndicator;
 import 'package:provider/provider.dart' show Provider;
+import '../../components/constants.dart';
 import '../../providers/tasks_list_provider.dart';
 
 class PercentIndicatorOfMyTasks extends StatelessWidget {
@@ -39,13 +40,13 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
             '%${percentage.toStringAsFixed(0)}',
             style: TextStyle(
               fontSize: 12.2,
-              color: Colors.white,
+              color: kInactiveColor,
             ),
           ),
         ),
-        backgroundColor: Colors.blue[600],
+        backgroundColor: kPercentIndicatorBackground,
         circularStrokeCap: CircularStrokeCap.round,
-        progressColor: Colors.white,
+        progressColor: kInactiveColor,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../components/constants.dart';
 
 class ReusableButton extends StatelessWidget {
   final Function onTapfunction;
@@ -17,14 +18,14 @@ class ReusableButton extends StatelessWidget {
           decoration: BoxDecoration(
               color: bodyColor,
               border: Border.all(
-                color: Colors.lightBlueAccent,
+                color: kReusableButtonBody,
               ),
               borderRadius: BorderRadius.circular(10.0)),
           alignment: Alignment.center,
           height: 40.0,
           child: Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: textSize),
+            style: TextStyle(color: kReusableButtonText, fontSize: textSize),
           ),
         ),
       ),

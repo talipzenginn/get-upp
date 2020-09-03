@@ -44,7 +44,7 @@ class MainScaffold extends StatelessWidget {
         currentIndex: Provider.of<NavigationBarOnTapped>(context).selectedIndex,
         backgroundColor: kNavigationBarBackgroundColor,
         selectedItemColor: kNavigationBarColor,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: kUnselectedItemColor,
         onTap: Provider.of<NavigationBarOnTapped>(context).onItemTapped,
       ),
       appBar: AppBar(

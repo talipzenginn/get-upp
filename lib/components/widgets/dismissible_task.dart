@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
+import '../../components/constants.dart';
 import '../../components/widgets/task_tile.dart';
 import '../../helpers/reusable_methods.dart';
 import '../../models/task.dart';
@@ -18,7 +19,7 @@ class DismissibleTask extends StatelessWidget {
       background: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Colors.green[400],
+          color: kEditDismissBackground,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -27,7 +28,7 @@ class DismissibleTask extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               child: Icon(
                 FontAwesomeIcons.edit,
-                color: Colors.white,
+                color: kInactiveColor,
                 size: 25.0,
               ),
             ),
@@ -37,7 +38,7 @@ class DismissibleTask extends StatelessWidget {
       secondaryBackground: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Colors.red,
+          color: kDeleteDismissBackground,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -46,7 +47,7 @@ class DismissibleTask extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               child: Icon(
                 FontAwesomeIcons.trashAlt,
-                color: Colors.white,
+                color: kInactiveColor,
                 size: 25.0,
               ),
             ),
@@ -109,7 +110,7 @@ class DismissibleTask extends StatelessWidget {
                   },
                   child: Text(
                     'Yes',
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: kConfirmColor),
                   ),
                 ),
                 FlatButton(
@@ -118,7 +119,7 @@ class DismissibleTask extends StatelessWidget {
                   },
                   child: Text(
                     'No',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: kNotConfirmColor),
                   ),
                 ),
               ],

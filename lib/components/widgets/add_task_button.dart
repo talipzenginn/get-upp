@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../components/constants.dart';
 import '../../providers/active_color_provider.dart';
 import '../../screens/add_task_screen.dart';
 
@@ -13,7 +14,7 @@ class AddTaskButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: Material(
-        color: Colors.white,
+        color: kInactiveColor,
         borderRadius: BorderRadius.circular(25.0),
         child: MaterialButton(
           onPressed: () {
@@ -33,7 +34,7 @@ class AddTaskButton extends StatelessWidget {
           height: 42.0,
           child: Text(
             '+ Add Task',
-            style: TextStyle(color: Colors.lightBlueAccent),
+            style: TextStyle(color: kReusableButtonBody),
           ),
         ),
       ),

@@ -32,7 +32,7 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      backgroundColor: Colors.transparent,
+      backgroundColor: kExpansionTileBackground,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,12 +45,12 @@ class TaskTile extends StatelessWidget {
                       ? kMiddleButtonActiveColor
                       : importanceValue == 3
                           ? kMoreButtonActiveColor
-                          : Colors.white,
+                          : kInactiveColor,
             ),
             title: Text(
               taskTitle,
               style: TextStyle(
-                  color: Colors.black,
+                  color: kDisplayingTasksTitleColor,
                   fontSize: 14.1,
                   decoration:
                       isChecked == true ? TextDecoration.lineThrough : null),
@@ -59,7 +59,7 @@ class TaskTile extends StatelessWidget {
               value: isChecked,
               onChanged: checkboxCallback,
               activeColor: kCheckboxColor,
-              checkColor: Colors.white,
+              checkColor: kInactiveColor,
             ),
           ),
         ],
@@ -77,7 +77,8 @@ class TaskTile extends StatelessWidget {
                     visible: year == 0 ? false : true,
                     child: Text(
                       'Due date: $day.$month.$year',
-                      style: TextStyle(fontSize: 12.0, color: Colors.blueGrey),
+                      style: TextStyle(
+                          fontSize: 12.0, color: kDisplayingTasksDueDateColor),
                     )),
               ],
             ),
@@ -87,7 +88,7 @@ class TaskTile extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     FontAwesomeIcons.edit,
-                    color: Colors.green,
+                    color: kEditButtonColor,
                     size: 22.0,
                   ),
                   onPressed: () {
@@ -97,7 +98,7 @@ class TaskTile extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     FontAwesomeIcons.trashAlt,
-                    color: Colors.red,
+                    color: kDeleteButtonColor,
                     size: 22.0,
                   ),
                   onPressed: () {
@@ -122,7 +123,7 @@ class TaskTile extends StatelessWidget {
                             },
                             child: Text(
                               'Yes',
-                              style: TextStyle(color: Colors.red),
+                              style: TextStyle(color: kConfirmColor),
                             ),
                           ),
                           FlatButton(
@@ -131,7 +132,7 @@ class TaskTile extends StatelessWidget {
                             },
                             child: Text(
                               'No',
-                              style: TextStyle(color: Colors.blue),
+                              style: TextStyle(color: kNotConfirmColor),
                             ),
                           ),
                         ],

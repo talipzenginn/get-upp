@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/constants.dart';
 import '../components/widgets/reusable_button.dart';
 import '../providers/active_color_provider.dart';
 import '../providers/tasks_list_provider.dart';
@@ -62,14 +63,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
                   'Edit Task',
-                  style:
-                      TextStyle(color: Colors.lightBlueAccent, fontSize: 30.0),
+                  style: TextStyle(color: kEditTaskScreenTitle, fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
               ),
               Theme(
                 data: ThemeData.light()
-                    .copyWith(accentColor: Colors.lightBlueAccent),
+                    .copyWith(accentColor: kEditTaskScreenTitle),
                 child: TextField(
                   maxLines: null,
                   controller: controller,
@@ -90,8 +90,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 child: Center(
                   child: Text(
                     'Priority',
-                    style: TextStyle(
-                        color: Colors.lightBlueAccent, fontSize: 22.0),
+                    style:
+                        TextStyle(color: kEditTaskScreenTitle, fontSize: 22.0),
                   ),
                 ),
               ),
@@ -153,8 +153,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   child: Text(
                     'Due Date',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.lightBlueAccent, fontSize: 18.0),
+                    style:
+                        TextStyle(color: kEditTaskScreenTitle, fontSize: 18.0),
                   ),
                 ),
               ),
@@ -180,7 +180,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 //                        });
                         DatePicker.showSimpleDatePicker(
                           context,
-                          textColor: Colors.lightBlueAccent,
+                          textColor: kEditTaskScreenDueDatePicker,
                           titleText: 'Select Due Date',
                           initialDate: widget.year != 0
                               ? DateTime.utc(
@@ -201,7 +201,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           }
                         });
                       },
-                      bodyColor: Colors.white,
+                      bodyColor: kEditTaskScreenButtonBody,
                       text: Provider.of<TasksListProvider>(context)
                                       .displayingTasks[widget.index]
                                       .year ==
@@ -239,7 +239,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             newDateTime = null;
                           });
                         },
-                        bodyColor: Colors.white,
+                        bodyColor: kEditTaskScreenButtonBody,
                         text: 'Delete Due Date',
                         textSize: 11.0,
                       ),
@@ -286,16 +286,16 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 child: Text(
                   'Edit',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: kEditTaskScreenButtonBody,
                   ),
                 ),
-                color: Colors.lightBlueAccent,
+                color: kEditTaskScreenTitle,
               ),
             ],
           ),
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: kEditTaskScreenButtonBody,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(20.0),
             topLeft: Radius.circular(20.0),

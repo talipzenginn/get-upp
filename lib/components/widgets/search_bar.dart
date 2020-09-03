@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
+import '../../components/constants.dart';
 import '../../providers/search_bar_text_field_provider.dart';
 import '../../providers/tasks_list_provider.dart';
 
@@ -30,7 +31,7 @@ class SearchBar extends StatelessWidget {
                   child: IconButton(
                       icon: Icon(
                         FontAwesomeIcons.arrowLeft,
-                        color: Colors.white,
+                        color: kInactiveColor,
                         size: 30.0,
                       ),
                       onPressed: () {
@@ -50,15 +51,15 @@ class SearchBar extends StatelessWidget {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.lightBlueAccent,
-                      border: Border.all(color: Colors.white),
+                      color: kSearchBarBackground,
+                      border: Border.all(color: kInactiveColor),
                       borderRadius: BorderRadius.circular(30.0)),
                   child: TextField(
                     controller: Provider.of<SearchBarTextFieldProvider>(context)
                         .controller,
                     showCursor: Provider.of<SearchBarTextFieldProvider>(context)
                         .showCursor,
-                    cursorColor: Colors.white,
+                    cursorColor: kInactiveColor,
                     cursorRadius: Radius.circular(30.0),
                     onChanged: (value) {
                       Provider.of<SearchBarTextFieldProvider>(context,
@@ -69,7 +70,7 @@ class SearchBar extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                     },
                     style: TextStyle(
-                      color: Colors.white,
+                      color: kInactiveColor,
                     ),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -78,14 +79,14 @@ class SearchBar extends StatelessWidget {
                       enabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
-                      hintStyle: TextStyle(color: Colors.white70),
+                      hintStyle: TextStyle(color: kSearchBarHintText),
                       hintText: 'Search task',
                       icon: Padding(
                         padding: const EdgeInsets.only(
                             top: 8.0, bottom: 8.0, left: 15.0),
                         child: Icon(
                           FontAwesomeIcons.search,
-                          color: Colors.white,
+                          color: kInactiveColor,
                           size: 30.0,
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../../providers/tasks_list_provider.dart';
+import '../../components/constants.dart';
 
 class TaskCountText extends StatelessWidget {
   const TaskCountText({
@@ -30,7 +31,7 @@ class TaskCountText extends StatelessWidget {
         taskCountText(context),
         style: TextStyle(
           fontSize: 15.0,
-          color: Colors.white,
+          color: kInactiveColor,
         ),
         textAlign: TextAlign.start,
       ),

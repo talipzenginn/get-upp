@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/constants.dart';
 import '../components/widgets/reusable_button.dart';
 import '../providers/active_color_provider.dart';
 import '../models/task.dart';
@@ -41,14 +42,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
                   'Add Task',
-                  style:
-                      TextStyle(color: Colors.lightBlueAccent, fontSize: 30.0),
+                  style: TextStyle(color: kAddTaskScreenTitle, fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
               ),
               Theme(
                 data: ThemeData.light()
-                    .copyWith(accentColor: Colors.lightBlueAccent),
+                    .copyWith(accentColor: kAddTaskScreenTitle),
                 child: TextField(
                   maxLines: null,
                   decoration: InputDecoration(
@@ -71,8 +71,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Center(
                   child: Text(
                     'Priority',
-                    style: TextStyle(
-                        color: Colors.lightBlueAccent, fontSize: 22.0),
+                    style:
+                        TextStyle(color: kAddTaskScreenTitle, fontSize: 22.0),
                   ),
                 ),
               ),
@@ -134,8 +134,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   child: Text(
                     'Tag and Give Due Date',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.lightBlueAccent, fontSize: 18.0),
+                    style:
+                        TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
                   ),
                 ),
               ),
@@ -160,7 +160,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 //                        });
                         DatePicker.showSimpleDatePicker(
                           context,
-                          textColor: Colors.lightBlue,
+                          textColor: kAddTaskScreenDueDatePicker,
                           titleText: 'Select Due Date',
                           initialDate: newDateTime == null
                               ? DateTime.now()
@@ -178,7 +178,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           }
                         });
                       },
-                      bodyColor: Colors.white,
+                      bodyColor: kAddTaskScreenButtonBody,
                       text: newDateTime == null
                           ? 'Add Due Date'
                           : 'Edit Due Date',
@@ -198,7 +198,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             newDateTime = null;
                           });
                         },
-                        bodyColor: Colors.white,
+                        bodyColor: kAddTaskScreenButtonBody,
                         text: 'Delete Due Date',
                         textSize: 11.0,
                       ),
@@ -254,16 +254,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Text(
                   'Add',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: kAddTaskScreenButtonBody,
                   ),
                 ),
-                color: Colors.lightBlueAccent,
+                color: kAddTaskScreenTitle,
               ),
             ],
           ),
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: kAddTaskScreenButtonBody,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(20.0),
             topLeft: Radius.circular(20.0),
