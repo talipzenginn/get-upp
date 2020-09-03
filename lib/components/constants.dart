@@ -42,3 +42,4 @@ const kReusableButtonBody = Colors.lightBlueAccent;
 const kReusableButtonText = Colors.black;
 
 final kPercentIndicatorBackground = Colors.blue[600];
+final kCheckboxActiveColor = Colors.grey[400];

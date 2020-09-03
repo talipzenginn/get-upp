@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:circular_check_box/circular_check_box.dart'
+    show CircularCheckBox;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
@@ -37,16 +39,19 @@ class TaskTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            contentPadding: EdgeInsets.only(left: 5.0),
-            leading: Icon(
-              FontAwesomeIcons.circle,
-              color: importanceValue == 1
+            contentPadding: EdgeInsets.only(left: 0.0),
+            leading: CircularCheckBox(
+              value: isChecked,
+              onChanged: checkboxCallback,
+              inactiveColor: importanceValue == 1
                   ? kLessButtonActiveColor
                   : importanceValue == 2
                       ? kMiddleButtonActiveColor
                       : importanceValue == 3
                           ? kMoreButtonActiveColor
                           : kInactiveColor,
+              activeColor: kCheckboxActiveColor,
+              checkColor: kInactiveColor,
             ),
             title: Text(
               taskTitle,
@@ -55,12 +60,6 @@ class TaskTile extends StatelessWidget {
                   fontSize: 14.1,
                   decoration:
                       isChecked == true ? TextDecoration.lineThrough : null),
-            ),
-            trailing: Checkbox(
-              value: isChecked,
-              onChanged: checkboxCallback,
-              activeColor: kCheckboxColor,
-              checkColor: kInactiveColor,
             ),
           ),
         ],
