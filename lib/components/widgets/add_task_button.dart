@@ -18,6 +18,7 @@ class AddTaskButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.0),
         child: MaterialButton(
           onPressed: () {
+            FocusScope.of(context).unfocus();
             Provider.of<ActiveColorProvider>(context, listen: false)
                 .inactivateColors();
             showModalBottomSheet(

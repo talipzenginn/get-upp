@@ -72,7 +72,6 @@ class SearchBar extends StatelessWidget {
                     style: TextStyle(
                       color: kInactiveColor,
                     ),
-                    textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -83,7 +82,7 @@ class SearchBar extends StatelessWidget {
                       hintText: 'Search task',
                       icon: Padding(
                         padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 8.0, left: 15.0),
+                            top: 8.0, bottom: 8.0, left: 15.0, right: 5.0),
                         child: Icon(
                           FontAwesomeIcons.search,
                           color: kInactiveColor,

@@ -37,6 +37,7 @@ class TaskTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
+            contentPadding: EdgeInsets.only(left: 5.0),
             leading: Icon(
               FontAwesomeIcons.circle,
               color: importanceValue == 1

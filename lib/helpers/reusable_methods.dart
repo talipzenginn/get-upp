@@ -6,6 +6,7 @@ import '../screens/edit_task_screen.dart';
 
 class ReusableMethods {
   void openEditTaskScreen(BuildContext context, Task task, int index) {
+    FocusScope.of(context).unfocus();
     bool lessActiveness = false;
     bool middleActiveness = false;
     bool moreActiveness = false;
