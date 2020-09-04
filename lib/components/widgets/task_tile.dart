@@ -49,7 +49,7 @@ class TaskTile extends StatelessWidget {
                       ? kMiddleButtonActiveColor
                       : importanceValue == 3
                           ? kMoreButtonActiveColor
-                          : kInactiveColor,
+                          : kCheckboxInactiveColor,
               activeColor: kCheckboxActiveColor,
               checkColor: kInactiveColor,
             ),

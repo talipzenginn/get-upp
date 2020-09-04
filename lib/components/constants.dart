@@ -19,7 +19,7 @@ const kAddTaskScreenDueDatePicker = Colors.lightBlue;
 const kInactiveColor = Colors.white;
 const kLessButtonActiveColor = Colors.yellow;
 const kMiddleButtonActiveColor = Colors.orange;
-const kMoreButtonActiveColor = Colors.red;
+const kMoreButtonActiveColor = Colors.redAccent;
 const kDisplayingTasksTitleColor = Colors.black;
 const kDisplayingTasksDueDateColor = Colors.blueGrey;
 const kEditButtonColor = Colors.green;
@@ -42,3 +42,4 @@ const kReusableButtonText = Colors.black;
 
 final kPercentIndicatorBackground = Colors.blue[600];
 final kCheckboxActiveColor = Colors.grey[400];
+const kCheckboxInactiveColor = Colors.grey;
