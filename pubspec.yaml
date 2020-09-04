@@ -35,6 +35,7 @@ dependencies:
   flutter_rounded_date_picker: ^1.0.4
   flutter_holo_date_picker: ^0.1.5
   circular_check_box: ^1.0.4
+  flutter_switch: ^0.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
