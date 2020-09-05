@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
+import '../../components/widgets/reusable_snack_bar.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../../components/constants.dart';
 import '../../components/widgets/task_tile.dart';
@@ -72,6 +73,12 @@ class DismissibleTask extends StatelessWidget {
         checkboxCallback: (bool checkboxState) {
           Provider.of<TasksListProvider>(context, listen: false)
               .updateCheckProperty(task);
+          if (checkboxState) {
+            Scaffold.of(context).showSnackBar(ReusableSnackBar()
+                .snackBarWithContent(
+                    snackBarContent: "Task Completed",
+                    snackBarColor: Colors.teal));
+          }
         },
         importanceValue: task.importanceValue,
         year: task.year,

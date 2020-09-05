@@ -31,8 +31,10 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
               : true
           : false,
       child: CircularPercentIndicator(
-        radius: 57.0,
-        lineWidth: 5.0,
+        animation: true,
+        animationDuration: 1200,
+        radius: 58.5,
+        lineWidth: 5.6,
         percent: percent,
         center: Visibility(
           visible: visible(),
