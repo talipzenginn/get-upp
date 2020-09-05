@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart' show FlutterSwitch;
+import 'package:provider/provider.dart' show Provider;
+import '../providers/settings_provider.dart';
 import '../components/constants.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -46,18 +48,31 @@ class SettingsPage extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  FlutterSwitch(
-                    width: 100.0,
-                    height: 40.0,
-                    valueFontSize: 16.0,
-                    toggleSize: 45.0,
-                    value: true,
-                    borderRadius: 30.0,
-                    padding: 8.0,
-                    showOnOff: true,
-                    inactiveColor: Colors.white24,
-                    activeColor: Colors.lightBlue,
-                    onToggle: (val) {},
+                  Visibility(
+                    visible: Provider.of<SettingsProvider>(context)
+                                .settings
+                                .hideCompletedTasks ==
+                            null
+                        ? false
+                        : true,
+                    child: FlutterSwitch(
+                      width: 100.0,
+                      height: 40.0,
+                      valueFontSize: 16.0,
+                      toggleSize: 45.0,
+                      value: Provider.of<SettingsProvider>(context)
+                          .settings
+                          .hideCompletedTasks,
+                      borderRadius: 30.0,
+                      padding: 8.0,
+                      showOnOff: true,
+                      inactiveColor: Colors.white24,
+                      activeColor: Colors.lightBlue,
+                      onToggle: (val) {
+                        Provider.of<SettingsProvider>(context, listen: false)
+                            .updateHideCompletedProperty(val);
+                      },
+                    ),
                   ),
                 ],
               )
