@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
-import 'package:get_upp/providers/settings_provider.dart';
+import 'providers/settings_provider.dart';
 import 'package:provider/provider.dart'
     show ChangeNotifierProvider, MultiProvider;
 import 'components/constants.dart';
