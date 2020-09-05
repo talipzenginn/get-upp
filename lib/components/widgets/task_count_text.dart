@@ -15,18 +15,19 @@ class TaskCountText extends StatelessWidget {
       if (!Provider.of<SettingsProvider>(context).settings.hideCompletedTasks) {
         if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
           taskCount = 'Well\nDone!';
-          return taskCount;
         } else {
           taskCount =
               '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
-          return taskCount;
         }
       } else if (Provider.of<SettingsProvider>(context)
           .settings
           .hideCompletedTasks) {
-        taskCount =
-            '${Provider.of<TasksListProvider>(context).leftTaskCount} left';
-        return taskCount;
+        if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
+          taskCount = '';
+        } else {
+          taskCount =
+              '${Provider.of<TasksListProvider>(context).leftTaskCount} left';
+        }
       }
     } else if (Provider.of<SettingsProvider>(context)
             .settings
@@ -34,13 +35,12 @@ class TaskCountText extends StatelessWidget {
         null) {
       if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
         taskCount = 'Well\nDone!';
-        return taskCount;
       } else {
         taskCount =
             '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
-        return taskCount;
       }
     }
+    return taskCount;
   }
 
   @override
