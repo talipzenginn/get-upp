@@ -14,7 +14,7 @@ class MyTasksPage extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(
-            top: 45.0,
+            top: 15.0,
             right: 15.0,
             left: 27.0,
             bottom: 13.4,

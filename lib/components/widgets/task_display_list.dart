@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import '../../providers/settings_provider.dart';
 import 'package:provider/provider.dart' show Consumer, Provider;
 import '../../providers/search_bar_text_field_provider.dart';
 import '../../providers/tasks_list_provider.dart';
@@ -15,12 +16,21 @@ class TaskDisplayList extends StatelessWidget {
         final suggestionList =
             Provider.of<SearchBarTextFieldProvider>(context).query.isEmpty
                 ? []
-                : taskData.tasks
-                    .where((p) => p.name.toLowerCase().contains(
-                        Provider.of<SearchBarTextFieldProvider>(context)
-                            .query
-                            .toLowerCase()))
-                    .toList();
+                : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks == null
+                    ? taskData.tasks
+                        .where((p) => p.name.toLowerCase().contains(
+                            Provider.of<SearchBarTextFieldProvider>(context)
+                                .query
+                                .toLowerCase()))
+                        .toList()
+                    : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks
+                        ? taskData.displayingLeftTasks
+                            .where((p) => p.name.toLowerCase().contains(
+                                Provider.of<SearchBarTextFieldProvider>(context)
+                                    .query
+                                    .toLowerCase()))
+                            .toList()
+                        : taskData.tasks.where((p) => p.name.toLowerCase().contains(Provider.of<SearchBarTextFieldProvider>(context).query.toLowerCase())).toList();
         suggestionList.sort((a, b) {
           Map mapA = jsonDecode(jsonEncode(a));
           Map mapB = jsonDecode(jsonEncode(b));
