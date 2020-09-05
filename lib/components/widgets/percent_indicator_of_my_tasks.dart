@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../providers/settings_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart'
     show CircularStrokeCap, CircularPercentIndicator;
 import 'package:provider/provider.dart' show Provider;
@@ -28,7 +29,16 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
       visible: Provider.of<TasksListProvider>(context).taskCount != null
           ? Provider.of<TasksListProvider>(context).taskCount == 0
               ? false
-              : true
+              : Provider.of<SettingsProvider>(context)
+                          .settings
+                          .hideCompletedTasks ==
+                      null
+                  ? true
+                  : Provider.of<SettingsProvider>(context)
+                          .settings
+                          .hideCompletedTasks
+                      ? false
+                      : true
           : false,
       child: CircularPercentIndicator(
         animation: true,
