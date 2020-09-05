@@ -203,7 +203,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       },
                       bodyColor: kEditTaskScreenButtonBody,
                       text: Provider.of<TasksListProvider>(context)
-                                      .displayingTasks[widget.index]
+                                      .displayingAllTasks[widget.index]
                                       .year ==
                                   0 &&
                               newDateTime == null
@@ -213,7 +213,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     Visibility(
                       visible: Provider.of<TasksListProvider>(context)
-                                      .displayingTasks[widget.index]
+                                      .displayingAllTasks[widget.index]
                                       .year ==
                                   0 &&
                               newDateTime == null
@@ -225,7 +225,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     Visibility(
                       visible: Provider.of<TasksListProvider>(context)
-                                      .displayingTasks[widget.index]
+                                      .displayingAllTasks[widget.index]
                                       .year ==
                                   0 &&
                               newDateTime == null

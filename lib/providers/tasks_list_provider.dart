@@ -11,7 +11,8 @@ class TasksListProvider extends ChangeNotifier {
     getLocalData();
   }
   SharedPreferences preferences;
-  List<Task> _displayingTasks = [];
+  List<Task> _displayingAllTasks = [];
+  List<Task> _displayingLeftTasks = [];
   List<Task> _tasks = [];
   List<Task> _leftTasks = [];
   List<Task> _completedTasks = [];
@@ -24,7 +25,7 @@ class TasksListProvider extends ChangeNotifier {
       TasksListConvertJson taskJson =
           TasksListConvertJson.fromJson(jsonResponse);
       _tasks = taskJson.tasksList;
-      _displayingTasks = _tasks;
+      _displayingAllTasks = _tasks;
       createTasksListOrder();
       notifyListeners();
     }
@@ -70,12 +71,12 @@ class TasksListProvider extends ChangeNotifier {
   }
 
   int get taskCount {
-    return _displayingTasks.length;
+    return _displayingAllTasks.length;
   }
 
   int get leftTaskCount {
     _leftTasks.clear();
-    for (Task task in _displayingTasks) {
+    for (Task task in _displayingAllTasks) {
       if (task.isDone == false) {
         _leftTasks.add(task);
       }
@@ -93,12 +94,12 @@ class TasksListProvider extends ChangeNotifier {
         _completedTasks.add(task);
       }
     }
-    _displayingTasks.clear();
+    _displayingAllTasks.clear();
     for (Task task in _leftTasks) {
-      _displayingTasks.add(task);
+      _displayingAllTasks.add(task);
     }
     for (Task task in _completedTasks) {
-      _displayingTasks.add(task);
+      _displayingAllTasks.add(task);
     }
   }
 
@@ -109,8 +110,12 @@ class TasksListProvider extends ChangeNotifier {
   }
 
   //değiştirilemez liste tipi dart:collection library den geliyor
-  UnmodifiableListView<Task> get displayingTasks {
-    return UnmodifiableListView(_displayingTasks);
+  UnmodifiableListView<Task> get displayingAllTasks {
+    return UnmodifiableListView(_displayingAllTasks);
+  }
+
+  UnmodifiableListView<Task> get displayingLeftTasks {
+    return UnmodifiableListView(_displayingLeftTasks);
   }
 
   UnmodifiableListView<Task> get tasks {

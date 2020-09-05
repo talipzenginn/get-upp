@@ -48,31 +48,28 @@ class SettingsPage extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  Visibility(
-                    visible: Provider.of<SettingsProvider>(context)
+                  FlutterSwitch(
+                    width: 100.0,
+                    height: 40.0,
+                    valueFontSize: 16.0,
+                    toggleSize: 45.0,
+                    value: Provider.of<SettingsProvider>(context)
                                 .settings
                                 .hideCompletedTasks ==
                             null
                         ? false
-                        : true,
-                    child: FlutterSwitch(
-                      width: 100.0,
-                      height: 40.0,
-                      valueFontSize: 16.0,
-                      toggleSize: 45.0,
-                      value: Provider.of<SettingsProvider>(context)
-                          .settings
-                          .hideCompletedTasks,
-                      borderRadius: 30.0,
-                      padding: 8.0,
-                      showOnOff: true,
-                      inactiveColor: Colors.white24,
-                      activeColor: Colors.lightBlue,
-                      onToggle: (val) {
-                        Provider.of<SettingsProvider>(context, listen: false)
-                            .updateHideCompletedProperty(val);
-                      },
-                    ),
+                        : Provider.of<SettingsProvider>(context)
+                            .settings
+                            .hideCompletedTasks,
+                    borderRadius: 30.0,
+                    padding: 8.0,
+                    showOnOff: true,
+                    inactiveColor: Colors.white24,
+                    activeColor: Colors.lightBlue,
+                    onToggle: (val) {
+                      Provider.of<SettingsProvider>(context, listen: false)
+                          .updateHideCompletedProperty(val);
+                    },
                   ),
                 ],
               )

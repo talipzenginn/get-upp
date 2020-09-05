@@ -54,15 +54,15 @@ class DismissibleTask extends StatelessWidget {
           ],
         ),
       ),
-      key: ValueKey(taskData.displayingTasks[index].name),
+      key: ValueKey(taskData.displayingAllTasks[index].name),
       onDismissed: (direction) {
-        taskData.displayingTasks.removeAt(index);
+        taskData.displayingAllTasks.removeAt(index);
       },
       confirmDismiss: (direction) => promptUser(
           index: index,
           taskData: taskData,
           context: context,
-          task: taskData.displayingTasks[index],
+          task: taskData.displayingAllTasks[index],
           direction: direction),
       child: TaskTile(
         index: index,
