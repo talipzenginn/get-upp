@@ -95,8 +95,10 @@ class TasksListProvider extends ChangeNotifier {
       }
     }
     _displayingAllTasks.clear();
+    _displayingLeftTasks.clear();
     for (Task task in _leftTasks) {
       _displayingAllTasks.add(task);
+      _displayingLeftTasks.add(task);
     }
     for (Task task in _completedTasks) {
       _displayingAllTasks.add(task);
