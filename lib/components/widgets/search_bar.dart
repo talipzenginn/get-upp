@@ -15,7 +15,8 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0
+          ? Provider.of<TasksListProvider>(context).taskCount == 0 ||
+                  Provider.of<TasksListProvider>(context).leftTaskCount == 0
               ? false
               : true
           : false,
