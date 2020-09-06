@@ -51,6 +51,7 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
           child: Text(
             '%${percentage.toStringAsFixed(0)}',
             style: TextStyle(
+              fontFamily: 'Gotham',
               fontSize: 12.2,
               color: kInactiveColor,
             ),

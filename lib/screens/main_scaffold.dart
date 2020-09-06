@@ -26,28 +26,28 @@ class MainScaffold extends StatelessWidget {
             icon: Icon(FontAwesomeIcons.list),
             title: Text(
               'Tasks',
-              style: TextStyle(fontSize: 12.0),
+              style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.tags),
             title: Text(
               'Tags',
-              style: TextStyle(fontSize: 12.0),
+              style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.users),
             title: Text(
               'Families',
-              style: TextStyle(fontSize: 12.0),
+              style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.cogs),
             title: Text(
               'Settings',
-              style: TextStyle(fontSize: 12.0),
+              style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
         ],
@@ -60,9 +60,27 @@ class MainScaffold extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         title: Center(
-          child: Text(
-            'GetUpp',
-            style: TextStyle(color: kAppBarTextColor),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Get',
+                  style: TextStyle(
+                    fontFamily: 'GothamLight',
+                    color: Colors.white,
+                    fontSize: 29,
+                  ),
+                ),
+                TextSpan(
+                  text: 'Upp',
+                  style: TextStyle(
+                    fontFamily: 'Gotham',
+                    color: Colors.white,
+                    fontSize: 29,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

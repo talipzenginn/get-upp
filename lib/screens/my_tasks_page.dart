@@ -28,6 +28,7 @@ class MyTasksPage extends StatelessWidget {
               Text(
                 'My Tasks',
                 style: TextStyle(
+                  fontFamily: 'Gotham',
                   color: kTitleColor,
                   fontSize: 35.0,
                   fontWeight: FontWeight.w700,

@@ -26,10 +26,10 @@ class SettingsPage extends StatelessWidget {
               Text(
                 'My Tasks Page Settings',
                 style: TextStyle(
+                  fontFamily: 'GothamLight',
                   color: kTitleColor,
                   fontSize: 24.0,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
               SizedBox(

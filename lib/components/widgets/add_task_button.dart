@@ -35,7 +35,8 @@ class AddTaskButton extends StatelessWidget {
           height: 42.0,
           child: Text(
             '+ Add Task',
-            style: TextStyle(color: kReusableButtonBody),
+            style: TextStyle(
+                color: kAppBarColor, fontFamily: 'GothamBook', fontSize: 14.5),
           ),
         ),
       ),

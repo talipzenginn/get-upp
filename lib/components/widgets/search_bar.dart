@@ -79,7 +79,10 @@ class SearchBar extends StatelessWidget {
                       enabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
                       disabledBorder: InputBorder.none,
-                      hintStyle: TextStyle(color: kSearchBarHintText),
+                      hintStyle: TextStyle(
+                          color: kSearchBarHintText,
+                          fontFamily: 'GothamBook',
+                          fontSize: 16.0),
                       hintText: 'Search task',
                       icon: Padding(
                         padding: const EdgeInsets.only(

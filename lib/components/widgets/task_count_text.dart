@@ -54,7 +54,8 @@ class TaskCountText extends StatelessWidget {
       child: Text(
         taskCountText(context),
         style: TextStyle(
-          fontSize: 15.0,
+          fontFamily: 'GothamLight',
+          fontSize: 16.0,
           color: kInactiveColor,
         ),
         textAlign: TextAlign.start,
