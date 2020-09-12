@@ -36,9 +36,10 @@ class SettingsPage extends StatelessWidget {
                 height: 15.0,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    padding: const EdgeInsets.only(right: 8.0),
                     child: Text(
                       'Hide completed tasks',
                       style: TextStyle(
