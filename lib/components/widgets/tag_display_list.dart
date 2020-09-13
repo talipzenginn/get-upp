@@ -21,99 +21,105 @@ class TagDisplayList extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   color: kInactiveColor),
-              child: ExpansionTile(
-                title: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: Icon(
-                      FontAwesomeIcons.tag,
-                      color:
-                          AddTagScreen().colors[tagData.tags[index].colorIndex],
-                    ),
-                    title: Text(
-                      tagData.tags[index].name,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'GothamBook',
+              child: Theme(
+                data: ThemeData(
+                    accentColor: Colors.black,
+                    dividerColor: Colors.transparent),
+                child: ExpansionTile(
+                  title: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: Icon(
+                        FontAwesomeIcons.tag,
+                        color: AddTagScreen()
+                            .colors[tagData.tags[index].colorIndex],
+                      ),
+                      title: Text(
+                        tagData.tags[index].name,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'GothamBook',
+                        ),
                       ),
                     ),
                   ),
-                ),
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              FontAwesomeIcons.edit,
-                              color: kEditButtonColor,
-                              size: 22.0,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            IconButton(
+                              icon: Icon(
+                                FontAwesomeIcons.edit,
+                                color: kEditButtonColor,
+                                size: 22.0,
+                              ),
+                              onPressed: () {
+                                ReusableMethods().openEditTagScreen(
+                                    context: context,
+                                    index: index,
+                                    colorIndex: tagData.tags[index].colorIndex,
+                                    title: tagData.tags[index].name);
+                              },
                             ),
-                            onPressed: () {
-                              ReusableMethods().openEditTagScreen(
+                            IconButton(
+                              icon: Icon(
+                                FontAwesomeIcons.trashAlt,
+                                color: kDeleteButtonColor,
+                                size: 22.0,
+                              ),
+                              onPressed: () {
+                                showDialog(
+                                  barrierDismissible: true,
                                   context: context,
-                                  index: index,
-                                  colorIndex: tagData.tags[index].colorIndex,
-                                  title: tagData.tags[index].name);
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              FontAwesomeIcons.trashAlt,
-                              color: kDeleteButtonColor,
-                              size: 22.0,
-                            ),
-                            onPressed: () {
-                              showDialog(
-                                barrierDismissible: true,
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  elevation: 24.0,
-                                  title: Text(
-                                    'Sure?',
-                                  ),
-                                  content: Text(
-                                    'Are you sure about deleting this tag?',
-                                  ),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      onPressed: () {
-                                        Provider.of<TagsListProvider>(context,
-                                                listen: false)
-                                            .deleteTag(tagData.tags[index]);
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text(
-                                        'Yes',
-                                        style: TextStyle(color: kConfirmColor),
-                                      ),
+                                  builder: (context) => AlertDialog(
+                                    elevation: 24.0,
+                                    title: Text(
+                                      'Sure?',
                                     ),
-                                    FlatButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text(
-                                        'No',
-                                        style:
-                                            TextStyle(color: kNotConfirmColor),
-                                      ),
+                                    content: Text(
+                                      'Are you sure about deleting this tag?',
                                     ),
-                                  ],
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        onPressed: () {
+                                          Provider.of<TagsListProvider>(context,
+                                                  listen: false)
+                                              .deleteTag(tagData.tags[index]);
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(
+                                          'Yes',
+                                          style:
+                                              TextStyle(color: kConfirmColor),
+                                        ),
+                                      ),
+                                      FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text(
+                                          'No',
+                                          style: TextStyle(
+                                              color: kNotConfirmColor),
+                                        ),
+                                      ),
+                                    ],
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                  ),
+                                );
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );
