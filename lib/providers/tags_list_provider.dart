@@ -41,6 +41,4 @@ class TagsListProvider extends ChangeNotifier {
     tags.remove(currentTag);
     setList();
   }
-
-  void notifyListeners() {}
 }
