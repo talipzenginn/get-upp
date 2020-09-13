@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../screens/edit_tag_screen.dart';
 import '../models/task.dart';
 import '../providers/active_color_provider.dart';
 import '../screens/edit_task_screen.dart';
@@ -43,6 +44,24 @@ class ReusableMethods {
           month: task.month,
           year: task.year,
           title: task.name,
+        ),
+      ),
+    );
+  }
+
+  void openEditTagScreen(
+      {BuildContext context, int index, int colorIndex, String title}) {
+    FocusScope.of(context).unfocus();
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) => SingleChildScrollView(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: EditTagScreen(
+          index: index,
+          colorIndex: colorIndex,
+          title: title,
         ),
       ),
     );

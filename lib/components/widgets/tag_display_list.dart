@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Consumer, Provider;
+import '../../helpers/reusable_methods.dart';
 import '../../providers/tags_list_provider.dart';
 import '../../screens/add_tag_screen.dart';
+import '../constants.dart';
 
 class TagDisplayList extends StatelessWidget {
   @override
@@ -12,16 +14,87 @@ class TagDisplayList extends StatelessWidget {
       return ListView.builder(
         itemCount: tagData.tagsCount,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            onLongPress: () {
-              Provider.of<TagsListProvider>(context, listen: false)
-                  .deleteTag(tagData.tags[index]);
-            },
-            leading: Icon(
-              FontAwesomeIcons.tag,
-              color: AddTagScreen().colors[tagData.tags[index].colorIndex],
+          return ExpansionTile(
+            title: ListTile(
+              leading: Icon(
+                FontAwesomeIcons.tag,
+                color: AddTagScreen().colors[tagData.tags[index].colorIndex],
+              ),
+              title: Text(tagData.tags[index].name),
             ),
-            title: Text(tagData.tags[index].name),
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          FontAwesomeIcons.edit,
+                          color: kEditButtonColor,
+                          size: 22.0,
+                        ),
+                        onPressed: () {
+                          ReusableMethods().openEditTagScreen(
+                              context: context,
+                              index: index,
+                              colorIndex: tagData.tags[index].colorIndex,
+                              title: tagData.tags[index].name);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          FontAwesomeIcons.trashAlt,
+                          color: kDeleteButtonColor,
+                          size: 22.0,
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              elevation: 24.0,
+                              title: Text(
+                                'Sure?',
+                              ),
+                              content: Text(
+                                'Are you sure about deleting this tag?',
+                              ),
+                              actions: <Widget>[
+                                FlatButton(
+                                  onPressed: () {
+                                    Provider.of<TagsListProvider>(context,
+                                            listen: false)
+                                        .deleteTag(tagData.tags[index]);
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    'Yes',
+                                    style: TextStyle(color: kConfirmColor),
+                                  ),
+                                ),
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    'No',
+                                    style: TextStyle(color: kNotConfirmColor),
+                                  ),
+                                ),
+                              ],
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
           );
         },
       );

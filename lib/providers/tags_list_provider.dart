@@ -41,4 +41,14 @@ class TagsListProvider extends ChangeNotifier {
     tags.remove(currentTag);
     setList();
   }
+
+  void updateTagTitle(int index, String newTitle) {
+    tags[index].name = newTitle;
+    setList();
+  }
+
+  void updateTagColor(int index, int newColorIndex) {
+    tags[index].colorIndex = newColorIndex;
+    setList();
+  }
 }
