@@ -36,7 +36,9 @@ class AddTagButton extends StatelessWidget {
           child: Text(
             '+ Add Tag',
             style: TextStyle(
-                color: kAppBarColor, fontFamily: 'GothamBook', fontSize: 14.5),
+                color: Color(0xFF048998),
+                fontFamily: 'GothamBook',
+                fontSize: 14.5),
           ),
         ),
       ),

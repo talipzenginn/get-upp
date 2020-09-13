@@ -43,13 +43,13 @@ class _EditTagScreenState extends State<EditTagScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
                   'Edit Tag',
-                  style: TextStyle(color: kEditTaskScreenTitle, fontSize: 30.0),
+                  style: TextStyle(color: Color(0xFF3bb4c1), fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
               ),
               Theme(
-                data: ThemeData.light()
-                    .copyWith(accentColor: kEditTaskScreenTitle),
+                data:
+                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
                 child: TextField(
                   maxLines: null,
                   controller: controller,
@@ -76,7 +76,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                           'Pick a Color',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: kAddTaskScreenTitle, fontSize: 18.0),
+                              color: Color(0xFF3bb4c1), fontSize: 18.0),
                         ),
                       ),
                     ),
@@ -88,7 +88,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[0];
                             });
                           },
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.orange,
@@ -104,7 +104,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                             });
                           },
                           isIcon: selectedColor == Colors.red ? true : false,
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.red,
@@ -119,7 +119,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                             });
                           },
                           isIcon: selectedColor == Colors.yellow ? true : false,
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.yellow,
@@ -140,7 +140,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                           isIcon: selectedColor == Colors.greenAccent
                               ? true
                               : false,
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.greenAccent,
@@ -156,7 +156,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                           },
                           isIcon:
                               selectedColor == Colors.pinkAccent ? true : false,
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.pinkAccent,
@@ -173,7 +173,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                           isIcon: selectedColor == Colors.lightBlueAccent
                               ? true
                               : false,
-                          borderColor: Colors.black,
+                          borderColor: Color(0xFF048998),
                           text: '',
                           textSize: 0,
                           bodyColor: Colors.lightBlueAccent,

@@ -36,16 +36,7 @@ class MyTagsPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Container(
-            child: TagDisplayList(),
-            decoration: BoxDecoration(
-              color: kTaskListColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0),
-              ),
-            ),
-          ),
+          child: TagDisplayList(),
         ),
       ],
     );

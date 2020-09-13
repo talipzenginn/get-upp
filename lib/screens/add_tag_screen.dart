@@ -45,13 +45,12 @@ class _AddTagScreenState extends State<AddTagScreen> {
               padding: const EdgeInsets.all(15.0),
               child: Text(
                 'Add Tag',
-                style: TextStyle(color: kAddTaskScreenTitle, fontSize: 30.0),
+                style: TextStyle(color: Color(0xFF3bb4c1), fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
             Theme(
-              data:
-                  ThemeData.light().copyWith(accentColor: kAddTaskScreenTitle),
+              data: ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
               child: TextField(
                 maxLines: null,
                 decoration: InputDecoration(
@@ -78,8 +77,8 @@ class _AddTagScreenState extends State<AddTagScreen> {
                       child: Text(
                         'Pick a Color',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: kAddTaskScreenTitle, fontSize: 18.0),
+                        style:
+                            TextStyle(color: Color(0xFF3bb4c1), fontSize: 18.0),
                       ),
                     ),
                   ),
@@ -91,7 +90,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                             selectedColor = colors[0];
                           });
                         },
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.orange,
@@ -107,7 +106,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                           });
                         },
                         isIcon: selectedColor == Colors.red ? true : false,
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.red,
@@ -122,7 +121,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                           });
                         },
                         isIcon: selectedColor == Colors.yellow ? true : false,
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.yellow,
@@ -142,7 +141,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                         },
                         isIcon:
                             selectedColor == Colors.greenAccent ? true : false,
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.greenAccent,
@@ -158,7 +157,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                         },
                         isIcon:
                             selectedColor == Colors.pinkAccent ? true : false,
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.pinkAccent,
@@ -175,7 +174,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                         isIcon: selectedColor == Colors.lightBlueAccent
                             ? true
                             : false,
-                        borderColor: Colors.black,
+                        borderColor: Color(0xFF048998),
                         text: '',
                         textSize: 0,
                         bodyColor: Colors.lightBlueAccent,
@@ -210,7 +209,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                   color: kAddTaskScreenButtonBody,
                 ),
               ),
-              color: kAddTaskScreenTitle,
+              color: Color(0xFF3bb4c1),
             ),
           ]),
         ),
