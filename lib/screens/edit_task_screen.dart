@@ -107,6 +107,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         middleActiveness = false;
                         moreActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .lessButtonColor,
                       text: 'less',
@@ -123,6 +124,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         lessActiveness = false;
                         moreActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .middleButtonColor,
                       text: 'middle',
@@ -139,6 +141,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         lessActiveness = false;
                         middleActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .moreButtonColor,
                       text: 'more',
@@ -201,6 +204,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           }
                         });
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: kEditTaskScreenButtonBody,
                       text: Provider.of<TasksListProvider>(context)
                                       .displayingAllTasks[widget.index]
@@ -239,6 +243,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             newDateTime = null;
                           });
                         },
+                        borderColor: kReusableButtonBody,
                         bodyColor: kEditTaskScreenButtonBody,
                         text: 'Delete Due Date',
                         textSize: 11.0,

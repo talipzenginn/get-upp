@@ -88,6 +88,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         middleActiveness = false;
                         moreActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .lessButtonColor,
                       text: 'less',
@@ -104,6 +105,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         lessActiveness = false;
                         moreActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .middleButtonColor,
                       text: 'middle',
@@ -120,6 +122,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         lessActiveness = false;
                         middleActiveness = false;
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: Provider.of<ActiveColorProvider>(context)
                           .moreButtonColor,
                       text: 'more',
@@ -178,6 +181,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           }
                         });
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: kAddTaskScreenButtonBody,
                       text: newDateTime == null
                           ? 'Add Due Date'
@@ -198,6 +202,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             newDateTime = null;
                           });
                         },
+                        borderColor: kReusableButtonBody,
                         bodyColor: kAddTaskScreenButtonBody,
                         text: 'Delete Due Date',
                         textSize: 11.0,
