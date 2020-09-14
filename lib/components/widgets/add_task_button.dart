@@ -3,6 +3,7 @@ import 'package:provider/provider.dart' show Provider;
 import '../../components/constants.dart';
 import '../../providers/active_color_provider.dart';
 import '../../screens/add_task_screen.dart';
+import '../../providers/tags_list_provider.dart';
 
 class AddTaskButton extends StatelessWidget {
   const AddTaskButton({
@@ -21,6 +22,8 @@ class AddTaskButton extends StatelessWidget {
             FocusScope.of(context).unfocus();
             Provider.of<ActiveColorProvider>(context, listen: false)
                 .inactivateColors();
+            Provider.of<TagsListProvider>(context, listen: false)
+                .clearSelection();
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,

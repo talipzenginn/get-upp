@@ -11,7 +11,7 @@ class TagsListProvider extends ChangeNotifier {
   }
   SharedPreferences preferences;
   List<Tag> tags = [];
-
+  List<bool> tagsChecked = [];
   int get tagsCount {
     return tags.length;
   }
@@ -23,6 +23,10 @@ class TagsListProvider extends ChangeNotifier {
       final jsonResponse = json.decode(jsonText);
       TagsListConvertJson tagJson = TagsListConvertJson.fromJson(jsonResponse);
       tags = tagJson.tagsList;
+      tagsChecked.clear();
+      for (int i = 0; i < tags.length; i++) {
+        tagsChecked.add(false);
+      }
       notifyListeners();
     }
   }
@@ -50,5 +54,18 @@ class TagsListProvider extends ChangeNotifier {
   void updateTagColor(int index, int newColorIndex) {
     tags[index].colorIndex = newColorIndex;
     setList();
+  }
+
+  void updateSelection(int index, bool value) {
+    tagsChecked[index] = value;
+    notifyListeners();
+  }
+
+  void clearSelection() {
+    tagsChecked.clear();
+    for (int i = 0; i < tags.length; i++) {
+      tagsChecked.add(false);
+    }
+    notifyListeners();
   }
 }

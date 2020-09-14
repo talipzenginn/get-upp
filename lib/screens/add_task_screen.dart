@@ -7,6 +7,7 @@ import '../components/widgets/reusable_button.dart';
 import '../providers/active_color_provider.dart';
 import '../models/task.dart';
 import '../providers/tasks_list_provider.dart';
+import '../providers/tags_list_provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -228,7 +229,57 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Row(
                   children: [
                     ReusableButton(
-                      onTapfunction: () {},
+                      onTapfunction: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            scrollable: true,
+                            elevation: 24,
+                            title: Text("Choose your tags"),
+                            content: Container(
+                              width: 400,
+                              height: 400,
+                              child: ListView.builder(
+                                itemCount:
+                                    Provider.of<TagsListProvider>(context)
+                                        .tagsCount,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListTile(
+                                    title: Text(
+                                        Provider.of<TagsListProvider>(context)
+                                            .tags[index]
+                                            .name),
+                                    trailing: Checkbox(
+                                      value:
+                                          Provider.of<TagsListProvider>(context)
+                                              .tagsChecked[index],
+                                      onChanged: (value) {
+                                        Provider.of<TagsListProvider>(context,
+                                                listen: false)
+                                            .updateSelection(index, value);
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            actions: [
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Add"),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Cancel"),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                       borderColor: kReusableButtonBody,
                       bodyColor: kInactiveColor,
                       text: '+ Add Tag',
