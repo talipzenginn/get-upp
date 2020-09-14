@@ -135,7 +135,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    'Tag and Give Due Date',
+                    'Give Due Date',
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
@@ -207,6 +207,32 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         text: 'Delete Due Date',
                         textSize: 11.0,
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
+                child: Center(
+                  child: Text(
+                    'Tag it',
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                child: Row(
+                  children: [
+                    ReusableButton(
+                      onTapfunction: () {},
+                      borderColor: kReusableButtonBody,
+                      bodyColor: kInactiveColor,
+                      text: '+ Add Tag',
+                      textSize: 12.0,
                     ),
                   ],
                 ),
