@@ -232,13 +232,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       onTapfunction: () {
                         showDialog(
                           context: context,
+                          barrierDismissible: false,
                           builder: (context) => AlertDialog(
                             scrollable: true,
                             elevation: 24,
                             title: Text("Choose your tags"),
                             content: Container(
                               width: 400,
-                              height: 400,
+                              height: 300,
                               child: ListView.builder(
                                 itemCount:
                                     Provider.of<TagsListProvider>(context)
@@ -273,6 +274,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               FlatButton(
                                 onPressed: () {
                                   Navigator.pop(context);
+                                  Provider.of<TagsListProvider>(context,
+                                          listen: false)
+                                      .clearSelection();
                                 },
                                 child: Text("Cancel"),
                               ),
