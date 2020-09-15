@@ -3,6 +3,7 @@ import 'package:circular_check_box/circular_check_box.dart'
     show CircularCheckBox;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
+import '../../models/tag.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../../helpers/reusable_methods.dart';
 import '../../models/task.dart';
@@ -19,6 +20,7 @@ class TaskTile extends StatelessWidget {
   final int day;
   final int index;
   final Task task;
+  final List<Tag> tagList;
   TaskTile({
     this.isChecked,
     this.taskTitle,
@@ -29,6 +31,7 @@ class TaskTile extends StatelessWidget {
     this.day,
     this.index,
     this.task,
+    this.tagList,
   });
 
   @override

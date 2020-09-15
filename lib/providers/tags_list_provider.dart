@@ -11,6 +11,7 @@ class TagsListProvider extends ChangeNotifier {
   }
   SharedPreferences preferences;
   List<Tag> tags = [];
+  List<Tag> selectedTagList = [];
   List<bool> tagsChecked = [];
   int get tagsCount {
     return tags.length;
@@ -65,6 +66,16 @@ class TagsListProvider extends ChangeNotifier {
     tagsChecked.clear();
     for (int i = 0; i < tags.length; i++) {
       tagsChecked.add(false);
+    }
+    notifyListeners();
+  }
+
+  void tagging() {
+    selectedTagList.clear();
+    for (int i = 0; i < tagsChecked.length; i++) {
+      if (tagsChecked[i]) {
+        selectedTagList.insert(0, tags[i]);
+      }
     }
     notifyListeners();
   }

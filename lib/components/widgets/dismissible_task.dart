@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import '../../components/widgets/reusable_snack_bar.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../helpers/selected_tag_list_convert_json.dart';
+import '../../components/widgets/reusable_snack_bar.dart';
 import '../../components/constants.dart';
 import '../../components/widgets/task_tile.dart';
 import '../../helpers/reusable_methods.dart';
@@ -84,6 +87,9 @@ class DismissibleTask extends StatelessWidget {
         year: task.year,
         month: task.month,
         day: task.day,
+        tagList:
+            SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+                .selectedTagsList,
       ),
     );
   }

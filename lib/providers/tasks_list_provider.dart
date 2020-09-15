@@ -16,7 +16,6 @@ class TasksListProvider extends ChangeNotifier {
   List<Task> _tasks = [];
   List<Task> _leftTasks = [];
   List<Task> _completedTasks = [];
-
   void getLocalData() async {
     preferences = await SharedPreferences.getInstance();
     String jsonText = preferences.getString('tasksList');

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
@@ -29,6 +31,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   bool errorTextVisible = false;
 
+  String jsonRequest;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -212,88 +215,95 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
-                child: Center(
-                  child: Text(
-                    'Tag it',
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
+              Visibility(
+                visible: Provider.of<TagsListProvider>(context).tagsCount == 0
+                    ? false
+                    : true,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
+                  child: Center(
+                    child: Text(
+                      'Tag it',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
+                    ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  children: [
-                    ReusableButton(
-                      onTapfunction: () {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => AlertDialog(
-                            scrollable: true,
-                            elevation: 24,
-                            title: Text("Choose your tags"),
-                            content: Container(
-                              width: 400,
-                              height: 300,
-                              child: ListView.builder(
-                                itemCount:
-                                    Provider.of<TagsListProvider>(context)
-                                        .tagsCount,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return ListTile(
-                                    title: Text(
+              Visibility(
+                visible: Provider.of<TagsListProvider>(context).tagsCount == 0
+                    ? false
+                    : true,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: kInactiveColor,
+                              border: Border.all(
+                                color: kReusableButtonBody,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: ExpansionTile(
+                              title: Center(
+                                child: Text(
+                                  'Pick Your Tags',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 14.0),
+                                ),
+                              ),
+                              onExpansionChanged: (v) {
+                                FocusScope.of(context).unfocus();
+                              },
+                              children: [
+                                Container(
+                                  width: 400,
+                                  height: 220,
+                                  child: ListView.builder(
+                                    itemCount:
                                         Provider.of<TagsListProvider>(context)
-                                            .tags[index]
-                                            .name),
-                                    trailing: Checkbox(
-                                      value:
-                                          Provider.of<TagsListProvider>(context)
+                                            .tagsCount,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return ListTile(
+                                        title: Text(
+                                            Provider.of<TagsListProvider>(
+                                                    context)
+                                                .tags[index]
+                                                .name),
+                                        trailing: Checkbox(
+                                          value: Provider.of<TagsListProvider>(
+                                                  context)
                                               .tagsChecked[index],
-                                      onChanged: (value) {
-                                        Provider.of<TagsListProvider>(context,
-                                                listen: false)
-                                            .updateSelection(index, value);
-                                      },
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text("Add"),
-                              ),
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  Provider.of<TagsListProvider>(context,
-                                          listen: false)
-                                      .clearSelection();
-                                },
-                                child: Text("Cancel"),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      borderColor: kReusableButtonBody,
-                      bodyColor: kInactiveColor,
-                      text: '+ Add Tag',
-                      textSize: 12.0,
-                    ),
-                  ],
+                                          onChanged: (value) {
+                                            Provider.of<TagsListProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .updateSelection(index, value);
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               FlatButton(
                 onPressed: () {
+                  Provider.of<TagsListProvider>(context, listen: false)
+                      .tagging();
+                  jsonRequest = jsonEncode(
+                      Provider.of<TagsListProvider>(context, listen: false)
+                          .selectedTagList);
                   if (lessActiveness) {
                     importanceValue = 1;
                   } else if (middleActiveness) {
@@ -311,7 +321,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             importanceValue: importanceValue,
                             year: newDateTime.year,
                             month: newDateTime.month,
-                            day: newDateTime.day));
+                            day: newDateTime.day,
+                            tagListJson: jsonRequest));
                     Navigator.pop(context);
                     FocusScope.of(context).unfocus();
                     taskName = null;
@@ -323,7 +334,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   } else if (taskName != null && taskName != '') {
                     Provider.of<TasksListProvider>(context, listen: false)
                         .addTask(Task(
-                            name: taskName, importanceValue: importanceValue));
+                            name: taskName,
+                            importanceValue: importanceValue,
+                            tagListJson: jsonRequest));
                     Navigator.pop(context);
                     FocusScope.of(context).unfocus();
                     taskName = null;
