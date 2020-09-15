@@ -4,14 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart'
 import '../../components/constants.dart';
 
 class ReusableButton extends StatelessWidget {
-  final Function onTapfunction;
+  final Function onTapFunction;
   final Color bodyColor;
   final String text;
   final double textSize;
   final Color borderColor;
   final bool isIcon;
   const ReusableButton(
-      {this.onTapfunction,
+      {this.onTapFunction,
       this.bodyColor,
       this.text,
       this.textSize,
@@ -21,7 +21,7 @@ class ReusableButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: onTapfunction,
+        onTap: onTapFunction,
         child: Container(
           decoration: BoxDecoration(
               color: bodyColor,

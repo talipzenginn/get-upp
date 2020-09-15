@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart' show Provider;
+import '../helpers/reusable_methods.dart';
+import '../components/widgets/pick_color_button.dart';
 import '../components/constants.dart';
-import '../components/widgets/reusable_button.dart';
-import '../models/tag.dart';
-import '../providers/tags_list_provider.dart';
 
 class AddTagScreen extends StatefulWidget {
   final List<Color> colors = [
@@ -84,46 +82,37 @@ class _AddTagScreenState extends State<AddTagScreen> {
                   ),
                   Row(
                     children: [
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[0];
                           });
                         },
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.orange,
                         isIcon: selectedColor == Colors.orange ? true : false,
                       ),
                       SizedBox(
                         width: 10.0,
                       ),
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[1];
                           });
                         },
                         isIcon: selectedColor == Colors.red ? true : false,
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.red,
                       ),
                       SizedBox(
                         width: 10.0,
                       ),
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[2];
                           });
                         },
                         isIcon: selectedColor == Colors.yellow ? true : false,
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.yellow,
                       )
                     ],
@@ -133,40 +122,34 @@ class _AddTagScreenState extends State<AddTagScreen> {
                   ),
                   Row(
                     children: [
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[3];
                           });
                         },
                         isIcon:
                             selectedColor == Colors.greenAccent ? true : false,
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.greenAccent,
                       ),
                       SizedBox(
                         width: 10.0,
                       ),
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[4];
                           });
                         },
                         isIcon:
                             selectedColor == Colors.pinkAccent ? true : false,
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.pinkAccent,
                       ),
                       SizedBox(
                         width: 10.0,
                       ),
-                      ReusableButton(
-                        onTapfunction: () {
+                      PickColorButton(
+                        onTapFunction: () {
                           setState(() {
                             selectedColor = colors[5];
                           });
@@ -174,9 +157,6 @@ class _AddTagScreenState extends State<AddTagScreen> {
                         isIcon: selectedColor == Colors.lightBlueAccent
                             ? true
                             : false,
-                        borderColor: Color(0xFF048998),
-                        text: '',
-                        textSize: 0,
                         bodyColor: Colors.lightBlueAccent,
                       )
                     ],
@@ -186,22 +166,17 @@ class _AddTagScreenState extends State<AddTagScreen> {
             ),
             FlatButton(
               onPressed: () {
-                for (Color color in colors) {
-                  if (selectedColor == color) {
-                    selectColorIndex = colors.indexOf(color);
-                  }
-                }
-                if (tagName != null && tagName != '') {
-                  Provider.of<TagsListProvider>(context, listen: false).addTag(
-                    Tag(name: tagName, colorIndex: selectColorIndex),
-                  );
-                  Navigator.pop(context);
-                  FocusScope.of(context).unfocus();
-                } else {
-                  setState(() {
-                    errorTextVisible = true;
-                  });
-                }
+                ReusableMethods().addTag(
+                    colors: colors,
+                    selectedColor: selectedColor,
+                    selectColorIndex: selectColorIndex,
+                    tagName: tagName,
+                    context: context,
+                    elseFunction: () {
+                      setState(() {
+                        errorTextVisible = true;
+                      });
+                    });
               },
               child: Text(
                 'Add',
