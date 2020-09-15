@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/priority_button.dart';
 import '../components/constants.dart';
@@ -42,13 +43,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'Add Task',
-                  style: TextStyle(color: kAddTaskScreenTitle, fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+                  padding: const EdgeInsets.all(15.0),
+                  child: AddEditScreensText(
+                    text: 'Add Task',
+                    textSize: 30.0,
+                  )),
               Theme(
                 data:
                     ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
@@ -71,12 +70,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    'Priority',
-                    style:
-                        TextStyle(color: kAddTaskScreenTitle, fontSize: 22.0),
-                  ),
+                child: AddEditScreensText(
+                  text: 'Priority',
+                  textSize: 22.0,
                 ),
               ),
               Padding(
@@ -124,14 +120,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    'Give Due Date',
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
-                  ),
-                ),
+                child:
+                    AddEditScreensText(text: 'Give Due Date', textSize: 18.0),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
@@ -195,13 +185,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
-                  child: Center(
-                    child: Text(
-                      'Tag it',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
-                    ),
+                  child: AddEditScreensText(
+                    text: 'Tag it',
+                    textSize: 18.0,
                   ),
                 ),
               ),
@@ -220,12 +206,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               ),
                               borderRadius: BorderRadius.circular(10.0)),
                           child: ExpansionTile(
-                              title: Center(
-                                child: Text(
-                                  'Pick Your Tags',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 14.0),
-                                ),
+                              title: Text(
+                                'Pick Your Tags',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 14.0),
                               ),
                               onExpansionChanged: (v) {
                                 FocusScope.of(context).unfocus();
@@ -287,10 +271,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Text(
                   'Add',
                   style: TextStyle(
-                    color: kAddTaskScreenButtonBody,
+                    color: kInactiveColor,
                   ),
                 ),
-                color: kAddTaskScreenTitle,
+                color: kAppBarColor,
               ),
             ],
           ),

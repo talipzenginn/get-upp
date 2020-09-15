@@ -78,24 +78,21 @@ class TaskTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-                child: Row(
-                  children: [
-                    Visibility(
-                        visible: year == 0 ? false : true,
-                        child: Text(
-                          'Due date: $day.$month.$year',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'GothamBook',
-                              color: kDisplayingTasksDueDateColor),
-                        )),
-                  ],
-                ),
+                padding: const EdgeInsets.only(left: 26.0, bottom: 10.0),
+                child: Visibility(
+                    visible: year == 0 ? false : true,
+                    child: Text(
+                      'Due date: $day.$month.$year',
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'GothamBook',
+                          color: kDisplayingTasksDueDateColor),
+                    )),
               ),
               Visibility(
                 visible: tagList.length == 0 ? false : true,
                 child: Container(
+                  margin: EdgeInsets.only(left: 16),
                   width: double.infinity,
                   height: 36,
                   child: ListView.builder(
@@ -107,18 +104,19 @@ class TaskTile extends StatelessWidget {
                         padding: EdgeInsets.all(6),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color:
-                              AddTagScreen().colors[tagList[index].colorIndex],
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: kInactiveColor,
+                            border: Border.all(
+                                color: AddTagScreen()
+                                    .colors[tagList[index].colorIndex])),
                         child: Text(
                           tagList[index].name,
                           style: TextStyle(
                               fontFamily: 'GothamBook',
-                              color: tagList[index].colorIndex == 2 ||
-                                      tagList[index].colorIndex == 3
-                                  ? Colors.black
-                                  : Colors.white),
+                              color: tagList[index].colorIndex == 2
+                                  ? Colors.black45
+                                  : AddTagScreen()
+                                      .colors[tagList[index].colorIndex]),
                         ),
                       );
                     },

@@ -10,10 +10,9 @@ const kTaskListColor = Colors.white;
 const kNavigationBarBackgroundColor = Colors.white;
 const kNavigationBarColor = Color(0xFF048998);
 
-const kEditTaskScreenTitle = kBackgroundColor;
+const kAddEditScreenTitle = kBackgroundColor;
 const kEditTaskScreenButtonBody = Colors.white;
 const kEditTaskScreenDueDatePicker = kAppBarColor;
-const kAddTaskScreenTitle = kBackgroundColor;
 const kAddTaskScreenButtonBody = Colors.white;
 const kAddTaskScreenDueDatePicker = kBackgroundColor;
 

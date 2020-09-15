@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/pick_color_button.dart';
 import '../components/constants.dart';
@@ -40,13 +41,8 @@ class _AddTagScreenState extends State<AddTagScreen> {
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <
                   Widget>[
             Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Add Tag',
-                style: TextStyle(color: Color(0xFF3bb4c1), fontSize: 30.0),
-                textAlign: TextAlign.center,
-              ),
-            ),
+                padding: const EdgeInsets.all(15.0),
+                child: AddEditScreensText(text: 'Add Tag', textSize: 30.0)),
             Theme(
               data: ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
               child: TextField(
@@ -70,16 +66,9 @@ class _AddTagScreenState extends State<AddTagScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Center(
-                      child: Text(
-                        'Pick a Color',
-                        textAlign: TextAlign.center,
-                        style:
-                            TextStyle(color: Color(0xFF3bb4c1), fontSize: 18.0),
-                      ),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: AddEditScreensText(
+                          text: 'Pick a Color', textSize: 18.0)),
                   Row(
                     children: [
                       PickColorButton(

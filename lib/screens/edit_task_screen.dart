@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/priority_button.dart';
 import '../components/constants.dart';
@@ -70,13 +71,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'Edit Task',
-                  style: TextStyle(color: kEditTaskScreenTitle, fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+                  padding: const EdgeInsets.all(15.0),
+                  child: AddEditScreensText(text: 'Edit Task', textSize: 30.0)),
               Theme(
                 data:
                     ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
@@ -98,12 +94,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text(
-                    'Priority',
-                    style:
-                        TextStyle(color: kEditTaskScreenTitle, fontSize: 22.0),
-                  ),
-                ),
+                    child:
+                        AddEditScreensText(text: 'Priority', textSize: 22.0)),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
@@ -151,13 +143,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text(
-                    'Due Date',
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: kEditTaskScreenTitle, fontSize: 18.0),
-                  ),
-                ),
+                    child:
+                        AddEditScreensText(text: 'Due Date', textSize: 18.0)),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
@@ -254,7 +241,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     color: kEditTaskScreenButtonBody,
                   ),
                 ),
-                color: kEditTaskScreenTitle,
+                color: kAppBarColor,
               ),
             ],
           ),
