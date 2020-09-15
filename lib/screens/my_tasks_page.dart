@@ -59,25 +59,7 @@ class MyTasksPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Container(
-              decoration: Provider.of<TasksListProvider>(context).taskCount == 0
-                  ? BoxDecoration(
-                      color: kTaskListColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                      ),
-                    )
-                  : null,
-              child: Provider.of<TasksListProvider>(context).taskCount == 0
-                  ? Center(
-                      child: Text(
-                      'Your tasks will be show up here',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 18.0, fontFamily: 'GothamBook'),
-                    ))
-                  : TaskDisplayList()),
+          child: TaskDisplayList(),
         ),
       ],
     );

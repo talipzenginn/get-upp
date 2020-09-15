@@ -38,25 +38,7 @@ class MyTagsPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Container(
-              decoration: Provider.of<TagsListProvider>(context).tagsCount == 0
-                  ? BoxDecoration(
-                      color: kTaskListColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                      ),
-                    )
-                  : null,
-              child: Provider.of<TagsListProvider>(context).tagsCount == 0
-                  ? Center(
-                      child: Text(
-                      'Your tags will be show up here',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 18.0, fontFamily: 'GothamBook'),
-                    ))
-                  : TagDisplayList()),
+          child: TagDisplayList(),
         ),
       ],
     );
