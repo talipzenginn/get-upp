@@ -10,27 +10,29 @@ import 'dismissible_tasks_list.dart';
 class TaskDisplayList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<SearchBarTextFieldProvider>(context).query != null &&
-        Provider.of<SearchBarTextFieldProvider>(context).query != '') {
+    SearchBarTextFieldProvider searchBarTextFieldProviderTrue =
+        Provider.of<SearchBarTextFieldProvider>(context);
+    SettingsProvider settingsProviderTrue =
+        Provider.of<SettingsProvider>(context);
+    if (searchBarTextFieldProviderTrue.query != null &&
+        searchBarTextFieldProviderTrue.query != '') {
       return Consumer<TasksListProvider>(builder: (context, taskData, child) {
-        final suggestionList =
-            Provider.of<SearchBarTextFieldProvider>(context).query.isEmpty
-                ? []
-                : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks == null
-                    ? taskData.tasks
+        final suggestionList = searchBarTextFieldProviderTrue.query.isEmpty
+            ? []
+            : settingsProviderTrue.settings.hideCompletedTasks == null
+                ? taskData.tasks
+                    .where((p) => p.name.toLowerCase().contains(
+                        searchBarTextFieldProviderTrue.query.toLowerCase()))
+                    .toList()
+                : settingsProviderTrue.settings.hideCompletedTasks
+                    ? taskData.displayingLeftTasks
                         .where((p) => p.name.toLowerCase().contains(
-                            Provider.of<SearchBarTextFieldProvider>(context)
-                                .query
-                                .toLowerCase()))
+                            searchBarTextFieldProviderTrue.query.toLowerCase()))
                         .toList()
-                    : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks
-                        ? taskData.displayingLeftTasks
-                            .where((p) => p.name.toLowerCase().contains(
-                                Provider.of<SearchBarTextFieldProvider>(context)
-                                    .query
-                                    .toLowerCase()))
-                            .toList()
-                        : taskData.tasks.where((p) => p.name.toLowerCase().contains(Provider.of<SearchBarTextFieldProvider>(context).query.toLowerCase())).toList();
+                    : taskData.tasks
+                        .where((p) => p.name.toLowerCase().contains(
+                            searchBarTextFieldProviderTrue.query.toLowerCase()))
+                        .toList();
         suggestionList.sort((a, b) {
           Map mapA = jsonDecode(jsonEncode(a));
           Map mapB = jsonDecode(jsonEncode(b));

@@ -25,6 +25,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   String jsonRequest;
   @override
   Widget build(BuildContext context) {
+    ActiveColorProvider activeColorProviderFalse =
+        Provider.of<ActiveColorProvider>(context, listen: false);
+    ActiveColorProvider activeColorProviderTrue =
+        Provider.of<ActiveColorProvider>(context);
+    TagsListProvider tagsListProviderFalse =
+        Provider.of<TagsListProvider>(context, listen: false);
+    TagsListProvider tagsListProviderTrue =
+        Provider.of<TagsListProvider>(context);
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -77,14 +85,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   children: <Widget>[
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeLessButtonColor();
+                        activeColorProviderFalse.changeLessButtonColor();
                         lessActiveness = !lessActiveness;
                         middleActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .lessButtonColor,
+                      bodyColor: activeColorProviderTrue.lessButtonColor,
                       text: 'less',
                     ),
                     SizedBox(
@@ -92,14 +98,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMiddleButtonColor();
+                        activeColorProviderFalse.changeMiddleButtonColor();
                         middleActiveness = !middleActiveness;
                         lessActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .middleButtonColor,
+                      bodyColor: activeColorProviderTrue.middleButtonColor,
                       text: 'middle',
                     ),
                     SizedBox(
@@ -107,14 +111,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMoreButtonColor();
+                        activeColorProviderFalse.changeMoreButtonColor();
                         moreActiveness = !moreActiveness;
                         lessActiveness = false;
                         middleActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .moreButtonColor,
+                      bodyColor: activeColorProviderTrue.moreButtonColor,
                       text: 'more',
                     ),
                   ],
@@ -189,9 +191,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               Visibility(
-                visible: Provider.of<TagsListProvider>(context).tagsCount == 0
-                    ? false
-                    : true,
+                visible: tagsListProviderTrue.tagsCount == 0 ? false : true,
                 child: Padding(
                   padding:
                       const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
@@ -206,9 +206,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               Visibility(
-                visible: Provider.of<TagsListProvider>(context).tagsCount == 0
-                    ? false
-                    : true,
+                visible: tagsListProviderTrue.tagsCount == 0 ? false : true,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                   child: Row(
@@ -235,41 +233,26 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               children: [
                                 Container(
                                   width: 400,
-                                  height: Provider.of<TagsListProvider>(context)
-                                              .tagsCount <=
-                                          1
+                                  height: tagsListProviderTrue.tagsCount <= 1
                                       ? 60
-                                      : Provider.of<TagsListProvider>(context)
-                                                  .tagsCount <=
-                                              2
+                                      : tagsListProviderTrue.tagsCount <= 2
                                           ? 120
-                                          : Provider.of<TagsListProvider>(
-                                                          context)
-                                                      .tagsCount <=
-                                                  3
+                                          : tagsListProviderTrue.tagsCount <= 3
                                               ? 180
                                               : 220,
                                   child: ListView.builder(
-                                    itemCount:
-                                        Provider.of<TagsListProvider>(context)
-                                            .tagsCount,
+                                    itemCount: tagsListProviderTrue.tagsCount,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return ListTile(
-                                        title: Text(
-                                            Provider.of<TagsListProvider>(
-                                                    context)
-                                                .tags[index]
-                                                .name),
+                                        title: Text(tagsListProviderTrue
+                                            .tags[index].name),
                                         trailing: Checkbox(
                                           activeColor: kAppBarColor,
-                                          value: Provider.of<TagsListProvider>(
-                                                  context)
+                                          value: tagsListProviderTrue
                                               .tagsChecked[index],
                                           onChanged: (value) {
-                                            Provider.of<TagsListProvider>(
-                                                    context,
-                                                    listen: false)
+                                            tagsListProviderFalse
                                                 .updateSelection(index, value);
                                           },
                                         ),

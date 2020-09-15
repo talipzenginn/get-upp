@@ -5,39 +5,33 @@ import '../../providers/tasks_list_provider.dart';
 import '../../components/constants.dart';
 
 class TaskCountText extends StatelessWidget {
-  const TaskCountText({
-    Key key,
-  }) : super(key: key);
   String taskCountText(BuildContext context) {
+    SettingsProvider settingsProviderTrue =
+        Provider.of<SettingsProvider>(context);
+    TasksListProvider tasksListProviderTrue =
+        Provider.of<TasksListProvider>(context);
     String taskCount;
-    if (Provider.of<SettingsProvider>(context).settings.hideCompletedTasks !=
-        null) {
-      if (!Provider.of<SettingsProvider>(context).settings.hideCompletedTasks) {
-        if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
+    if (settingsProviderTrue.settings.hideCompletedTasks != null) {
+      if (!settingsProviderTrue.settings.hideCompletedTasks) {
+        if (tasksListProviderTrue.leftTaskCount == 0) {
           taskCount = 'Well\nDone!';
         } else {
           taskCount =
-              '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
+              '${tasksListProviderTrue.leftTaskCount} left\n${tasksListProviderTrue.taskCount - tasksListProviderTrue.leftTaskCount} completed';
         }
-      } else if (Provider.of<SettingsProvider>(context)
-          .settings
-          .hideCompletedTasks) {
-        if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
+      } else if (settingsProviderTrue.settings.hideCompletedTasks) {
+        if (tasksListProviderTrue.leftTaskCount == 0) {
           taskCount = '';
         } else {
-          taskCount =
-              '${Provider.of<TasksListProvider>(context).leftTaskCount} left';
+          taskCount = '${tasksListProviderTrue.leftTaskCount} left';
         }
       }
-    } else if (Provider.of<SettingsProvider>(context)
-            .settings
-            .hideCompletedTasks ==
-        null) {
-      if (Provider.of<TasksListProvider>(context).leftTaskCount == 0) {
+    } else if (settingsProviderTrue.settings.hideCompletedTasks == null) {
+      if (tasksListProviderTrue.leftTaskCount == 0) {
         taskCount = 'Well\nDone!';
       } else {
         taskCount =
-            '${Provider.of<TasksListProvider>(context).leftTaskCount} left\n${Provider.of<TasksListProvider>(context).taskCount - Provider.of<TasksListProvider>(context).leftTaskCount} completed';
+            '${tasksListProviderTrue.leftTaskCount} left\n${tasksListProviderTrue.taskCount - tasksListProviderTrue.leftTaskCount} completed';
       }
     }
     return taskCount;
@@ -45,11 +39,11 @@ class TaskCountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TasksListProvider tasksListProviderTrue =
+        Provider.of<TasksListProvider>(context);
     return Visibility(
-      visible: Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0
-              ? false
-              : true
+      visible: tasksListProviderTrue.taskCount != null
+          ? tasksListProviderTrue.taskCount == 0 ? false : true
           : false,
       child: Text(
         taskCountText(context),

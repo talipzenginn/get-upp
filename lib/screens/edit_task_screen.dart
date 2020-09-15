@@ -53,6 +53,14 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ActiveColorProvider activeColorProviderFalse =
+        Provider.of<ActiveColorProvider>(context, listen: false);
+    ActiveColorProvider activeColorProviderTrue =
+        Provider.of<ActiveColorProvider>(context);
+    TasksListProvider tasksListProviderFalse =
+        Provider.of<TasksListProvider>(context, listen: false);
+    TasksListProvider tasksListProviderTrue =
+        Provider.of<TasksListProvider>(context);
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -103,14 +111,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   children: <Widget>[
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeLessButtonColor();
+                        activeColorProviderFalse.changeLessButtonColor();
                         lessActiveness = !lessActiveness;
                         middleActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .lessButtonColor,
+                      bodyColor: activeColorProviderTrue.lessButtonColor,
                       text: 'less',
                     ),
                     SizedBox(
@@ -118,14 +124,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMiddleButtonColor();
+                        activeColorProviderFalse.changeMiddleButtonColor();
                         middleActiveness = !middleActiveness;
                         lessActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .middleButtonColor,
+                      bodyColor: activeColorProviderTrue.middleButtonColor,
                       text: 'middle',
                     ),
                     SizedBox(
@@ -133,14 +137,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     PriorityButton(
                       onTapFunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMoreButtonColor();
+                        activeColorProviderFalse.changeMoreButtonColor();
                         moreActiveness = !moreActiveness;
                         lessActiveness = false;
                         middleActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .moreButtonColor,
+                      bodyColor: activeColorProviderTrue.moreButtonColor,
                       text: 'more',
                     ),
                   ],
@@ -190,9 +192,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       },
                       borderColor: kReusableButtonBody,
                       bodyColor: kEditTaskScreenButtonBody,
-                      text: Provider.of<TasksListProvider>(context)
-                                      .displayingAllTasks[widget.index]
-                                      .year ==
+                      text: tasksListProviderTrue
+                                      .displayingAllTasks[widget.index].year ==
                                   0 &&
                               newDateTime == null
                           ? 'Add Due Date'
@@ -200,9 +201,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       textSize: 11.0,
                     ),
                     Visibility(
-                      visible: Provider.of<TasksListProvider>(context)
-                                      .displayingAllTasks[widget.index]
-                                      .year ==
+                      visible: tasksListProviderTrue
+                                      .displayingAllTasks[widget.index].year ==
                                   0 &&
                               newDateTime == null
                           ? false
@@ -212,16 +212,15 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       ),
                     ),
                     Visibility(
-                      visible: Provider.of<TasksListProvider>(context)
-                                      .displayingAllTasks[widget.index]
-                                      .year ==
+                      visible: tasksListProviderTrue
+                                      .displayingAllTasks[widget.index].year ==
                                   0 &&
                               newDateTime == null
                           ? false
                           : true,
                       child: ReusableButton(
                         onTapFunction: () {
-                          Provider.of<TasksListProvider>(context, listen: false)
+                          tasksListProviderFalse
                               .deleteTaskDueDate(widget.index);
                           setState(() {
                             newDateTime = null;

@@ -11,20 +11,19 @@ import '../screens/edit_task_screen.dart';
 
 class ReusableMethods {
   void openEditTaskScreen(BuildContext context, Task task, int index) {
+    ActiveColorProvider activeColorProviderFalse =
+        Provider.of<ActiveColorProvider>(context, listen: false);
     FocusScope.of(context).unfocus();
     bool lessActiveness = false;
     bool middleActiveness = false;
     bool moreActiveness = false;
-    Provider.of<ActiveColorProvider>(context, listen: false).inactivateColors();
+    activeColorProviderFalse.inactivateColors();
     if (task.importanceValue == 1) {
-      Provider.of<ActiveColorProvider>(context, listen: false)
-          .changeLessButtonColor();
+      activeColorProviderFalse.changeLessButtonColor();
     } else if (task.importanceValue == 2) {
-      Provider.of<ActiveColorProvider>(context, listen: false)
-          .changeMiddleButtonColor();
+      activeColorProviderFalse.changeMiddleButtonColor();
     } else if (task.importanceValue == 3) {
-      Provider.of<ActiveColorProvider>(context, listen: false)
-          .changeMoreButtonColor();
+      activeColorProviderFalse.changeMoreButtonColor();
     }
     if (task.importanceValue == 1) {
       lessActiveness = true;
@@ -81,9 +80,12 @@ class ReusableMethods {
       String jsonRequest,
       Function elseFunction,
       BuildContext context}) {
-    Provider.of<TagsListProvider>(context, listen: false).tagging();
-    jsonRequest = jsonEncode(
-        Provider.of<TagsListProvider>(context, listen: false).selectedTagList);
+    TagsListProvider tagsListProviderFalse =
+        Provider.of<TagsListProvider>(context, listen: false);
+    TasksListProvider tasksListProviderFalse =
+        Provider.of<TasksListProvider>(context, listen: false);
+    tagsListProviderFalse.tagging();
+    jsonRequest = jsonEncode(tagsListProviderFalse.selectedTagList);
     if (lessActiveness) {
       importanceValue = 1;
     } else if (middleActiveness) {
@@ -94,7 +96,7 @@ class ReusableMethods {
       importanceValue = null;
     }
     if ((taskName != null && taskName != '') && newDateTime != null) {
-      Provider.of<TasksListProvider>(context, listen: false).addTask(Task(
+      tasksListProviderFalse.addTask(Task(
           name: taskName,
           importanceValue: importanceValue,
           year: newDateTime.year,
@@ -110,7 +112,7 @@ class ReusableMethods {
       importanceValue = null;
       newDateTime = null;
     } else if (taskName != null && taskName != '') {
-      Provider.of<TasksListProvider>(context, listen: false).addTask(Task(
+      tasksListProviderFalse.addTask(Task(
           name: taskName,
           importanceValue: importanceValue,
           tagListJson: jsonRequest));
@@ -136,6 +138,8 @@ class ReusableMethods {
     int index,
     BuildContext context,
   }) {
+    TasksListProvider tasksListProviderFalse =
+        Provider.of<TasksListProvider>(context, listen: false);
     if (lessActiveness) {
       importanceValue = 1;
     } else if (middleActiveness) {
@@ -146,19 +150,16 @@ class ReusableMethods {
       importanceValue = null;
     }
     if ((taskName != null && taskName != '') && newDateTime != null) {
-      Provider.of<TasksListProvider>(context, listen: false)
-          .updateTaskTitle(taskName, index);
-      Provider.of<TasksListProvider>(context, listen: false).updateTaskDueDate(
+      tasksListProviderFalse.updateTaskTitle(taskName, index);
+      tasksListProviderFalse.updateTaskDueDate(
           newDateTime.year, newDateTime.month, newDateTime.day, index);
     } else if (taskName != null && taskName != '') {
-      Provider.of<TasksListProvider>(context, listen: false)
-          .updateTaskTitle(taskName, index);
+      tasksListProviderFalse.updateTaskTitle(taskName, index);
     } else if (newDateTime != null) {
-      Provider.of<TasksListProvider>(context, listen: false).updateTaskDueDate(
+      tasksListProviderFalse.updateTaskDueDate(
           newDateTime.year, newDateTime.month, newDateTime.day, index);
     }
-    Provider.of<TasksListProvider>(context, listen: false)
-        .updateTaskPriority(importanceValue, index);
+    tasksListProviderFalse.updateTaskPriority(importanceValue, index);
     Navigator.pop(context);
     FocusScope.of(context).unfocus();
     taskName = null;
@@ -175,13 +176,15 @@ class ReusableMethods {
       String tagName,
       BuildContext context,
       Function elseFunction}) {
+    TagsListProvider tagsListProviderFalse =
+        Provider.of<TagsListProvider>(context, listen: false);
     for (Color color in colors) {
       if (selectedColor == color) {
         selectColorIndex = colors.indexOf(color);
       }
     }
     if (tagName != null && tagName != '') {
-      Provider.of<TagsListProvider>(context, listen: false).addTag(
+      tagsListProviderFalse.addTag(
         Tag(name: tagName, colorIndex: selectColorIndex),
       );
       Navigator.pop(context);
@@ -199,21 +202,20 @@ class ReusableMethods {
     int index,
     BuildContext context,
   }) {
+    TagsListProvider tagsListProviderFalse =
+        Provider.of<TagsListProvider>(context, listen: false);
     for (Color color in colors) {
       if (selectedColor == color) {
         selectColorIndex = colors.indexOf(color);
       }
     }
     if ((tagName != null && tagName != '')) {
-      Provider.of<TagsListProvider>(context, listen: false)
-          .updateTagTitle(index, tagName);
-      Provider.of<TagsListProvider>(context, listen: false)
-          .updateTagColor(index, selectColorIndex);
+      tagsListProviderFalse.updateTagTitle(index, tagName);
+      tagsListProviderFalse.updateTagColor(index, selectColorIndex);
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     } else {
-      Provider.of<TagsListProvider>(context, listen: false)
-          .updateTagColor(index, selectColorIndex);
+      tagsListProviderFalse.updateTagColor(index, selectColorIndex);
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     }
