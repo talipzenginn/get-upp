@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../screens/add_tag_screen.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../screens/add_tag_screen.dart';
 import '../../components/constants.dart';
 import '../../providers/active_color_provider.dart';
 

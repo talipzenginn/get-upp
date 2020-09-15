@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../providers/settings_provider.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../providers/settings_provider.dart';
 import '../../providers/tasks_list_provider.dart';
 import '../../components/constants.dart';
 

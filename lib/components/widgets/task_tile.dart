@@ -3,8 +3,9 @@ import 'package:circular_check_box/circular_check_box.dart'
     show CircularCheckBox;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import '../../models/tag.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../screens/add_tag_screen.dart';
+import '../../models/tag.dart';
 import '../../helpers/reusable_methods.dart';
 import '../../models/task.dart';
 import '../../providers/tasks_list_provider.dart';
@@ -84,6 +85,26 @@ class TaskTile extends StatelessWidget {
                           fontSize: 12.0, color: kDisplayingTasksDueDateColor),
                     )),
               ],
+            ),
+            Container(
+              width: double.infinity,
+              height: 50,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: tagList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    width: 150,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AddTagScreen().colors[tagList[index].colorIndex],
+                    ),
+                    child: Text(tagList[index].name),
+                  );
+                },
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

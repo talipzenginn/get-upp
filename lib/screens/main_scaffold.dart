@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import '../screens/settings_page.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../screens/settings_page.dart';
 import '../screens/my_families_page.dart';
 import '../screens/my_tags_page.dart';
 import '../screens/my_tasks_page.dart';
