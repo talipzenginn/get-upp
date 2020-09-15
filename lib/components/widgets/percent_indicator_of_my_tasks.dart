@@ -57,7 +57,7 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: kPercentIndicatorBackground,
+        backgroundColor: Color(0xFF048998),
         circularStrokeCap: CircularStrokeCap.round,
         progressColor: kInactiveColor,
       ),

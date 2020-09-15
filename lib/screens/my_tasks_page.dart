@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart' show Provider;
+import '../providers/tasks_list_provider.dart';
 import '../components/constants.dart';
 import '../components/widgets/add_task_button.dart';
 import '../components/widgets/percent_indicator_of_my_tasks.dart';
@@ -58,15 +60,24 @@ class MyTasksPage extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            child: TaskDisplayList(),
-            decoration: BoxDecoration(
-              color: kTaskListColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0),
-              ),
-            ),
-          ),
+              decoration: Provider.of<TasksListProvider>(context).taskCount == 0
+                  ? BoxDecoration(
+                      color: kTaskListColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                      ),
+                    )
+                  : null,
+              child: Provider.of<TasksListProvider>(context).taskCount == 0
+                  ? Center(
+                      child: Text(
+                      'Your tasks will be show up here',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 18.0, fontFamily: 'GothamBook'),
+                    ))
+                  : TaskDisplayList()),
         ),
       ],
     );

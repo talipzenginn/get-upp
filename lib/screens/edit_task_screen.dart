@@ -68,8 +68,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 ),
               ),
               Theme(
-                data: ThemeData.light()
-                    .copyWith(accentColor: kEditTaskScreenTitle),
+                data:
+                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
                 child: TextField(
                   maxLines: null,
                   controller: controller,

@@ -53,18 +53,12 @@ class MainScaffold extends StatelessWidget {
         ],
         currentIndex: Provider.of<NavigationBarOnTapped>(context).selectedIndex,
         backgroundColor: kNavigationBarBackgroundColor,
-        selectedItemColor:
-            Provider.of<NavigationBarOnTapped>(context).selectedIndex == 1
-                ? Color(0xFF048998)
-                : kNavigationBarColor,
+        selectedItemColor: kNavigationBarColor,
         unselectedItemColor: kUnselectedItemColor,
         onTap: Provider.of<NavigationBarOnTapped>(context).onItemTapped,
       ),
       appBar: AppBar(
-        backgroundColor:
-            Provider.of<NavigationBarOnTapped>(context).selectedIndex == 1
-                ? Color(0xFF048998)
-                : kAppBarColor,
+        backgroundColor: kAppBarColor,
         title: Center(
           child: RichText(
             text: TextSpan(
@@ -90,10 +84,7 @@ class MainScaffold extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor:
-          Provider.of<NavigationBarOnTapped>(context).selectedIndex == 1
-              ? Color(0xFF3bb4c1)
-              : kBackgroundColor,
+      backgroundColor: kBackgroundColor,
       body: _widgetOptions
           .elementAt(Provider.of<NavigationBarOnTapped>(context).selectedIndex),
     );

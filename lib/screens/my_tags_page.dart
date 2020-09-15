@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_upp/providers/tags_list_provider.dart';
+import 'package:provider/provider.dart' show Provider;
 import '../components/widgets/add_tag_button.dart';
 import '../components/widgets/tag_display_list.dart';
 import '../components/constants.dart';
@@ -36,7 +38,25 @@ class MyTagsPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: TagDisplayList(),
+          child: Container(
+              decoration: Provider.of<TagsListProvider>(context).tagsCount == 0
+                  ? BoxDecoration(
+                      color: kTaskListColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                      ),
+                    )
+                  : null,
+              child: Provider.of<TagsListProvider>(context).tagsCount == 0
+                  ? Center(
+                      child: Text(
+                      'Your tags will be show up here',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 18.0, fontFamily: 'GothamBook'),
+                    ))
+                  : TagDisplayList()),
         ),
       ],
     );

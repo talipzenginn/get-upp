@@ -18,77 +18,89 @@ class DismissibleTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskData = Provider.of<TasksListProvider>(context);
-    return Dismissible(
-      background: Container(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0, left: 8.0, right: 8.0),
+      child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: kEditDismissBackground,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Icon(
-                FontAwesomeIcons.edit,
-                color: kInactiveColor,
-                size: 25.0,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: kInactiveColor),
+        child: Theme(
+          data: ThemeData(
+              accentColor: Colors.black, dividerColor: Colors.transparent),
+          child: Dismissible(
+            background: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: kEditDismissBackground,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Icon(
+                      FontAwesomeIcons.edit,
+                      color: kInactiveColor,
+                      size: 25.0,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-      secondaryBackground: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: kDeleteDismissBackground,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Icon(
-                FontAwesomeIcons.trashAlt,
-                color: kInactiveColor,
-                size: 25.0,
+            secondaryBackground: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: kDeleteDismissBackground,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Icon(
+                      FontAwesomeIcons.trashAlt,
+                      color: kInactiveColor,
+                      size: 25.0,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+            key: ValueKey(taskData.displayingAllTasks[index].name),
+            onDismissed: (direction) {
+              taskData.displayingAllTasks.removeAt(index);
+            },
+            confirmDismiss: (direction) => promptUser(
+                index: index,
+                taskData: taskData,
+                context: context,
+                task: taskData.displayingAllTasks[index],
+                direction: direction),
+            child: TaskTile(
+              index: index,
+              task: task,
+              taskTitle: task.name,
+              isChecked: task.isDone,
+              checkboxCallback: (bool checkboxState) {
+                Provider.of<TasksListProvider>(context, listen: false)
+                    .updateCheckProperty(task);
+                if (checkboxState) {
+                  Scaffold.of(context).showSnackBar(ReusableSnackBar()
+                      .snackBarWithContent(
+                          snackBarContent: "Task Completed",
+                          snackBarColor: Colors.teal));
+                }
+              },
+              importanceValue: task.importanceValue,
+              year: task.year,
+              month: task.month,
+              day: task.day,
+              tagList: SelectedTagListConvertJson.fromJson(
+                      jsonDecode(task.tagListJson))
+                  .selectedTagsList,
+            ),
+          ),
         ),
-      ),
-      key: ValueKey(taskData.displayingAllTasks[index].name),
-      onDismissed: (direction) {
-        taskData.displayingAllTasks.removeAt(index);
-      },
-      confirmDismiss: (direction) => promptUser(
-          index: index,
-          taskData: taskData,
-          context: context,
-          task: taskData.displayingAllTasks[index],
-          direction: direction),
-      child: TaskTile(
-        index: index,
-        task: task,
-        taskTitle: task.name,
-        isChecked: task.isDone,
-        checkboxCallback: (bool checkboxState) {
-          Provider.of<TasksListProvider>(context, listen: false)
-              .updateCheckProperty(task);
-          if (checkboxState) {
-            Scaffold.of(context).showSnackBar(ReusableSnackBar()
-                .snackBarWithContent(
-                    snackBarContent: "Task Completed",
-                    snackBarColor: Colors.teal));
-          }
-        },
-        importanceValue: task.importanceValue,
-        year: task.year,
-        month: task.month,
-        day: task.day,
-        tagList:
-            SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
-                .selectedTagsList,
       ),
     );
   }

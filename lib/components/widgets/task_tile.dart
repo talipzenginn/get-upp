@@ -39,136 +39,160 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       backgroundColor: kExpansionTileBackground,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.only(left: 0.0),
-            leading: CircularCheckBox(
-              value: isChecked,
-              onChanged: checkboxCallback,
-              inactiveColor: importanceValue == 1
-                  ? kLessButtonActiveColor
-                  : importanceValue == 2
-                      ? kMiddleButtonActiveColor
-                      : importanceValue == 3
-                          ? kMoreButtonActiveColor
-                          : kCheckboxInactiveColor,
-              activeColor: kCheckboxActiveColor,
-              checkColor: kInactiveColor,
-            ),
-            title: Text(
-              taskTitle,
-              style: TextStyle(
-                  color: kDisplayingTasksTitleColor,
-                  fontSize: 14.1,
-                  decoration:
-                      isChecked == true ? TextDecoration.lineThrough : null),
-            ),
-          ),
-        ],
-      ),
-      children: [
-        Column(
+      title: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 3.5),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 90.0,
-                ),
-                Visibility(
-                    visible: year == 0 ? false : true,
-                    child: Text(
-                      'Due date: $day.$month.$year',
-                      style: TextStyle(
-                          fontSize: 12.0, color: kDisplayingTasksDueDateColor),
-                    )),
-              ],
-            ),
-            Container(
-              width: double.infinity,
-              height: 50,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: tagList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    width: 150,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AddTagScreen().colors[tagList[index].colorIndex],
-                    ),
-                    child: Text(tagList[index].name),
-                  );
-                },
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 0.0),
+              leading: CircularCheckBox(
+                value: isChecked,
+                onChanged: checkboxCallback,
+                inactiveColor: importanceValue == 1
+                    ? kLessButtonActiveColor
+                    : importanceValue == 2
+                        ? kMiddleButtonActiveColor
+                        : importanceValue == 3
+                            ? kMoreButtonActiveColor
+                            : kCheckboxInactiveColor,
+                activeColor: kCheckboxActiveColor,
+                checkColor: kInactiveColor,
+              ),
+              title: Text(
+                taskTitle,
+                style: TextStyle(
+                    color: kDisplayingTasksTitleColor,
+                    fontSize: 14.1,
+                    decoration:
+                        isChecked == true ? TextDecoration.lineThrough : null),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    FontAwesomeIcons.edit,
-                    color: kEditButtonColor,
-                    size: 22.0,
-                  ),
-                  onPressed: () {
-                    ReusableMethods().openEditTaskScreen(context, task, index);
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    FontAwesomeIcons.trashAlt,
-                    color: kDeleteButtonColor,
-                    size: 22.0,
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      barrierDismissible: true,
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        elevation: 24.0,
-                        title: Text(
-                          'Sure?',
-                        ),
-                        content: Text(
-                          'Are you sure about deleting this task?',
-                        ),
-                        actions: <Widget>[
-                          FlatButton(
-                            onPressed: () {
-                              Provider.of<TasksListProvider>(context,
-                                      listen: false)
-                                  .deleteTask(task);
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              'Yes',
-                              style: TextStyle(color: kConfirmColor),
-                            ),
-                          ),
-                          FlatButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              'No',
-                              style: TextStyle(color: kNotConfirmColor),
-                            ),
-                          ),
-                        ],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
-                      ),
-                    );
-                  },
-                )
-              ],
-            ),
           ],
+        ),
+      ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+                child: Row(
+                  children: [
+                    Visibility(
+                        visible: year == 0 ? false : true,
+                        child: Text(
+                          'Due date: $day.$month.$year',
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'GothamBook',
+                              color: kDisplayingTasksDueDateColor),
+                        )),
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: tagList.length == 0 ? false : true,
+                child: Container(
+                  width: double.infinity,
+                  height: 36,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: tagList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: EdgeInsets.symmetric(horizontal: 4),
+                        padding: EdgeInsets.all(6),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color:
+                              AddTagScreen().colors[tagList[index].colorIndex],
+                        ),
+                        child: Text(
+                          tagList[index].name,
+                          style: TextStyle(
+                              fontFamily: 'GothamBook',
+                              color: tagList[index].colorIndex == 2 ||
+                                      tagList[index].colorIndex == 3
+                                  ? Colors.black
+                                  : Colors.white),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        FontAwesomeIcons.edit,
+                        color: kEditButtonColor,
+                        size: 22.0,
+                      ),
+                      onPressed: () {
+                        ReusableMethods()
+                            .openEditTaskScreen(context, task, index);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        FontAwesomeIcons.trashAlt,
+                        color: kDeleteButtonColor,
+                        size: 22.0,
+                      ),
+                      onPressed: () {
+                        showDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            elevation: 24.0,
+                            title: Text(
+                              'Sure?',
+                            ),
+                            content: Text(
+                              'Are you sure about deleting this task?',
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                onPressed: () {
+                                  Provider.of<TasksListProvider>(context,
+                                          listen: false)
+                                      .deleteTask(task);
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  'Yes',
+                                  style: TextStyle(color: kConfirmColor),
+                                ),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  'No',
+                                  style: TextStyle(color: kNotConfirmColor),
+                                ),
+                              ),
+                            ],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

@@ -50,8 +50,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               Theme(
-                data: ThemeData.light()
-                    .copyWith(accentColor: kAddTaskScreenTitle),
+                data:
+                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
                 child: TextField(
                   maxLines: null,
                   decoration: InputDecoration(
@@ -261,7 +261,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                               children: [
                                 Container(
                                   width: 400,
-                                  height: 220,
+                                  height: Provider.of<TagsListProvider>(context)
+                                              .tagsCount <=
+                                          1
+                                      ? 60
+                                      : Provider.of<TagsListProvider>(context)
+                                                  .tagsCount <=
+                                              2
+                                          ? 120
+                                          : Provider.of<TagsListProvider>(
+                                                          context)
+                                                      .tagsCount <=
+                                                  3
+                                              ? 180
+                                              : 220,
                                   child: ListView.builder(
                                     itemCount:
                                         Provider.of<TagsListProvider>(context)
@@ -275,6 +288,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                                                 .tags[index]
                                                 .name),
                                         trailing: Checkbox(
+                                          activeColor: kAppBarColor,
                                           value: Provider.of<TagsListProvider>(
                                                   context)
                                               .tagsChecked[index],
