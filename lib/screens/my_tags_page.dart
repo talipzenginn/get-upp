@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_upp/providers/tags_list_provider.dart';
-import 'package:provider/provider.dart' show Provider;
 import '../components/widgets/add_tag_button.dart';
 import '../components/widgets/tag_display_list.dart';
 import '../components/constants.dart';
@@ -31,7 +29,7 @@ class MyTagsPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 35.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: AddTagButton(),
               ),
             ],

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart' show Provider;
-import '../providers/tasks_list_provider.dart';
 import '../components/constants.dart';
 import '../components/widgets/add_task_button.dart';
 import '../components/widgets/percent_indicator_of_my_tasks.dart';
