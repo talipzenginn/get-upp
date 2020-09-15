@@ -274,7 +274,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     color: kInactiveColor,
                   ),
                 ),
-                color: kAppBarColor,
+                color: kBackgroundColor,
               ),
             ],
           ),

@@ -241,7 +241,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     color: kEditTaskScreenButtonBody,
                   ),
                 ),
-                color: kAppBarColor,
+                color: kBackgroundColor,
               ),
             ],
           ),

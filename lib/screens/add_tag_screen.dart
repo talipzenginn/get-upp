@@ -173,7 +173,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
                   color: kAddTaskScreenButtonBody,
                 ),
               ),
-              color: Color(0xFF3bb4c1),
+              color: kBackgroundColor,
             ),
           ]),
         ),

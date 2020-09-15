@@ -8,7 +8,7 @@ const kTitleColor = Colors.white;
 const kBackgroundColor = Color(0xFF3bb4c1);
 const kTaskListColor = Colors.white;
 const kNavigationBarBackgroundColor = Colors.white;
-const kNavigationBarColor = Color(0xFF048998);
+const kNavigationBarColor = kAppBarColor;
 
 const kAddEditScreenTitle = kBackgroundColor;
 const kEditTaskScreenButtonBody = Colors.white;

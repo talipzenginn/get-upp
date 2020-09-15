@@ -169,7 +169,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                     color: kAddTaskScreenButtonBody,
                   ),
                 ),
-                color: kAppBarColor,
+                color: kBackgroundColor,
               ),
             ],
           ),
