@@ -10,7 +10,7 @@ import '../providers/active_color_provider.dart';
 import '../screens/edit_task_screen.dart';
 
 class ReusableMethods {
-  void openEditTaskScreen(BuildContext context, Task task, int index) {
+  static void openEditTaskScreen(BuildContext context, Task task, int index) {
     ActiveColorProvider activeColorProviderFalse =
         Provider.of<ActiveColorProvider>(context, listen: false);
     FocusScope.of(context).unfocus();
@@ -52,7 +52,7 @@ class ReusableMethods {
     );
   }
 
-  void openEditTagScreen(
+  static void openEditTagScreen(
       {BuildContext context, int index, int colorIndex, String title}) {
     FocusScope.of(context).unfocus();
     showModalBottomSheet(
@@ -70,7 +70,7 @@ class ReusableMethods {
     );
   }
 
-  void addTask(
+  static void addTask(
       {bool lessActiveness,
       bool middleActiveness,
       bool moreActiveness,
@@ -128,7 +128,7 @@ class ReusableMethods {
     }
   }
 
-  void editTask({
+  static void editTask({
     bool lessActiveness,
     bool middleActiveness,
     bool moreActiveness,
@@ -169,7 +169,7 @@ class ReusableMethods {
     importanceValue = null;
   }
 
-  void addTag(
+  static void addTag(
       {List<Color> colors,
       Color selectedColor,
       int selectColorIndex,
@@ -194,7 +194,7 @@ class ReusableMethods {
     }
   }
 
-  void editTag({
+  static void editTag({
     List<Color> colors,
     Color selectedColor,
     int selectColorIndex,
@@ -219,5 +219,21 @@ class ReusableMethods {
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     }
+  }
+
+  static String weekdayString(int index) {
+    String weekday = '';
+    weekday = index == 1
+        ? 'Monday'
+        : index == 2
+            ? 'Tuesday'
+            : index == 3
+                ? 'Wednesday'
+                : index == 4
+                    ? 'Thursday'
+                    : index == 5
+                        ? 'Friday'
+                        : index == 6 ? 'Saturday' : index == 7 ? 'Sunday' : '';
+    return weekday;
   }
 }

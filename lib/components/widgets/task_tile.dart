@@ -135,8 +135,8 @@ class TaskTile extends StatelessWidget {
                         size: 22.0,
                       ),
                       onPressed: () {
-                        ReusableMethods()
-                            .openEditTaskScreen(context, task, index);
+                        ReusableMethods.openEditTaskScreen(
+                            context, task, index);
                       },
                     ),
                     IconButton(

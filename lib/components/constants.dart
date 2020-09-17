@@ -42,3 +42,10 @@ const kReusableButtonText = Colors.black;
 
 final kCheckboxActiveColor = Colors.grey[400];
 const kCheckboxInactiveColor = Colors.grey;
+
+const kTagColor0 = Colors.orange;
+const kTagColor1 = Colors.red;
+const kTagColor2 = Colors.yellow;
+const kTagColor3 = Colors.greenAccent;
+const kTagColor4 = Colors.pinkAccent;
+const kTagColor5 = Colors.lightBlueAccent;

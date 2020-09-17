@@ -38,6 +38,7 @@ class ReusableButton extends StatelessWidget {
                 )
               : Text(
                   text,
+                  textAlign: TextAlign.center,
                   style:
                       TextStyle(color: kReusableButtonText, fontSize: textSize),
                 ),

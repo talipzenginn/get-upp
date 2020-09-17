@@ -74,8 +74,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   padding: const EdgeInsets.all(15.0),
                   child: AddEditScreensText(text: 'Edit Task', textSize: 30.0)),
               Theme(
-                data:
-                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
+                data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
                 child: TextField(
                   maxLines: null,
                   controller: controller,
@@ -224,7 +223,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               ),
               FlatButton(
                 onPressed: () {
-                  ReusableMethods().editTask(
+                  ReusableMethods.editTask(
                     lessActiveness: lessActiveness,
                     middleActiveness: middleActiveness,
                     moreActiveness: moreActiveness,

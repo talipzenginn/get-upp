@@ -57,7 +57,7 @@ class TagDisplayList extends StatelessWidget {
                                 size: 22.0,
                               ),
                               onPressed: () {
-                                ReusableMethods().openEditTagScreen(
+                                ReusableMethods.openEditTagScreen(
                                     context: context,
                                     index: index,
                                     colorIndex: tagData.tags[index].colorIndex,

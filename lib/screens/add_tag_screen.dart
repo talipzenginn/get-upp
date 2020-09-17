@@ -6,12 +6,12 @@ import '../components/constants.dart';
 
 class AddTagScreen extends StatefulWidget {
   final List<Color> colors = [
-    Colors.orange,
-    Colors.red,
-    Colors.yellow,
-    Colors.greenAccent,
-    Colors.pinkAccent,
-    Colors.lightBlueAccent,
+    kTagColor0,
+    kTagColor1,
+    kTagColor2,
+    kTagColor3,
+    kTagColor4,
+    kTagColor5,
   ];
   @override
   _AddTagScreenState createState() => _AddTagScreenState();
@@ -19,7 +19,7 @@ class AddTagScreen extends StatefulWidget {
 
 class _AddTagScreenState extends State<AddTagScreen> {
   String tagName;
-  Color selectedColor = Colors.lightBlueAccent;
+  Color selectedColor = kTagColor5;
   int selectColorIndex = 5;
   List<Color> colors;
   @override
@@ -37,145 +37,142 @@ class _AddTagScreenState extends State<AddTagScreen> {
       child: Container(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <
-                  Widget>[
-            Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: AddEditScreensText(text: 'Add Tag', textSize: 30.0)),
-            Theme(
-              data: ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
-              child: TextField(
-                maxLines: null,
-                decoration: InputDecoration(
-                  errorText:
-                      errorTextVisible == true ? 'You should type title' : null,
-                  hintText: 'Type your title',
-                ),
-                textAlign: TextAlign.center,
-                autofocus: true,
-                onChanged: (value) {
-                  setState(() {
-                    tagName = value;
-                  });
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Column(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: AddEditScreensText(
-                          text: 'Pick a Color', textSize: 18.0)),
-                  Row(
-                    children: [
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[0];
-                          });
-                        },
-                        bodyColor: Colors.orange,
-                        isIcon: selectedColor == Colors.orange ? true : false,
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[1];
-                          });
-                        },
-                        isIcon: selectedColor == Colors.red ? true : false,
-                        bodyColor: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[2];
-                          });
-                        },
-                        isIcon: selectedColor == Colors.yellow ? true : false,
-                        bodyColor: Colors.yellow,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Row(
-                    children: [
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[3];
-                          });
-                        },
-                        isIcon:
-                            selectedColor == Colors.greenAccent ? true : false,
-                        bodyColor: Colors.greenAccent,
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[4];
-                          });
-                        },
-                        isIcon:
-                            selectedColor == Colors.pinkAccent ? true : false,
-                        bodyColor: Colors.pinkAccent,
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      PickColorButton(
-                        onTapFunction: () {
-                          setState(() {
-                            selectedColor = colors[5];
-                          });
-                        },
-                        isIcon: selectedColor == Colors.lightBlueAccent
-                            ? true
-                            : false,
-                        bodyColor: Colors.lightBlueAccent,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            FlatButton(
-              onPressed: () {
-                ReusableMethods().addTag(
-                    colors: colors,
-                    selectedColor: selectedColor,
-                    selectColorIndex: selectColorIndex,
-                    tagName: tagName,
-                    context: context,
-                    elseFunction: () {
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: AddEditScreensText(text: 'Add Tag', textSize: 30.0)),
+                Theme(
+                  data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
+                  child: TextField(
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      errorText: errorTextVisible == true
+                          ? 'You should type title'
+                          : null,
+                      hintText: 'Type your title',
+                    ),
+                    textAlign: TextAlign.center,
+                    autofocus: true,
+                    onChanged: (value) {
                       setState(() {
-                        errorTextVisible = true;
+                        tagName = value;
                       });
-                    });
-              },
-              child: Text(
-                'Add',
-                style: TextStyle(
-                  color: kAddTaskScreenButtonBody,
+                    },
+                  ),
                 ),
-              ),
-              color: kBackgroundColor,
-            ),
-          ]),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: AddEditScreensText(
+                              text: 'Pick a Color', textSize: 18.0)),
+                      Row(
+                        children: [
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[0];
+                              });
+                            },
+                            bodyColor: kTagColor0,
+                            isIcon: selectedColor == kTagColor0 ? true : false,
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[1];
+                              });
+                            },
+                            isIcon: selectedColor == kTagColor1 ? true : false,
+                            bodyColor: kTagColor1,
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[2];
+                              });
+                            },
+                            isIcon: selectedColor == kTagColor2 ? true : false,
+                            bodyColor: kTagColor2,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Row(
+                        children: [
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[3];
+                              });
+                            },
+                            isIcon: selectedColor == kTagColor3 ? true : false,
+                            bodyColor: kTagColor3,
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[4];
+                              });
+                            },
+                            isIcon: selectedColor == kTagColor4 ? true : false,
+                            bodyColor: kTagColor4,
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          PickColorButton(
+                            onTapFunction: () {
+                              setState(() {
+                                selectedColor = colors[5];
+                              });
+                            },
+                            isIcon: selectedColor == kTagColor5 ? true : false,
+                            bodyColor: kTagColor5,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    ReusableMethods.addTag(
+                        colors: colors,
+                        selectedColor: selectedColor,
+                        selectColorIndex: selectColorIndex,
+                        tagName: tagName,
+                        context: context,
+                        elseFunction: () {
+                          setState(() {
+                            errorTextVisible = true;
+                          });
+                        });
+                  },
+                  child: Text(
+                    'Add',
+                    style: TextStyle(
+                      color: kAddTaskScreenButtonBody,
+                    ),
+                  ),
+                  color: kBackgroundColor,
+                ),
+              ]),
         ),
         decoration: BoxDecoration(
           color: kAddTaskScreenButtonBody,

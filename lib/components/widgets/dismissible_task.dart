@@ -113,7 +113,7 @@ class DismissibleTask extends StatelessWidget {
       int index}) async {
     bool confirm;
     if (direction == DismissDirection.startToEnd) {
-      ReusableMethods().openEditTaskScreen(context, task, index);
+      ReusableMethods.openEditTaskScreen(context, task, index);
     } else if (direction == DismissDirection.endToStart) {
       confirm = await showDialog<bool>(
             barrierDismissible: true,

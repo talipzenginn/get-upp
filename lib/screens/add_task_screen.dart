@@ -22,6 +22,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   bool middleActiveness = false;
   bool moreActiveness = false;
   DateTime newDateTime;
+  String weekDay = '';
   bool errorTextVisible = false;
   String jsonRequest;
   @override
@@ -49,8 +50,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     textSize: 30.0,
                   )),
               Theme(
-                data:
-                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
+                data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
                 child: TextField(
                   maxLines: null,
                   decoration: InputDecoration(
@@ -146,6 +146,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           if (value != null) {
                             setState(() {
                               newDateTime = value;
+                              weekDay = ReusableMethods.weekdayString(
+                                  newDateTime.weekday);
                             });
                           }
                         });
@@ -154,8 +156,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       bodyColor: kAddTaskScreenButtonBody,
                       text: newDateTime == null
                           ? 'Add Due Date'
-                          : 'Edit Due Date',
-                      textSize: 13.0,
+                          : '$weekDay, ${newDateTime.day}.${newDateTime.month}.${newDateTime.year}',
+                      textSize: 11.0,
                     ),
                     Visibility(
                       visible: newDateTime == null ? false : true,
@@ -253,7 +255,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               FlatButton(
                 onPressed: () {
-                  ReusableMethods().addTask(
+                  ReusableMethods.addTask(
                       lessActiveness: lessActiveness,
                       middleActiveness: middleActiveness,
                       moreActiveness: moreActiveness,

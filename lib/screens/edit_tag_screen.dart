@@ -43,8 +43,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                   padding: const EdgeInsets.all(15.0),
                   child: AddEditScreensText(text: 'Edit Tag', textSize: 30.0)),
               Theme(
-                data:
-                    ThemeData.light().copyWith(primaryColor: Color(0xFF048998)),
+                data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
                 child: TextField(
                   maxLines: null,
                   controller: controller,
@@ -76,8 +75,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[0];
                             });
                           },
-                          bodyColor: Colors.orange,
-                          isIcon: selectedColor == Colors.orange ? true : false,
+                          bodyColor: kTagColor0,
+                          isIcon: selectedColor == kTagColor0 ? true : false,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -88,8 +87,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[1];
                             });
                           },
-                          isIcon: selectedColor == Colors.red ? true : false,
-                          bodyColor: Colors.red,
+                          isIcon: selectedColor == kTagColor1 ? true : false,
+                          bodyColor: kTagColor1,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -100,8 +99,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[2];
                             });
                           },
-                          isIcon: selectedColor == Colors.yellow ? true : false,
-                          bodyColor: Colors.yellow,
+                          isIcon: selectedColor == kTagColor2 ? true : false,
+                          bodyColor: kTagColor2,
                         )
                       ],
                     ),
@@ -116,10 +115,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[3];
                             });
                           },
-                          isIcon: selectedColor == Colors.greenAccent
-                              ? true
-                              : false,
-                          bodyColor: Colors.greenAccent,
+                          isIcon: selectedColor == kTagColor3 ? true : false,
+                          bodyColor: kTagColor3,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -130,9 +127,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[4];
                             });
                           },
-                          isIcon:
-                              selectedColor == Colors.pinkAccent ? true : false,
-                          bodyColor: Colors.pinkAccent,
+                          isIcon: selectedColor == kTagColor4 ? true : false,
+                          bodyColor: kTagColor4,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -143,10 +139,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
                               selectedColor = colors[5];
                             });
                           },
-                          isIcon: selectedColor == Colors.lightBlueAccent
-                              ? true
-                              : false,
-                          bodyColor: Colors.lightBlueAccent,
+                          isIcon: selectedColor == kTagColor5 ? true : false,
+                          bodyColor: kTagColor5,
                         )
                       ],
                     )
@@ -155,7 +149,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
               ),
               FlatButton(
                 onPressed: () {
-                  ReusableMethods().editTag(
+                  ReusableMethods.editTag(
                       colors: colors,
                       selectedColor: selectedColor,
                       selectColorIndex: selectColorIndex,
