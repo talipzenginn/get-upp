@@ -82,7 +82,7 @@ class TaskTile extends StatelessWidget {
                 child: Visibility(
                     visible: year == 0 ? false : true,
                     child: Text(
-                      'Due date: $day.$month.$year',
+                      'Due date: ${ReusableMethods.weekdayString(DateTime.utc(year, month, day).weekday)}, $day.$month.$year',
                       style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'GothamBook',
