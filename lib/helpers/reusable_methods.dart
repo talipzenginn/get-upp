@@ -18,6 +18,7 @@ class ReusableMethods {
     bool middleActiveness = false;
     bool moreActiveness = false;
     activeColorProviderFalse.inactivateColors();
+    Provider.of<TagsListProvider>(context, listen: false).clearSelection();
     if (task.importanceValue == 1) {
       activeColorProviderFalse.changeLessButtonColor();
     } else if (task.importanceValue == 2) {
@@ -77,9 +78,9 @@ class ReusableMethods {
       int importanceValue,
       String taskName,
       DateTime newDateTime,
-      String jsonRequest,
       Function elseFunction,
       BuildContext context}) {
+    String jsonRequest;
     TagsListProvider tagsListProviderFalse =
         Provider.of<TagsListProvider>(context, listen: false);
     TasksListProvider tasksListProviderFalse =

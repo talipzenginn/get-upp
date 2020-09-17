@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/tagging_expansion_tile.dart';
 import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/priority_button.dart';
@@ -220,6 +221,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                   ],
                 ),
+              ),
+              TaggingExpansionTile(
+                title: 'Edit Tags',
               ),
               FlatButton(
                 onPressed: () {

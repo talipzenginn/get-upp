@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/tagging_expansion_tile.dart';
 import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/priority_button.dart';
 import '../components/constants.dart';
 import '../components/widgets/reusable_button.dart';
 import '../providers/active_color_provider.dart';
-import '../providers/tags_list_provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -31,10 +31,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         Provider.of<ActiveColorProvider>(context, listen: false);
     ActiveColorProvider activeColorProviderTrue =
         Provider.of<ActiveColorProvider>(context);
-    TagsListProvider tagsListProviderFalse =
-        Provider.of<TagsListProvider>(context, listen: false);
-    TagsListProvider tagsListProviderTrue =
-        Provider.of<TagsListProvider>(context);
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -182,76 +178,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ],
                 ),
               ),
-              Visibility(
-                visible: tagsListProviderTrue.tagsCount == 0 ? false : true,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 4.0, left: 8.0, right: 8.0),
-                  child: AddEditScreensText(
-                    text: 'Tag it',
-                    textSize: 18.0,
-                  ),
-                ),
-              ),
-              Visibility(
-                visible: tagsListProviderTrue.tagsCount == 0 ? false : true,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: kInactiveColor,
-                              border: Border.all(
-                                color: kReusableButtonBody,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: ExpansionTile(
-                              title: Text(
-                                'Pick Your Tags',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 14.0),
-                              ),
-                              onExpansionChanged: (v) {
-                                FocusScope.of(context).unfocus();
-                              },
-                              children: [
-                                Container(
-                                  width: 400,
-                                  height: tagsListProviderTrue.tagsCount <= 1
-                                      ? 60
-                                      : tagsListProviderTrue.tagsCount <= 2
-                                          ? 120
-                                          : tagsListProviderTrue.tagsCount <= 3
-                                              ? 180
-                                              : 220,
-                                  child: ListView.builder(
-                                    itemCount: tagsListProviderTrue.tagsCount,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return ListTile(
-                                        title: Text(tagsListProviderTrue
-                                            .tags[index].name),
-                                        trailing: Checkbox(
-                                          activeColor: kAppBarColor,
-                                          value: tagsListProviderTrue
-                                              .tagsChecked[index],
-                                          onChanged: (value) {
-                                            tagsListProviderFalse
-                                                .updateSelection(index, value);
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              TaggingExpansionTile(
+                title: 'Tag it',
               ),
               FlatButton(
                 onPressed: () {
@@ -262,7 +190,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       importanceValue: importanceValue,
                       taskName: taskName,
                       newDateTime: newDateTime,
-                      jsonRequest: jsonRequest,
                       context: context,
                       elseFunction: () {
                         setState(() {
