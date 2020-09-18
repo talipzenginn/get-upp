@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:get_upp/helpers/selected_tag_list_convert_json.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
 import 'package:flutter/cupertino.dart' show ChangeNotifier;
 import '../helpers/tags_list_convert_json.dart';
 import '../models/tag.dart';
+import '../models/task.dart';
 
 class TagsListProvider extends ChangeNotifier {
   TagsListProvider() {
@@ -75,6 +77,26 @@ class TagsListProvider extends ChangeNotifier {
     for (int i = 0; i < tagsChecked.length; i++) {
       if (tagsChecked[i]) {
         selectedTagList.insert(0, tags[i]);
+      }
+    }
+    notifyListeners();
+  }
+
+  void setSelection(Task task) {
+    clearSelection();
+    for (int i = 0;
+        i <
+            SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+                .selectedTagsList
+                .length;
+        i++) {
+      for (int j = 0; j < tags.length; j++) {
+        if (tags[j].name ==
+            SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+                .selectedTagsList[i]
+                .name) {
+          tagsChecked[j] = true;
+        }
       }
     }
     notifyListeners();

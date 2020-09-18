@@ -31,8 +31,8 @@ class TagDisplayList extends StatelessWidget {
                     child: ListTile(
                       leading: Icon(
                         FontAwesomeIcons.tag,
-                        color: AddTagScreen()
-                            .colors[tagData.tags[index].colorIndex],
+                        color:
+                            AddTagScreen.colors[tagData.tags[index].colorIndex],
                       ),
                       title: Text(
                         tagData.tags[index].name,

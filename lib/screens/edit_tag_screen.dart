@@ -23,8 +23,8 @@ class _EditTagScreenState extends State<EditTagScreen> {
   @override
   void initState() {
     super.initState();
-    colors = AddTagScreen().colors;
-    selectedColor = AddTagScreen().colors[widget.colorIndex];
+    colors = AddTagScreen.colors;
+    selectedColor = AddTagScreen.colors[widget.colorIndex];
     selectColorIndex = widget.colorIndex;
     controller = TextEditingController(text: widget.title);
   }

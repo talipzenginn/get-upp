@@ -107,7 +107,7 @@ class TaskTile extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             color: kInactiveColor,
                             border: Border.all(
-                                color: AddTagScreen()
+                                color: AddTagScreen
                                     .colors[tagList[index].colorIndex])),
                         child: Text(
                           tagList[index].name,
@@ -115,7 +115,7 @@ class TaskTile extends StatelessWidget {
                               fontFamily: 'GothamBook',
                               color: tagList[index].colorIndex == 2
                                   ? Colors.black45
-                                  : AddTagScreen()
+                                  : AddTagScreen
                                       .colors[tagList[index].colorIndex]),
                         ),
                       );

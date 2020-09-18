@@ -62,6 +62,11 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
+  void updateTaskTagList(int index, String jsonRequest) {
+    _tasks[index].tagListJson = jsonRequest;
+    setList();
+  }
+
   void deleteTaskDueDate(int index) {
     _tasks[index].year = 0;
     _tasks[index].month = 0;

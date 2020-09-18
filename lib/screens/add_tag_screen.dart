@@ -5,7 +5,7 @@ import '../components/widgets/pick_color_button.dart';
 import '../components/constants.dart';
 
 class AddTagScreen extends StatefulWidget {
-  final List<Color> colors = [
+  static final List<Color> colors = [
     kTagColor0,
     kTagColor1,
     kTagColor2,
@@ -25,7 +25,7 @@ class _AddTagScreenState extends State<AddTagScreen> {
   @override
   void initState() {
     super.initState();
-    colors = widget.colors;
+    colors = AddTagScreen.colors;
   }
 
   bool errorTextVisible = false;

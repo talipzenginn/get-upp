@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../models/tag.dart';
@@ -18,7 +19,7 @@ class ReusableMethods {
     bool middleActiveness = false;
     bool moreActiveness = false;
     activeColorProviderFalse.inactivateColors();
-    Provider.of<TagsListProvider>(context, listen: false).clearSelection();
+    Provider.of<TagsListProvider>(context, listen: false).setSelection(task);
     if (task.importanceValue == 1) {
       activeColorProviderFalse.changeLessButtonColor();
     } else if (task.importanceValue == 2) {
@@ -139,8 +140,11 @@ class ReusableMethods {
     int index,
     BuildContext context,
   }) {
+    TagsListProvider tagsListProviderFalse =
+        Provider.of<TagsListProvider>(context, listen: false);
     TasksListProvider tasksListProviderFalse =
         Provider.of<TasksListProvider>(context, listen: false);
+    tagsListProviderFalse.tagging();
     if (lessActiveness) {
       importanceValue = 1;
     } else if (middleActiveness) {
@@ -161,6 +165,8 @@ class ReusableMethods {
           newDateTime.year, newDateTime.month, newDateTime.day, index);
     }
     tasksListProviderFalse.updateTaskPriority(importanceValue, index);
+    tasksListProviderFalse.updateTaskTagList(
+        index, jsonEncode(tagsListProviderFalse.selectedTagList));
     Navigator.pop(context);
     FocusScope.of(context).unfocus();
     taskName = null;
