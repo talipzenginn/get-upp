@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get_upp/providers/tags_list_provider.dart';
 import 'package:provider/provider.dart' show Consumer, Provider;
 import '../../providers/settings_provider.dart';
 import '../../providers/search_bar_text_field_provider.dart';
 import '../../providers/tasks_list_provider.dart';
+import '../../providers/tags_list_provider.dart';
 import 'dismissible_task.dart';
 import 'dismissible_tasks_list.dart';
 
