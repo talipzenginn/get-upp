@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get_upp/providers/tasks_list_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' show Provider;
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
 import 'package:flutter/cupertino.dart' show ChangeNotifier;
@@ -9,6 +8,7 @@ import '../helpers/tags_list_convert_json.dart';
 import '../models/tag.dart';
 import '../models/task.dart';
 import '../helpers/selected_tag_list_convert_json.dart';
+import '../providers/tasks_list_provider.dart';
 
 class TagsListProvider extends ChangeNotifier {
   TagsListProvider() {

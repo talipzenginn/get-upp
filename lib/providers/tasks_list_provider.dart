@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:collection';
 import 'package:flutter/foundation.dart';
-import 'package:get_upp/helpers/selected_tag_list_convert_json.dart';
-import 'package:get_upp/models/tag.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
+import '../helpers/selected_tag_list_convert_json.dart';
+import '../models/tag.dart';
 import '../helpers/tasks_list_convert_json.dart';
 import '../models/task.dart';
 
