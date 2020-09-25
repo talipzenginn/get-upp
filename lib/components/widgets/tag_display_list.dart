@@ -87,7 +87,8 @@ class TagDisplayList extends StatelessWidget {
                                         onPressed: () {
                                           Provider.of<TagsListProvider>(context,
                                                   listen: false)
-                                              .deleteTag(tagData.tags[index]);
+                                              .deleteTag(
+                                                  tagData.tags[index], context);
                                           Navigator.of(context).pop();
                                         },
                                         child: Text(

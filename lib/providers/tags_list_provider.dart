@@ -47,7 +47,9 @@ class TagsListProvider extends ChangeNotifier {
     setList();
   }
 
-  void deleteTag(Tag currentTag) {
+  void deleteTag(Tag currentTag, BuildContext context) {
+    Provider.of<TasksListProvider>(context, listen: false)
+        .setTaskByTagDeletions(currentTag.name);
     tags.remove(currentTag);
     setList();
   }

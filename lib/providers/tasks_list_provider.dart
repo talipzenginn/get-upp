@@ -106,6 +106,22 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
+  void setTaskByTagDeletions(String tagName) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.name == tagName) {
+          tagList.remove(tag);
+          break;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
+    setList();
+  }
+
   int get taskCount {
     return _displayingAllTasks.length;
   }
