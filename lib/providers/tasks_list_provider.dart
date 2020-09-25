@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:collection';
 import 'package:flutter/foundation.dart';
+import 'package:get_upp/helpers/selected_tag_list_convert_json.dart';
+import 'package:get_upp/models/tag.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
 import '../helpers/tasks_list_convert_json.dart';
@@ -71,6 +73,36 @@ class TasksListProvider extends ChangeNotifier {
     _tasks[index].year = 0;
     _tasks[index].month = 0;
     _tasks[index].day = 0;
+    setList();
+  }
+
+  void setTaskByTagNameChanges(String tagName, String newTagName) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.name == tagName) {
+          tag.name = newTagName;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
+    setList();
+  }
+
+  void setTaskByTagColorChanges(String tagName, int newTagColorIndex) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.name == tagName) {
+          tag.colorIndex = newTagColorIndex;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
     setList();
   }
 

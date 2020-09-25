@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:get_upp/providers/tasks_list_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
 import 'package:flutter/cupertino.dart' show ChangeNotifier;
@@ -49,12 +52,16 @@ class TagsListProvider extends ChangeNotifier {
     setList();
   }
 
-  void updateTagTitle(int index, String newTitle) {
+  void updateTagTitle(int index, String newTitle, BuildContext context) {
+    Provider.of<TasksListProvider>(context, listen: false)
+        .setTaskByTagNameChanges(tags[index].name, newTitle);
     tags[index].name = newTitle;
     setList();
   }
 
-  void updateTagColor(int index, int newColorIndex) {
+  void updateTagColor(int index, int newColorIndex, BuildContext context) {
+    Provider.of<TasksListProvider>(context, listen: false)
+        .setTaskByTagColorChanges(tags[index].name, newColorIndex);
     tags[index].colorIndex = newColorIndex;
     setList();
   }

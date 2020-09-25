@@ -216,12 +216,12 @@ class ReusableMethods {
       }
     }
     if ((tagName != null && tagName != '')) {
-      tagsListProviderFalse.updateTagTitle(index, tagName);
-      tagsListProviderFalse.updateTagColor(index, selectColorIndex);
+      tagsListProviderFalse.updateTagTitle(index, tagName, context);
+      tagsListProviderFalse.updateTagColor(index, selectColorIndex, context);
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     } else {
-      tagsListProviderFalse.updateTagColor(index, selectColorIndex);
+      tagsListProviderFalse.updateTagColor(index, selectColorIndex, context);
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     }
