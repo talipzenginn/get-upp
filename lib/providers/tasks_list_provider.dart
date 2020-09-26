@@ -76,13 +76,13 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
-  void setTaskByTagNameChanges(String tagName, String newTagName) {
+  void setTaskByTagNameChanges({String tagId, String newTagName}) {
     for (Task task in _tasks) {
       List<Tag> tagList =
           SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
               .selectedTagsList;
       for (Tag tag in tagList) {
-        if (tag.name == tagName) {
+        if (tag.id == tagId) {
           tag.name = newTagName;
         }
       }
@@ -91,13 +91,13 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
-  void setTaskByTagColorChanges(String tagName, int newTagColorIndex) {
+  void setTaskByTagColorChanges({String tagId, int newTagColorIndex}) {
     for (Task task in _tasks) {
       List<Tag> tagList =
           SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
               .selectedTagsList;
       for (Tag tag in tagList) {
-        if (tag.name == tagName) {
+        if (tag.id == tagId) {
           tag.colorIndex = newTagColorIndex;
         }
       }
@@ -106,13 +106,13 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
-  void setTaskByTagDeletions(String tagName) {
+  void setTaskByTagDeletions({String tagId}) {
     for (Task task in _tasks) {
       List<Tag> tagList =
           SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
               .selectedTagsList;
       for (Tag tag in tagList) {
-        if (tag.name == tagName) {
+        if (tag.id == tagId) {
           tagList.remove(tag);
           break;
         }

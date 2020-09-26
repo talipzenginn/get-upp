@@ -49,21 +49,22 @@ class TagsListProvider extends ChangeNotifier {
 
   void deleteTag(Tag currentTag, BuildContext context) {
     Provider.of<TasksListProvider>(context, listen: false)
-        .setTaskByTagDeletions(currentTag.name);
+        .setTaskByTagDeletions(tagId: currentTag.id);
     tags.remove(currentTag);
     setList();
   }
 
   void updateTagTitle(int index, String newTitle, BuildContext context) {
     Provider.of<TasksListProvider>(context, listen: false)
-        .setTaskByTagNameChanges(tags[index].name, newTitle);
+        .setTaskByTagNameChanges(tagId: tags[index].id, newTagName: newTitle);
     tags[index].name = newTitle;
     setList();
   }
 
   void updateTagColor(int index, int newColorIndex, BuildContext context) {
     Provider.of<TasksListProvider>(context, listen: false)
-        .setTaskByTagColorChanges(tags[index].name, newColorIndex);
+        .setTaskByTagColorChanges(
+            tagId: tags[index].id, newTagColorIndex: newColorIndex);
     tags[index].colorIndex = newColorIndex;
     setList();
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:min_id/min_id.dart' show MinId;
 import 'package:provider/provider.dart' show Provider;
 import '../models/tag.dart';
 import '../providers/tags_list_provider.dart';
@@ -182,6 +183,8 @@ class ReusableMethods {
       String tagName,
       BuildContext context,
       Function elseFunction}) {
+    MinId.withFormat('{3{d}}-{3{d}}-{3{d}}');
+    final id = MinId.getId();
     TagsListProvider tagsListProviderFalse =
         Provider.of<TagsListProvider>(context, listen: false);
     for (Color color in colors) {
@@ -191,7 +194,7 @@ class ReusableMethods {
     }
     if (tagName != null && tagName != '') {
       tagsListProviderFalse.addTag(
-        Tag(name: tagName, colorIndex: selectColorIndex),
+        Tag(name: tagName, colorIndex: selectColorIndex, id: id),
       );
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
