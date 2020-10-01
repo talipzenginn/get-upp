@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../screens/add_tag_screen.dart';
 import '../../components/constants.dart';
 import '../../providers/active_color_provider.dart';
-import '../../screens/add_task_screen.dart';
-import '../../providers/tags_list_provider.dart';
 
-class AddTaskButton extends StatelessWidget {
-  const AddTaskButton({
+class AddTagButton extends StatelessWidget {
+  const AddTagButton({
     Key key,
   }) : super(key: key);
 
@@ -22,24 +21,24 @@ class AddTaskButton extends StatelessWidget {
             FocusScope.of(context).unfocus();
             Provider.of<ActiveColorProvider>(context, listen: false)
                 .inactivateColors();
-            Provider.of<TagsListProvider>(context, listen: false)
-                .clearSelection();
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,
               builder: (BuildContext context) => SingleChildScrollView(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(),
+                child: AddTagScreen(),
               ),
             );
           },
           minWidth: 138.0,
           height: 42.0,
           child: Text(
-            '+ Add Task',
+            '+ Add Tag',
             style: TextStyle(
-                color: kAppBarColor, fontFamily: 'GothamBook', fontSize: 14.5),
+                color: Color(0xFF048998),
+                fontFamily: 'GothamBook',
+                fontSize: 14.5),
           ),
         ),
       ),

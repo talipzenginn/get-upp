@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart'
     show DatePicker, DateTimePickerLocale;
 import 'package:provider/provider.dart' show Provider;
+import '../components/widgets/tagging_expansion_tile.dart';
+import '../components/widgets/add_edit_screens_text.dart';
+import '../helpers/reusable_methods.dart';
+import '../components/widgets/priority_button.dart';
 import '../components/constants.dart';
 import '../components/widgets/reusable_button.dart';
 import '../providers/active_color_provider.dart';
-import '../models/task.dart';
-import '../providers/tasks_list_provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   @override
@@ -15,21 +17,20 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   String taskName;
-
   int importanceValue;
-
   bool lessActiveness = false;
-
   bool middleActiveness = false;
-
   bool moreActiveness = false;
-
   DateTime newDateTime;
-
+  String weekDay = '';
   bool errorTextVisible = false;
-
+  String jsonRequest;
   @override
   Widget build(BuildContext context) {
+    ActiveColorProvider activeColorProviderFalse =
+        Provider.of<ActiveColorProvider>(context, listen: false);
+    ActiveColorProvider activeColorProviderTrue =
+        Provider.of<ActiveColorProvider>(context);
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -39,16 +40,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'Add Task',
-                  style: TextStyle(color: kAddTaskScreenTitle, fontSize: 30.0),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+                  padding: const EdgeInsets.all(15.0),
+                  child: AddEditScreensText(
+                    text: 'Add Task',
+                    textSize: 30.0,
+                  )),
               Theme(
-                data: ThemeData.light()
-                    .copyWith(accentColor: kAddTaskScreenTitle),
+                data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
                 child: TextField(
                   maxLines: null,
                   decoration: InputDecoration(
@@ -68,96 +66,66 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    'Priority',
-                    style:
-                        TextStyle(color: kAddTaskScreenTitle, fontSize: 22.0),
-                  ),
+                child: AddEditScreensText(
+                  text: 'Priority',
+                  textSize: 22.0,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
                 child: Row(
                   children: <Widget>[
-                    ReusableButton(
-                      onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeLessButtonColor();
+                    PriorityButton(
+                      onTapFunction: () {
+                        activeColorProviderFalse.changeLessButtonColor();
                         lessActiveness = !lessActiveness;
                         middleActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .lessButtonColor,
+                      bodyColor: activeColorProviderTrue.lessButtonColor,
                       text: 'less',
-                      textSize: 12.0,
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
-                    ReusableButton(
-                      onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMiddleButtonColor();
+                    PriorityButton(
+                      onTapFunction: () {
+                        activeColorProviderFalse.changeMiddleButtonColor();
                         middleActiveness = !middleActiveness;
                         lessActiveness = false;
                         moreActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .middleButtonColor,
+                      bodyColor: activeColorProviderTrue.middleButtonColor,
                       text: 'middle',
-                      textSize: 12.0,
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
-                    ReusableButton(
-                      onTapfunction: () {
-                        Provider.of<ActiveColorProvider>(context, listen: false)
-                            .changeMoreButtonColor();
+                    PriorityButton(
+                      onTapFunction: () {
+                        activeColorProviderFalse.changeMoreButtonColor();
                         moreActiveness = !moreActiveness;
                         lessActiveness = false;
                         middleActiveness = false;
                       },
-                      bodyColor: Provider.of<ActiveColorProvider>(context)
-                          .moreButtonColor,
+                      bodyColor: activeColorProviderTrue.moreButtonColor,
                       text: 'more',
-                      textSize: 12.0,
                     ),
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    'Tag and Give Due Date',
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: kAddTaskScreenTitle, fontSize: 18.0),
-                  ),
-                ),
+                child:
+                    AddEditScreensText(text: 'Give Due Date', textSize: 18.0),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
                 child: Row(
                   children: [
                     ReusableButton(
-                      onTapfunction: () {
-//                        showRoundedDatePicker(
-//                                context: context,
-//                                borderRadius: 16,
-//                                initialDate: newDateTime == null
-//                                    ? DateTime.now()
-//                                    : newDateTime,
-//                                firstDate: DateTime(DateTime.now().year),
-//                                lastDate: DateTime(DateTime.now().year + 4))
-//                            .then((value) {
-//                          setState(() {
-//                            newDateTime = value;
-//                          });
-//                        });
+                      onTapFunction: () {
+//                           showRoundedDatePicker( context: context,borderRadius: 16,initialDate: newDateTime == null? DateTime.now(): newDateTime,firstDate: DateTime(DateTime.now().year),lastDate: DateTime(DateTime.now().year + 4)).then((value) {setState(() {newDateTime = value;});});
                         DatePicker.showSimpleDatePicker(
                           context,
                           textColor: kAddTaskScreenDueDatePicker,
@@ -174,15 +142,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           if (value != null) {
                             setState(() {
                               newDateTime = value;
+                              weekDay = ReusableMethods.weekdayString(
+                                  newDateTime.weekday);
                             });
                           }
                         });
                       },
+                      borderColor: kReusableButtonBody,
                       bodyColor: kAddTaskScreenButtonBody,
                       text: newDateTime == null
                           ? 'Add Due Date'
-                          : 'Edit Due Date',
-                      textSize: 13.0,
+                          : '$weekDay, ${newDateTime.day}.${newDateTime.month}.${newDateTime.year}',
+                      textSize: 11.0,
                     ),
                     Visibility(
                       visible: newDateTime == null ? false : true,
@@ -193,11 +164,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     Visibility(
                       visible: newDateTime == null ? false : true,
                       child: ReusableButton(
-                        onTapfunction: () {
+                        onTapFunction: () {
                           setState(() {
                             newDateTime = null;
                           });
                         },
+                        borderColor: kReusableButtonBody,
                         bodyColor: kAddTaskScreenButtonBody,
                         text: 'Delete Due Date',
                         textSize: 11.0,
@@ -206,58 +178,32 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ],
                 ),
               ),
+              TaggingExpansionTile(
+                title: 'Tag it',
+              ),
               FlatButton(
                 onPressed: () {
-                  if (lessActiveness) {
-                    importanceValue = 1;
-                  } else if (middleActiveness) {
-                    importanceValue = 2;
-                  } else if (moreActiveness) {
-                    importanceValue = 3;
-                  } else {
-                    importanceValue = null;
-                  }
-                  if ((taskName != null && taskName != '') &&
-                      newDateTime != null) {
-                    Provider.of<TasksListProvider>(context, listen: false)
-                        .addTask(Task(
-                            name: taskName,
-                            importanceValue: importanceValue,
-                            year: newDateTime.year,
-                            month: newDateTime.month,
-                            day: newDateTime.day));
-                    Navigator.pop(context);
-                    FocusScope.of(context).unfocus();
-                    taskName = null;
-                    lessActiveness = false;
-                    middleActiveness = false;
-                    moreActiveness = false;
-                    importanceValue = null;
-                    newDateTime = null;
-                  } else if (taskName != null && taskName != '') {
-                    Provider.of<TasksListProvider>(context, listen: false)
-                        .addTask(Task(
-                            name: taskName, importanceValue: importanceValue));
-                    Navigator.pop(context);
-                    FocusScope.of(context).unfocus();
-                    taskName = null;
-                    lessActiveness = false;
-                    middleActiveness = false;
-                    moreActiveness = false;
-                    importanceValue = null;
-                  } else {
-                    setState(() {
-                      errorTextVisible = true;
-                    });
-                  }
+                  ReusableMethods.addTask(
+                      lessActiveness: lessActiveness,
+                      middleActiveness: middleActiveness,
+                      moreActiveness: moreActiveness,
+                      importanceValue: importanceValue,
+                      taskName: taskName,
+                      newDateTime: newDateTime,
+                      context: context,
+                      elseFunction: () {
+                        setState(() {
+                          errorTextVisible = true;
+                        });
+                      });
                 },
                 child: Text(
                   'Add',
                   style: TextStyle(
-                    color: kAddTaskScreenButtonBody,
+                    color: kInactiveColor,
                   ),
                 ),
-                color: kAddTaskScreenTitle,
+                color: kBackgroundColor,
               ),
             ],
           ),

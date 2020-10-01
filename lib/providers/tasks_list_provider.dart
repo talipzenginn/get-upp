@@ -3,6 +3,8 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
+import '../helpers/selected_tag_list_convert_json.dart';
+import '../models/tag.dart';
 import '../helpers/tasks_list_convert_json.dart';
 import '../models/task.dart';
 
@@ -16,7 +18,6 @@ class TasksListProvider extends ChangeNotifier {
   List<Task> _tasks = [];
   List<Task> _leftTasks = [];
   List<Task> _completedTasks = [];
-
   void getLocalData() async {
     preferences = await SharedPreferences.getInstance();
     String jsonText = preferences.getString('tasksList');
@@ -63,10 +64,61 @@ class TasksListProvider extends ChangeNotifier {
     setList();
   }
 
+  void updateTaskTagList(int index, String jsonRequest) {
+    _tasks[index].tagListJson = jsonRequest;
+    setList();
+  }
+
   void deleteTaskDueDate(int index) {
     _tasks[index].year = 0;
     _tasks[index].month = 0;
     _tasks[index].day = 0;
+    setList();
+  }
+
+  void setTaskByTagNameChanges({String tagId, String newTagName}) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.id == tagId) {
+          tag.name = newTagName;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
+    setList();
+  }
+
+  void setTaskByTagColorChanges({String tagId, int newTagColorIndex}) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.id == tagId) {
+          tag.colorIndex = newTagColorIndex;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
+    setList();
+  }
+
+  void setTaskByTagDeletions({String tagId}) {
+    for (Task task in _tasks) {
+      List<Tag> tagList =
+          SelectedTagListConvertJson.fromJson(jsonDecode(task.tagListJson))
+              .selectedTagsList;
+      for (Tag tag in tagList) {
+        if (tag.id == tagId) {
+          tagList.remove(tag);
+          break;
+        }
+      }
+      _tasks[_tasks.indexOf(task)].tagListJson = jsonEncode(tagList);
+    }
     setList();
   }
 

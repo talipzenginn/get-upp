@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../providers/settings_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart'
     show CircularStrokeCap, CircularPercentIndicator;
 import 'package:provider/provider.dart' show Provider;
 import '../../components/constants.dart';
+import '../../providers/settings_provider.dart';
 import '../../providers/tasks_list_provider.dart';
 
 class PercentIndicatorOfMyTasks extends StatelessWidget {
@@ -12,9 +12,13 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double percentage = ((Provider.of<TasksListProvider>(context).taskCount -
-                Provider.of<TasksListProvider>(context).leftTaskCount) /
-            Provider.of<TasksListProvider>(context).taskCount) *
+    SettingsProvider settingsProviderTrue =
+        Provider.of<SettingsProvider>(context);
+    TasksListProvider tasksListProviderTrue =
+        Provider.of<TasksListProvider>(context);
+    double percentage = ((tasksListProviderTrue.taskCount -
+                tasksListProviderTrue.leftTaskCount) /
+            tasksListProviderTrue.taskCount) *
         100;
     double percent = percentage / 100;
     bool visible() {
@@ -26,17 +30,12 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
     }
 
     return Visibility(
-      visible: Provider.of<TasksListProvider>(context).taskCount != null
-          ? Provider.of<TasksListProvider>(context).taskCount == 0
+      visible: tasksListProviderTrue.taskCount != null
+          ? tasksListProviderTrue.taskCount == 0
               ? false
-              : Provider.of<SettingsProvider>(context)
-                          .settings
-                          .hideCompletedTasks ==
-                      null
+              : settingsProviderTrue.settings.hideCompletedTasks == null
                   ? true
-                  : Provider.of<SettingsProvider>(context)
-                          .settings
-                          .hideCompletedTasks
+                  : settingsProviderTrue.settings.hideCompletedTasks
                       ? false
                       : true
           : false,
@@ -57,7 +56,7 @@ class PercentIndicatorOfMyTasks extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: kPercentIndicatorBackground,
+        backgroundColor: Color(0xFF048998),
         circularStrokeCap: CircularStrokeCap.round,
         progressColor: kInactiveColor,
       ),

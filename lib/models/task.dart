@@ -5,13 +5,15 @@ class Task {
   int year;
   int month;
   int day;
+  String tagListJson;
   Task(
       {this.name,
       this.isDone = false,
       this.importanceValue,
       this.year = 0,
       this.month = 0,
-      this.day = 0});
+      this.day = 0,
+      this.tagListJson});
 
   void toggleDone() {
     print(importanceValue);
@@ -25,7 +27,8 @@ class Task {
         importanceValue: json['importanceValue'],
         year: json['year'],
         month: json['month'],
-        day: json['day']);
+        day: json['day'],
+        tagListJson: json['tagListJson']);
   }
   Map toJson() => {
         'name': name,
@@ -33,6 +36,7 @@ class Task {
         'importanceValue': importanceValue,
         'year': year,
         'month': month,
-        'day': day
+        'day': day,
+        'tagListJson': tagListJson
       };
 }

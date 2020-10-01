@@ -66,7 +66,7 @@ class SettingsPage extends StatelessWidget {
                     padding: 8.0,
                     showOnOff: true,
                     inactiveColor: Colors.white24,
-                    activeColor: Colors.lightBlue,
+                    activeColor: kAppBarColor,
                     onToggle: (val) {
                       Provider.of<SettingsProvider>(context, listen: false)
                           .updateHideCompletedProperty(val);

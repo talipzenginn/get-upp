@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 
 const TextStyle optionStyle =
     TextStyle(fontSize: 40, color: kTitleColor, fontFamily: 'GothamBook');
-const kAppBarColor = Colors.lightBlue;
+const kAppBarColor = Color(0xFF048998);
 const kAppBarTextColor = Colors.white;
 const kTitleColor = Colors.white;
-const kBackgroundColor = Colors.lightBlueAccent;
+const kBackgroundColor = Color(0xFF3bb4c1);
 const kTaskListColor = Colors.white;
 const kNavigationBarBackgroundColor = Colors.white;
-const kNavigationBarColor = Colors.lightBlue;
+const kNavigationBarColor = kAppBarColor;
 
-const kEditTaskScreenTitle = Colors.lightBlueAccent;
+const kAddEditScreenTitle = kBackgroundColor;
 const kEditTaskScreenButtonBody = Colors.white;
-const kEditTaskScreenDueDatePicker = Colors.lightBlue;
-const kAddTaskScreenTitle = Colors.lightBlueAccent;
+const kEditTaskScreenDueDatePicker = kAppBarColor;
 const kAddTaskScreenButtonBody = Colors.white;
-const kAddTaskScreenDueDatePicker = Colors.lightBlue;
+const kAddTaskScreenDueDatePicker = kBackgroundColor;
 
 const kInactiveColor = Colors.white;
 const kLessButtonActiveColor = Colors.yellow;
@@ -37,10 +36,16 @@ const kUnselectedItemColor = Colors.grey;
 const kExpansionTileBackground = Colors.transparent;
 
 const kSearchBarHintText = Colors.white70;
-const kSearchBarBackground = Colors.lightBlueAccent;
-const kReusableButtonBody = Colors.lightBlueAccent;
+const kSearchBarBackground = kBackgroundColor;
+const kReusableButtonBody = kBackgroundColor;
 const kReusableButtonText = Colors.black;
 
-final kPercentIndicatorBackground = Colors.blue[600];
 final kCheckboxActiveColor = Colors.grey[400];
 const kCheckboxInactiveColor = Colors.grey;
+
+const kTagColor0 = Colors.orange;
+const kTagColor1 = Colors.red;
+const kTagColor2 = Colors.yellow;
+const kTagColor3 = Colors.greenAccent;
+const kTagColor4 = Colors.pinkAccent;
+const kTagColor5 = Colors.lightBlueAccent;

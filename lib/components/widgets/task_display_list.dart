@@ -1,36 +1,40 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../providers/settings_provider.dart';
 import 'package:provider/provider.dart' show Consumer, Provider;
+import '../../providers/settings_provider.dart';
 import '../../providers/search_bar_text_field_provider.dart';
 import '../../providers/tasks_list_provider.dart';
+import '../../providers/tags_list_provider.dart';
 import 'dismissible_task.dart';
 import 'dismissible_tasks_list.dart';
 
 class TaskDisplayList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<SearchBarTextFieldProvider>(context).query != null &&
-        Provider.of<SearchBarTextFieldProvider>(context).query != '') {
+    Provider.of<TagsListProvider>(context);
+    SearchBarTextFieldProvider searchBarTextFieldProviderTrue =
+        Provider.of<SearchBarTextFieldProvider>(context);
+    SettingsProvider settingsProviderTrue =
+        Provider.of<SettingsProvider>(context);
+    if (searchBarTextFieldProviderTrue.query != null &&
+        searchBarTextFieldProviderTrue.query != '') {
       return Consumer<TasksListProvider>(builder: (context, taskData, child) {
-        final suggestionList =
-            Provider.of<SearchBarTextFieldProvider>(context).query.isEmpty
-                ? []
-                : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks == null
-                    ? taskData.tasks
+        final suggestionList = searchBarTextFieldProviderTrue.query.isEmpty
+            ? []
+            : settingsProviderTrue.settings.hideCompletedTasks == null
+                ? taskData.tasks
+                    .where((p) => p.name.toLowerCase().contains(
+                        searchBarTextFieldProviderTrue.query.toLowerCase()))
+                    .toList()
+                : settingsProviderTrue.settings.hideCompletedTasks
+                    ? taskData.displayingLeftTasks
                         .where((p) => p.name.toLowerCase().contains(
-                            Provider.of<SearchBarTextFieldProvider>(context)
-                                .query
-                                .toLowerCase()))
+                            searchBarTextFieldProviderTrue.query.toLowerCase()))
                         .toList()
-                    : Provider.of<SettingsProvider>(context).settings.hideCompletedTasks
-                        ? taskData.displayingLeftTasks
-                            .where((p) => p.name.toLowerCase().contains(
-                                Provider.of<SearchBarTextFieldProvider>(context)
-                                    .query
-                                    .toLowerCase()))
-                            .toList()
-                        : taskData.tasks.where((p) => p.name.toLowerCase().contains(Provider.of<SearchBarTextFieldProvider>(context).query.toLowerCase())).toList();
+                    : taskData.tasks
+                        .where((p) => p.name.toLowerCase().contains(
+                            searchBarTextFieldProviderTrue.query.toLowerCase()))
+                        .toList();
         suggestionList.sort((a, b) {
           Map mapA = jsonDecode(jsonEncode(a));
           Map mapB = jsonDecode(jsonEncode(b));

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
-import 'providers/settings_provider.dart';
 import 'package:provider/provider.dart'
     show ChangeNotifierProvider, MultiProvider;
+import 'providers/tags_list_provider.dart';
+import 'providers/settings_provider.dart';
 import 'components/constants.dart';
 import 'providers/active_color_provider.dart';
 import 'providers/navigation_bar_on_tapped.dart';
@@ -36,7 +37,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<SettingsProvider>(
           create: (context) => SettingsProvider(),
-        )
+        ),
+        ChangeNotifierProvider<TagsListProvider>(
+          create: (context) => TagsListProvider(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData.light()

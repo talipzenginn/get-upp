@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import '../models/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart'
     show SharedPreferences;
+import '../models/settings.dart';
 
 class SettingsProvider extends ChangeNotifier {
   SettingsProvider() {

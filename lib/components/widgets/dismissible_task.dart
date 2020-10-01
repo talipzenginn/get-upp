@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
-import '../../components/widgets/reusable_snack_bar.dart';
 import 'package:provider/provider.dart' show Provider;
+import '../../helpers/selected_tag_list_convert_json.dart';
+import '../../components/widgets/reusable_snack_bar.dart';
 import '../../components/constants.dart';
 import '../../components/widgets/task_tile.dart';
 import '../../helpers/reusable_methods.dart';
@@ -16,74 +18,89 @@ class DismissibleTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskData = Provider.of<TasksListProvider>(context);
-    return Dismissible(
-      background: Container(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0, left: 8.0, right: 8.0),
+      child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: kEditDismissBackground,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Icon(
-                FontAwesomeIcons.edit,
-                color: kInactiveColor,
-                size: 25.0,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: kInactiveColor),
+        child: Theme(
+          data: ThemeData(
+              accentColor: Colors.black, dividerColor: Colors.transparent),
+          child: Dismissible(
+            background: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: kEditDismissBackground,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Icon(
+                      FontAwesomeIcons.edit,
+                      color: kInactiveColor,
+                      size: 25.0,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-      secondaryBackground: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: kDeleteDismissBackground,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Icon(
-                FontAwesomeIcons.trashAlt,
-                color: kInactiveColor,
-                size: 25.0,
+            secondaryBackground: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: kDeleteDismissBackground,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Icon(
+                      FontAwesomeIcons.trashAlt,
+                      color: kInactiveColor,
+                      size: 25.0,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+            key: ValueKey(taskData.displayingAllTasks[index].name),
+            onDismissed: (direction) {
+              taskData.displayingAllTasks.removeAt(index);
+            },
+            confirmDismiss: (direction) => promptUser(
+                index: index,
+                taskData: taskData,
+                context: context,
+                task: taskData.displayingAllTasks[index],
+                direction: direction),
+            child: TaskTile(
+              index: index,
+              task: task,
+              taskTitle: task.name,
+              isChecked: task.isDone,
+              checkboxCallback: (bool checkboxState) {
+                Provider.of<TasksListProvider>(context, listen: false)
+                    .updateCheckProperty(task);
+                if (checkboxState) {
+                  Scaffold.of(context).showSnackBar(ReusableSnackBar()
+                      .snackBarWithContent(
+                          snackBarContent: "Task Completed",
+                          snackBarColor: Colors.teal));
+                }
+              },
+              importanceValue: task.importanceValue,
+              year: task.year,
+              month: task.month,
+              day: task.day,
+              tagList: SelectedTagListConvertJson.fromJson(
+                      jsonDecode(task.tagListJson))
+                  .selectedTagsList,
+            ),
+          ),
         ),
-      ),
-      key: ValueKey(taskData.displayingAllTasks[index].name),
-      onDismissed: (direction) {
-        taskData.displayingAllTasks.removeAt(index);
-      },
-      confirmDismiss: (direction) => promptUser(
-          index: index,
-          taskData: taskData,
-          context: context,
-          task: taskData.displayingAllTasks[index],
-          direction: direction),
-      child: TaskTile(
-        index: index,
-        task: task,
-        taskTitle: task.name,
-        isChecked: task.isDone,
-        checkboxCallback: (bool checkboxState) {
-          Provider.of<TasksListProvider>(context, listen: false)
-              .updateCheckProperty(task);
-          if (checkboxState) {
-            Scaffold.of(context).showSnackBar(ReusableSnackBar()
-                .snackBarWithContent(
-                    snackBarContent: "Task Completed",
-                    snackBarColor: Colors.teal));
-          }
-        },
-        importanceValue: task.importanceValue,
-        year: task.year,
-        month: task.month,
-        day: task.day,
       ),
     );
   }
@@ -96,7 +113,7 @@ class DismissibleTask extends StatelessWidget {
       int index}) async {
     bool confirm;
     if (direction == DismissDirection.startToEnd) {
-      ReusableMethods().openEditTaskScreen(context, task, index);
+      ReusableMethods.openEditTaskScreen(context, task, index);
     } else if (direction == DismissDirection.endToStart) {
       confirm = await showDialog<bool>(
             barrierDismissible: true,
