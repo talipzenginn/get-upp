@@ -44,14 +44,16 @@ class _EditTagScreenState extends State<EditTagScreen> {
                   child: AddEditScreensText(text: 'Edit Tag', textSize: 30.0)),
               Theme(
                 data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
-                child: TextField(
+                child: TextFormField(
                   maxLines: null,
                   controller: controller,
                   decoration: InputDecoration(
+                    labelText: 'Tag Title',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     hintText: widget.title,
                   ),
                   autofocus: true,
-                  textAlign: TextAlign.center,
                   onChanged: (value) {
                     setState(() {
                       tagName = value;
@@ -158,7 +160,7 @@ class _EditTagScreenState extends State<EditTagScreen> {
                       context: context);
                 },
                 child: Text(
-                  'Edit',
+                  'Done',
                   style: TextStyle(
                     color: kAddTaskScreenButtonBody,
                   ),

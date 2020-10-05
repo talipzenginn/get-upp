@@ -45,15 +45,17 @@ class _AddTagScreenState extends State<AddTagScreen> {
                     child: AddEditScreensText(text: 'Add Tag', textSize: 30.0)),
                 Theme(
                   data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
-                  child: TextField(
+                  child: TextFormField(
                     maxLines: null,
                     decoration: InputDecoration(
+                      labelText: 'Tag Title',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
                       errorText: errorTextVisible == true
                           ? 'You should type title'
                           : null,
                       hintText: 'Type your title',
                     ),
-                    textAlign: TextAlign.center,
                     autofocus: true,
                     onChanged: (value) {
                       setState(() {

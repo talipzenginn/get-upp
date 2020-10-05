@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
 import '../../components/constants.dart';
 import '../../providers/active_color_provider.dart';
@@ -36,10 +38,25 @@ class AddTaskButton extends StatelessWidget {
           },
           minWidth: 138.0,
           height: 42.0,
-          child: Text(
-            '+ Add Task',
-            style: TextStyle(
-                color: kAppBarColor, fontFamily: 'GothamBook', fontSize: 14.5),
+          child: Row(
+            children: [
+              Icon(
+                FontAwesomeIcons.plus,
+                size: 15,
+                color: kBackgroundColor,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  ' Add Task',
+                  style: TextStyle(
+                      color: kAppBarColor,
+                      fontFamily: 'GothamBook',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.5),
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -27,13 +27,13 @@ class SettingsPage extends StatelessWidget {
                 'My Tasks Page Settings',
                 style: TextStyle(
                   fontFamily: 'GothamLight',
-                  color: kTitleColor,
+                  color: Colors.black,
                   fontSize: 24.0,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(
-                height: 15.0,
+                height: 20.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,14 +43,14 @@ class SettingsPage extends StatelessWidget {
                     child: Text(
                       'Hide completed tasks',
                       style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.white,
+                        fontSize: 20.0,
+                        color: Colors.black,
                       ),
                       textAlign: TextAlign.start,
                     ),
                   ),
                   FlutterSwitch(
-                    width: 100.0,
+                    width: 93.0,
                     height: 40.0,
                     valueFontSize: 16.0,
                     toggleSize: 45.0,
@@ -65,7 +65,7 @@ class SettingsPage extends StatelessWidget {
                     borderRadius: 30.0,
                     padding: 8.0,
                     showOnOff: true,
-                    inactiveColor: Colors.white24,
+                    inactiveColor: Colors.grey,
                     activeColor: kAppBarColor,
                     onToggle: (val) {
                       Provider.of<SettingsProvider>(context, listen: false)

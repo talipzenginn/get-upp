@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
+import '../../providers/active_color_provider.dart';
+import '../../screens/add_tag_screen.dart';
 import '../../providers/tags_list_provider.dart';
 import '../constants.dart';
 import 'add_edit_screens_text.dart';
@@ -36,6 +40,7 @@ class TaggingExpansionTile extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: kInactiveColor,
                         border: Border.all(
+                          width: 1.4,
                           color: kReusableButtonBody,
                         ),
                         borderRadius: BorderRadius.circular(10.0)),
@@ -49,6 +54,41 @@ class TaggingExpansionTile extends StatelessWidget {
                           FocusScope.of(context).unfocus();
                         },
                         children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: kAppBarColor, width: 1.7),
+                                  borderRadius: BorderRadius.circular(10)),
+                              width: double.infinity,
+                              child: FlatButton.icon(
+                                  label: Text(
+                                    'Add New Tag',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  icon: Icon(Icons.add),
+                                  onPressed: () {
+                                    FocusScope.of(context).unfocus();
+                                    Provider.of<ActiveColorProvider>(context,
+                                            listen: false)
+                                        .inactivateColors();
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      builder: (BuildContext context) =>
+                                          SingleChildScrollView(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        child: AddTagScreen(),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ),
                           Container(
                             width: 400,
                             height: tagsListProviderTrue.tagsCount <= 1
@@ -62,6 +102,13 @@ class TaggingExpansionTile extends StatelessWidget {
                               itemCount: tagsListProviderTrue.tagsCount,
                               itemBuilder: (BuildContext context, int index) {
                                 return ListTile(
+                                  leading: Icon(
+                                    FontAwesomeIcons.tag,
+                                    size: 23,
+                                    color: AddTagScreen.colors[
+                                        tagsListProviderTrue
+                                            .tags[index].colorIndex],
+                                  ),
                                   title: Text(
                                       tagsListProviderTrue.tags[index].name),
                                   trailing: Checkbox(
