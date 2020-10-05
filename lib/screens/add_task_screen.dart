@@ -47,16 +47,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   )),
               Theme(
                 data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
-                child: TextField(
+                child: TextFormField(
                   maxLines: null,
                   decoration: InputDecoration(
+                    labelText: 'Task Title',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     errorText: errorTextVisible == true
                         ? 'You should type title'
                         : null,
                     hintText: 'Type your title',
                   ),
                   autofocus: newDateTime == null ? true : false,
-                  textAlign: TextAlign.center,
                   onChanged: (value) {
                     setState(() {
                       taskName = value;
@@ -83,7 +85,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         moreActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.lessButtonColor,
-                      text: 'less',
+                      text: 'low',
                     ),
                     SizedBox(
                       width: 10.0,
@@ -96,7 +98,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         moreActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.middleButtonColor,
-                      text: 'middle',
+                      text: 'medium',
                     ),
                     SizedBox(
                       width: 10.0,
@@ -109,15 +111,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         middleActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.moreButtonColor,
-                      text: 'more',
+                      text: 'high',
                     ),
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child:
-                    AddEditScreensText(text: 'Give Due Date', textSize: 18.0),
+                child: AddEditScreensText(text: 'Due Date', textSize: 18.0),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3.6),
@@ -171,7 +172,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         },
                         borderColor: kReusableButtonBody,
                         bodyColor: kAddTaskScreenButtonBody,
-                        text: 'Delete Due Date',
+                        text: 'Remove Due Date',
                         textSize: 11.0,
                       ),
                     ),

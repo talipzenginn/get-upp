@@ -47,10 +47,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   int importanceValue;
   DateTime newDateTime;
   TextEditingController controller;
+  String weekDay = '';
   @override
   void initState() {
     super.initState();
     controller = TextEditingController(text: widget.title);
+    weekDay = ReusableMethods.weekdayString(
+        DateTime.utc(widget.year, widget.month, widget.day).weekday);
   }
 
   @override
@@ -76,14 +79,16 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   child: AddEditScreensText(text: 'Edit Task', textSize: 30.0)),
               Theme(
                 data: ThemeData.light().copyWith(primaryColor: kAppBarColor),
-                child: TextField(
+                child: TextFormField(
                   maxLines: null,
                   controller: controller,
                   decoration: InputDecoration(
+                    labelText: 'Task Title',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     hintText: widget.title,
                   ),
                   autofocus: true,
-                  textAlign: TextAlign.center,
                   onChanged: (value) {
                     setState(() {
                       taskName = value;
@@ -109,7 +114,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         moreActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.lessButtonColor,
-                      text: 'less',
+                      text: 'low',
                     ),
                     SizedBox(
                       width: 10.0,
@@ -122,7 +127,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         moreActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.middleButtonColor,
-                      text: 'middle',
+                      text: 'medium',
                     ),
                     SizedBox(
                       width: 10.0,
@@ -135,7 +140,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         middleActiveness = false;
                       },
                       bodyColor: activeColorProviderTrue.moreButtonColor,
-                      text: 'more',
+                      text: 'high',
                     ),
                   ],
                 ),
@@ -173,6 +178,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                           if (value != null) {
                             setState(() {
                               newDateTime = value;
+                              weekDay = ReusableMethods.weekdayString(
+                                  newDateTime.weekday);
                             });
                           }
                         });
@@ -184,7 +191,11 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                                   0 &&
                               newDateTime == null
                           ? 'Add Due Date'
-                          : 'Edit Due Date',
+                          : tasksListProviderTrue
+                                      .displayingAllTasks[widget.index].year !=
+                                  0
+                              ? '$weekDay, ${widget.day}.${widget.month}.${widget.year}'
+                              : '$weekDay, ${newDateTime.day}.${newDateTime.month}.${newDateTime.year}',
                       textSize: 11.0,
                     ),
                     Visibility(
@@ -215,7 +226,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         },
                         borderColor: kReusableButtonBody,
                         bodyColor: kEditTaskScreenButtonBody,
-                        text: 'Delete Due Date',
+                        text: 'Remove Due Date',
                         textSize: 11.0,
                       ),
                     ),
@@ -239,7 +250,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   );
                 },
                 child: Text(
-                  'Edit',
+                  'Done',
                   style: TextStyle(
                     color: kEditTaskScreenButtonBody,
                   ),

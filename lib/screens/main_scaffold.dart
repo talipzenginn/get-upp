@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
-    show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
 import '../screens/settings_page.dart';
 import '../screens/my_families_page.dart';
@@ -20,31 +18,32 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedFontSize: 13.0,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.list),
+            icon: Icon(Icons.format_list_bulleted),
             title: Text(
               'Tasks',
               style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.tags),
+            icon: Icon(Icons.style),
             title: Text(
               'Tags',
               style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.users),
+            icon: Icon(Icons.people),
             title: Text(
               'Families',
               style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.cogs),
+            icon: Icon(
+              Icons.settings,
+            ),
             title: Text(
               'Settings',
               style: TextStyle(fontFamily: 'GothamLight', fontSize: 12.5),
@@ -52,6 +51,7 @@ class MainScaffold extends StatelessWidget {
           ),
         ],
         currentIndex: Provider.of<NavigationBarOnTapped>(context).selectedIndex,
+        type: BottomNavigationBarType.fixed,
         backgroundColor: kNavigationBarBackgroundColor,
         selectedItemColor: kNavigationBarColor,
         unselectedItemColor: kUnselectedItemColor,
@@ -84,7 +84,10 @@ class MainScaffold extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: kBackgroundColor,
+      backgroundColor:
+          Provider.of<NavigationBarOnTapped>(context).selectedIndex == 3
+              ? kInactiveColor
+              : kBackgroundColor,
       body: _widgetOptions
           .elementAt(Provider.of<NavigationBarOnTapped>(context).selectedIndex),
     );
