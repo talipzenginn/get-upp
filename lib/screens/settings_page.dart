@@ -50,7 +50,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                   FlutterSwitch(
-                    width: 93.0,
+                    width: 100.0,
                     height: 40.0,
                     valueFontSize: 16.0,
                     toggleSize: 45.0,

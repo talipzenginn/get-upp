@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'
+    show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
 import '../../screens/add_tag_screen.dart';
 import '../../components/constants.dart';
@@ -14,6 +16,7 @@ class AddTagButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: Material(
+        elevation: 5,
         color: kInactiveColor,
         borderRadius: BorderRadius.circular(25.0),
         child: MaterialButton(
@@ -33,12 +36,25 @@ class AddTagButton extends StatelessWidget {
           },
           minWidth: 138.0,
           height: 42.0,
-          child: Text(
-            '+ Add Tag',
-            style: TextStyle(
-                color: Color(0xFF048998),
-                fontFamily: 'GothamBook',
-                fontSize: 14.5),
+          child: Row(
+            children: [
+              Icon(
+                FontAwesomeIcons.plus,
+                size: 15,
+                color: kAppBarColor,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  ' Add Tag',
+                  style: TextStyle(
+                      color: kAppBarColor,
+                      fontFamily: 'GothamBook',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.5),
+                ),
+              ),
+            ],
           ),
         ),
       ),

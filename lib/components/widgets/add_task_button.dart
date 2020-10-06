@@ -17,6 +17,7 @@ class AddTaskButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: Material(
+        elevation: 5,
         color: kInactiveColor,
         borderRadius: BorderRadius.circular(25.0),
         child: MaterialButton(
@@ -43,7 +44,7 @@ class AddTaskButton extends StatelessWidget {
               Icon(
                 FontAwesomeIcons.plus,
                 size: 15,
-                color: kBackgroundColor,
+                color: kAppBarColor,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
@@ -52,7 +53,7 @@ class AddTaskButton extends StatelessWidget {
                   style: TextStyle(
                       color: kAppBarColor,
                       fontFamily: 'GothamBook',
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                       fontSize: 14.5),
                 ),
               ),
