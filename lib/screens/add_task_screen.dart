@@ -53,9 +53,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     labelText: 'Task Title',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    errorText: errorTextVisible == true
-                        ? 'You should type title'
-                        : null,
+                    errorText: taskName != null && taskName != ''
+                        ? null
+                        : errorTextVisible == true
+                            ? 'You should type title'
+                            : null,
                     hintText: 'Type your title',
                   ),
                   autofocus: newDateTime == null ? true : false,

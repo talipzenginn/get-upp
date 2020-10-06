@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     show FontAwesomeIcons;
 import 'package:provider/provider.dart' show Provider;
-import '../../providers/active_color_provider.dart';
 import '../../screens/add_tag_screen.dart';
 import '../../providers/tags_list_provider.dart';
 import '../constants.dart';
@@ -58,9 +57,6 @@ class TaggingExpansionTile extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               FocusScope.of(context).unfocus();
-                              Provider.of<ActiveColorProvider>(context,
-                                      listen: false)
-                                  .inactivateColors();
                               showModalBottomSheet(
                                 context: context,
                                 isScrollControlled: true,

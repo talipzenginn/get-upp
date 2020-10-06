@@ -51,9 +51,11 @@ class _AddTagScreenState extends State<AddTagScreen> {
                       labelText: 'Tag Title',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      errorText: errorTextVisible == true
-                          ? 'You should type title'
-                          : null,
+                      errorText: tagName != null && tagName != ''
+                          ? null
+                          : errorTextVisible == true
+                              ? 'You should type title'
+                              : null,
                       hintText: 'Type your title',
                     ),
                     autofocus: true,
