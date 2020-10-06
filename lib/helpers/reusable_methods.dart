@@ -201,7 +201,7 @@ class ReusableMethods {
     } else {
       elseFunction();
     }
-    tagsListProviderFalse.clearSelection();
+    tagsListProviderFalse.holdSelection();
   }
 
   static void editTag({

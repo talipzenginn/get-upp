@@ -82,6 +82,11 @@ class TagsListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void holdSelection() {
+    tagsChecked.insert(0, true);
+    notifyListeners();
+  }
+
   void tagging() {
     selectedTagList.clear();
     for (int i = 0; i < tagsChecked.length; i++) {
