@@ -191,11 +191,14 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                                   0 &&
                               newDateTime == null
                           ? 'Add Due Date'
-                          : tasksListProviderTrue
-                                      .displayingAllTasks[widget.index].year !=
-                                  0
-                              ? '$weekDay, ${widget.day}.${widget.month}.${widget.year}'
-                              : '$weekDay, ${newDateTime.day}.${newDateTime.month}.${newDateTime.year}',
+                          : newDateTime != null
+                              ? '$weekDay, ${newDateTime.day}.${newDateTime.month}.${newDateTime.year}'
+                              : tasksListProviderTrue
+                                          .displayingAllTasks[widget.index]
+                                          .year !=
+                                      0
+                                  ? '$weekDay, ${widget.day}.${widget.month}.${widget.year}'
+                                  : '',
                       textSize: 11.0,
                     ),
                     Visibility(
