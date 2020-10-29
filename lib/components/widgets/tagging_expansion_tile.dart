@@ -5,7 +5,7 @@ import 'package:provider/provider.dart' show Provider;
 import '../../screens/add_tag_screen.dart';
 import '../../providers/tags_list_provider.dart';
 import '../constants.dart';
-import 'add_edit_screens_text.dart';
+import './add_edit_screens_text.dart';
 
 class TaggingExpansionTile extends StatelessWidget {
   final String title;

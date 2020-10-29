@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:get_upp/components/constants.dart';
 import 'package:image_picker/image_picker.dart' show ImagePicker, ImageSource;
+import '../../components/constants.dart';
 
 class UserImagePicker extends StatefulWidget {
   UserImagePicker({this.imagePickFn});
@@ -17,7 +16,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
 
   void _pickImage() async {
     final pickedImageFile = await ImagePicker.pickImage(
-      source: ImageSource.camera,
+      source: ImageSource.gallery,
       imageQuality: 50,
       maxWidth: 150,
       maxHeight: 150,

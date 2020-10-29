@@ -1,11 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' show FirebaseStorage;
 import 'package:firebase_auth/firebase_auth.dart' show AuthResult, FirebaseAuth;
 import 'package:cloud_firestore/cloud_firestore.dart' show Firestore;
 import 'package:flutter/services.dart' show PlatformException;
-import 'package:get_upp/components/constants.dart';
+import '../components/constants.dart';
 import '../components/widgets/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {

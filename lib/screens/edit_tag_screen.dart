@@ -3,7 +3,7 @@ import '../components/widgets/add_edit_screens_text.dart';
 import '../helpers/reusable_methods.dart';
 import '../components/widgets/pick_color_button.dart';
 import '../components/constants.dart';
-import 'add_tag_screen.dart';
+import './add_tag_screen.dart';
 
 class EditTagScreen extends StatefulWidget {
   final String title;

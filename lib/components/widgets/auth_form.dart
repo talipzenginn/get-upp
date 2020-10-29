@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:get_upp/components/constants.dart';
+import '../constants.dart';
 import '../widgets/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
@@ -124,7 +123,10 @@ class _AuthFormState extends State<AuthForm> {
                   SizedBox(
                     height: 12,
                   ),
-                  if (widget.isLoading) CircularProgressIndicator(),
+                  if (widget.isLoading)
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(kAppBarColor),
+                    ),
                   if (!widget.isLoading)
                     RaisedButton(
                         child: Text(
