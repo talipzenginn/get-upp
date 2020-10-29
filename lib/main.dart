@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
 import 'package:provider/provider.dart'
     show ChangeNotifierProvider, MultiProvider;
-import 'providers/tags_list_provider.dart';
-import 'providers/settings_provider.dart';
-import 'components/constants.dart';
-import 'providers/active_color_provider.dart';
-import 'providers/navigation_bar_on_tapped.dart';
-import 'providers/search_bar_text_field_provider.dart';
-import 'providers/tasks_list_provider.dart';
-import 'screens/main_scaffold.dart';
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import './providers/tags_list_provider.dart';
+import './providers/settings_provider.dart';
+import './components/constants.dart';
+import './providers/active_color_provider.dart';
+import './providers/navigation_bar_on_tapped.dart';
+import './providers/search_bar_text_field_provider.dart';
+import './providers/tasks_list_provider.dart';
+import './screens/main_scaffold.dart';
+import './screens/splash_screen.dart';
+import './screens/auth_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,7 +49,22 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light()
             .copyWith(accentColor: kAccentColor, primaryColor: kPrimaryColor),
         debugShowCheckedModeBanner: false,
-        home: MainScaffold(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.onAuthStateChanged,
+          builder: (ctx, userSnapshot) {
+            if (userSnapshot.connectionState == ConnectionState.waiting) {
+              return Scaffold(
+                body: Center(
+                  child: SplashScreen(),
+                ),
+              );
+            }
+            if (userSnapshot.hasData) {
+              return MainScaffold();
+            }
+            return AuthScreen();
+          },
+        ),
       ),
     );
   }

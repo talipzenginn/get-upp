@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "996070617596",
+    "firebase_url": "https://get-upp.firebaseio.com",
+    "project_id": "get-upp",
+    "storage_bucket": "get-upp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996070617596:android:60c407f260d55a364fc279",
+        "android_client_info": {
+          "package_name": "com.example.get_upp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996070617596-3k7u7ukrbbdi9martsatg6l0v5tau8te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCt56d4cMviFo_cQ031eztYbLaqDqhqC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996070617596-3k7u7ukrbbdi9martsatg6l0v5tau8te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

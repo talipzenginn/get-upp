@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' show Provider;
 import '../screens/settings_page.dart';
@@ -58,6 +59,14 @@ class MainScaffold extends StatelessWidget {
         onTap: Provider.of<NavigationBarOnTapped>(context).onItemTapped,
       ),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+          ),
+        ],
         backgroundColor: kAppBarColor,
         title: Center(
           child: RichText(
